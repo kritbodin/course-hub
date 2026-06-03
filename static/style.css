@@ -332,6 +332,38 @@ a:hover { text-decoration: underline; }
   opacity: .7;
 }
 
+/* ── Footer ──────────────────────────────────────────────── */
+
+.site-footer {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+}
+.site-footer-inner { max-width: 860px; margin: 0 auto; }
+.footer-name {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: .25rem;
+}
+.footer-affil {
+  font-size: .8rem;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.footer-contact {
+  font-size: .8rem;
+  margin-bottom: .75rem;
+}
+.footer-copy {
+  font-size: .72rem;
+  color: var(--muted);
+  padding-top: .75rem;
+  border-top: 1px solid var(--border);
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 
 @media (max-width: 700px) {
