@@ -236,6 +236,81 @@ a:hover { text-decoration: underline; }
   color: #15803d;
   border: 1px solid #bbf7d0;
 }
+.pill-workshop {
+  background: #fdf4ff;
+  color: #7e22ce;
+  border: 1px solid #e9d5ff;
+}
+.pill-workshop:hover { text-decoration: none; opacity: .85; }
+
+/* ── Sidebar sections ────────────────────────────────────── */
+
+.sidebar-card--section {
+  margin-top: .75rem;
+  padding-top: 1rem;
+}
+
+.sidebar-section-title {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: .75rem;
+}
+
+.textbook-list {
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.textbook-list li {
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.grading-total {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-bottom: .65rem;
+}
+
+.grading-list { display: flex; flex-direction: column; gap: .55rem; }
+
+.grading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: .82rem;
+}
+.grading-label { color: var(--ink); }
+.grading-score {
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--accent);
+  white-space: nowrap;
+  margin-left: .5rem;
+}
+.grading-score::after { content: " คะแนน"; font-weight: 400; font-size: .72rem; color: var(--muted); }
+
+.grading-bar-wrap {
+  height: 4px;
+  background: var(--bg);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: .2rem;
+}
+.grading-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  opacity: .7;
+}
 
 /* ── Responsive ──────────────────────────────────────────── */
 

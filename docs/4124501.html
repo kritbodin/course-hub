@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>4124501 · ปัญญาประดิษฐ์ (Artificial Intelligence)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
@@ -19,7 +19,10 @@
 
   <div class="course-layout">
 
+    <!-- ── Sidebar ── -->
     <aside class="course-sidebar">
+
+      <!-- Course info -->
       <div class="sidebar-card">
         <span class="badge">4124501</span>
         <h1 class="course-title">ปัญญาประดิษฐ์ (Artificial Intelligence)</h1>
@@ -30,7 +33,7 @@
             <span class="meta-icon">🗓</span>
             <div>
               <div class="meta-label">ตารางสอน</div>
-              <div class="meta-value">พฤหัสบดี 08:00-10:00 (บรรยาย ห้อง 3303) | 10:00-12:00 (ปฏิบัติ ห้อง 4404)</div>
+              <div class="meta-value">พฤหัสบดี 08:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 4404)</div>
             </div>
           </div>
           <div class="meta-item">
@@ -45,15 +48,84 @@
             <span class="meta-icon">🕐</span>
             <div>
               <div class="meta-label">Office Hours</div>
-              <div class="meta-value">พุธ 13:30–15:00 ห้องสมุด ชั้น 3</div>
+              <div class="meta-value">พุธ 13:30–15:00 (ออนไลน์)</div>
             </div>
           </div>
         </div>
 
         
       </div>
+
+      <!-- Textbooks -->
+      
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          เอกสารและตำราประกอบ
+        </h2>
+        <ol class="textbook-list">
+          
+          <li>บุญเสริม กิจศิริกุล, &#34;ปัญญาประดิษฐ์&#34; เอกสารคำสอนวิชา 2110654.</li>
+          
+          <li>ณัฐพงษ์ วารีประเสริฐ และ ณรงค์ ล่ำดี, &#34;ปัญญาประดิษฐ์&#34;, เคทีพีคอมพ์, 2552.</li>
+          
+          <li>George F. Luger, &#34;Artificial Intelligence&#34;, 6th ed., Addison Wesley, 2008.</li>
+          
+          <li>S. Russell &amp; P. Norvig, &#34;Artificial Intelligence: A Modern Approach&#34;, 2nd ed., Prentice-Hall, 2003.</li>
+          
+        </ol>
+      </div>
+      
+
+      <!-- Grading -->
+      
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          การประเมินผล
+        </h2>
+        <p class="grading-total">คะแนนเต็ม 100 คะแนน</p>
+        <div class="grading-list">
+          
+          <div class="grading-row">
+            <span class="grading-label">คะแนนเก็บ</span>
+            <span class="grading-score">40</span>
+          </div>
+          <div class="grading-bar-wrap">
+            <div class="grading-bar" style="width:40%"></div>
+          </div>
+          
+          <div class="grading-row">
+            <span class="grading-label">สอบกลางภาค</span>
+            <span class="grading-score">20</span>
+          </div>
+          <div class="grading-bar-wrap">
+            <div class="grading-bar" style="width:20%"></div>
+          </div>
+          
+          <div class="grading-row">
+            <span class="grading-label">จิตพิสัย (เข้าเรียนและอื่นๆ)</span>
+            <span class="grading-score">10</span>
+          </div>
+          <div class="grading-bar-wrap">
+            <div class="grading-bar" style="width:10%"></div>
+          </div>
+          
+          <div class="grading-row">
+            <span class="grading-label">สอบปลายภาค</span>
+            <span class="grading-score">30</span>
+          </div>
+          <div class="grading-bar-wrap">
+            <div class="grading-bar" style="width:30%"></div>
+          </div>
+          
+        </div>
+      </div>
+      
+
     </aside>
 
+    <!-- ── Main ── -->
     <main class="course-main">
       <h2 class="section-heading">เนื้อหารายสัปดาห์</h2>
       <div class="week-list">
@@ -69,8 +141,9 @@
             <div class="week-meta">
               
               
+              
               <span class="pill pill-assign">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
                 ฝึกพิมพ์ดีดที่ thaiedu.net และ 10fastfingers.com
               </span>
               
@@ -89,6 +162,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -102,6 +176,7 @@
           <div class="week-body">
             <p class="week-topic">การแก้ไขปัญหา (Problem Solving) — Search Techniques, Advanced Search</p>
             <div class="week-meta">
+              
               
               
             </div>
@@ -119,6 +194,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -132,6 +208,7 @@
           <div class="week-body">
             <p class="week-topic">องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 2</p>
             <div class="week-meta">
+              
               
               
             </div>
@@ -149,6 +226,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -164,6 +242,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -171,7 +250,7 @@
         <div class="week-row week-exam">
           <div class="week-num">
             
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             
           </div>
           <div class="week-body">
@@ -179,10 +258,6 @@
             <div class="week-meta">
               
               
-              <span class="pill pill-assign">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                สอบกลางภาค
-              </span>
               
             </div>
           </div>
@@ -197,6 +272,7 @@
           <div class="week-body">
             <p class="week-topic">ระบบการเรียนรู้ (Learning) — Neural Network, Genetic Algorithm</p>
             <div class="week-meta">
+              
               
               
             </div>
@@ -214,6 +290,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -227,6 +304,7 @@
           <div class="week-body">
             <p class="week-topic">ระบบการเรียนรู้ (ต่อ) — Decision Tree</p>
             <div class="week-meta">
+              
               
               
             </div>
@@ -244,6 +322,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -257,6 +336,7 @@
           <div class="week-body">
             <p class="week-topic">K-Nearest Neighbors (kNN) ต่อ</p>
             <div class="week-meta">
+              
               
               
             </div>
@@ -274,6 +354,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -287,6 +368,7 @@
           <div class="week-body">
             <p class="week-topic">การประมวลผลภาษาธรรมชาติ (Natural Language Processing: NLP)</p>
             <div class="week-meta">
+              
               
               
             </div>
@@ -304,6 +386,7 @@
             <div class="week-meta">
               
               
+              
             </div>
           </div>
         </div>
@@ -311,7 +394,7 @@
         <div class="week-row week-exam">
           <div class="week-num">
             
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             
           </div>
           <div class="week-body">
@@ -319,10 +402,6 @@
             <div class="week-meta">
               
               
-              <span class="pill pill-assign">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                สอบปลายภาค
-              </span>
               
             </div>
           </div>

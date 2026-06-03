@@ -4,109 +4,138 @@
       "code": "4124501",
       "name": "ปัญญาประดิษฐ์ (Artificial Intelligence)",
       "semester": "1/2569",
-      "schedule": "พฤหัสบดี 08:00-10:00 (บรรยาย ห้อง 3303) | 10:00-12:00 (ปฏิบัติ ห้อง 4404)",
+      "schedule": "พฤหัสบดี 08:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 4404)",
       "teams_link": "",
+      "textbooks": [
+        "บุญเสริม กิจศิริกุล, \"ปัญญาประดิษฐ์\" เอกสารคำสอนวิชา 2110654.",
+        "ณัฐพงษ์ วารีประเสริฐ และ ณรงค์ ล่ำดี, \"ปัญญาประดิษฐ์\", เคทีพีคอมพ์, 2552.",
+        "George F. Luger, \"Artificial Intelligence\", 6th ed., Addison Wesley, 2008.",
+        "S. Russell & P. Norvig, \"Artificial Intelligence: A Modern Approach\", 2nd ed., Prentice-Hall, 2003."
+      ],
+      "grading": [
+        { "label": "คะแนนเก็บ", "score": 40 },
+        { "label": "สอบกลางภาค", "score": 20 },
+        { "label": "จิตพิสัย (เข้าเรียนและอื่นๆ)", "score": 10 },
+        { "label": "สอบปลายภาค", "score": 30 }
+      ],
       "weeks": [
         {
           "week": 1,
           "topic": "แนะนำรายวิชา, ฝึกพิมพ์ดีดภาษาไทย",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": "ฝึกพิมพ์ดีดที่ thaiedu.net และ 10fastfingers.com"
         },
         {
           "week": 2,
           "topic": "ความรู้เบื้องต้นเกี่ยวกับปัญญาประดิษฐ์ (Overview)",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 3,
           "topic": "การแก้ไขปัญหา (Problem Solving) — Search Techniques, Advanced Search",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 4,
           "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 1",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 5,
           "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 2",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 6,
           "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (Uncertain Knowledge and Reasoning) — Bayes' Rule",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 7,
           "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (ต่อ) — Bayesian Network",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 8,
           "topic": "สอบกลางภาคเรียน (พิมพ์ดีดภาษาไทย)",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": "สอบกลางภาค"
         },
         {
           "week": 9,
           "topic": "ระบบการเรียนรู้ (Learning) — Neural Network, Genetic Algorithm",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 10,
           "topic": "ระบบการเรียนรู้ (ต่อ) — Genetic Algorithm",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 11,
           "topic": "ระบบการเรียนรู้ (ต่อ) — Decision Tree",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 12,
           "topic": "การเรียนรู้ของเครื่องจักร (Machine Learning) — K-Nearest Neighbors (kNN)",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 13,
           "topic": "K-Nearest Neighbors (kNN) ต่อ",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 14,
           "topic": "K-Nearest Neighbors (kNN) ต่อ",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 15,
           "topic": "การประมวลผลภาษาธรรมชาติ (Natural Language Processing: NLP)",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 16,
           "topic": "Natural Language Processing (NLP) ต่อ",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": ""
         },
         {
           "week": 17,
           "topic": "สอบปลายภาคเรียน (พิมพ์ดีดภาษาอังกฤษ)",
           "slide_url": "",
+          "workshop_url": "",
           "assignment": "สอบปลายภาค"
         }
       ]

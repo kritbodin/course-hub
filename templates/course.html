@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ course.code }} · {{ course.name }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
@@ -19,7 +19,10 @@
 
   <div class="course-layout">
 
+    <!-- ── Sidebar ── -->
     <aside class="course-sidebar">
+
+      <!-- Course info -->
       <div class="sidebar-card">
         <span class="badge">{{ course.code }}</span>
         <h1 class="course-title">{{ course.name }}</h1>
@@ -45,7 +48,7 @@
             <span class="meta-icon">🕐</span>
             <div>
               <div class="meta-label">Office Hours</div>
-              <div class="meta-value">พุธ 13:30–15:00 ห้องสมุด ชั้น 3</div>
+              <div class="meta-value">พุธ 13:30–15:00 (ออนไลน์)</div>
             </div>
           </div>
         </div>
@@ -57,8 +60,47 @@
         </a>
         {% endif %}
       </div>
+
+      <!-- Textbooks -->
+      {% if course.textbooks %}
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          เอกสารและตำราประกอบ
+        </h2>
+        <ol class="textbook-list">
+          {% for book in course.textbooks %}
+          <li>{{ book }}</li>
+          {% endfor %}
+        </ol>
+      </div>
+      {% endif %}
+
+      <!-- Grading -->
+      {% if course.grading %}
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          การประเมินผล
+        </h2>
+        <p class="grading-total">คะแนนเต็ม 100 คะแนน</p>
+        <div class="grading-list">
+          {% for g in course.grading %}
+          <div class="grading-row">
+            <span class="grading-label">{{ g.label }}</span>
+            <span class="grading-score">{{ g.score }}</span>
+          </div>
+          <div class="grading-bar-wrap">
+            <div class="grading-bar" style="width:{{ g.score }}%"></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
     </aside>
 
+    <!-- ── Main ── -->
     <main class="course-main">
       <h2 class="section-heading">เนื้อหารายสัปดาห์</h2>
       <div class="week-list">
@@ -66,7 +108,7 @@
         <div class="week-row {% if 'สอบ' in w.topic %}week-exam{% endif %}">
           <div class="week-num">
             {% if 'สอบ' in w.topic %}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             {% else %}
               {{ w.week }}
             {% endif %}
@@ -76,13 +118,19 @@
             <div class="week-meta">
               {% if w.slide_url %}
               <a class="pill pill-slide" href="{{ w.slide_url }}" target="_blank" rel="noopener">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 สไลด์
               </a>
               {% endif %}
-              {% if w.assignment %}
+              {% if w.workshop_url %}
+              <a class="pill pill-workshop" href="{{ w.workshop_url }}" target="_blank" rel="noopener">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+                Workshop
+              </a>
+              {% endif %}
+              {% if w.assignment and 'สอบ' not in w.assignment %}
               <span class="pill pill-assign">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
                 {{ w.assignment }}
               </span>
               {% endif %}
