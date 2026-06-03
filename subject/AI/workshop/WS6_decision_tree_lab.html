@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 6: ต้นไม้ตัดสินใจ (Decision Tree)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .output-block {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+            border-left: 4px solid #48bb78;
+            white-space: pre-line;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .keyword {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .math-formula {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .formula-step {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background: white;
+        }
+
+        .tree-diagram {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tree-node {
+            display: inline-block;
+            background: #4facfe;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        .tree-leaf {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+        }
+
+        .calculation-box {
+            background: #fff;
+            border: 2px solid #4facfe;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติบทที่ 6: การเรียนรู้ (Learning)</h1>
+        <h2>เรื่อง: ต้นไม้ตัดสินใจ (Decision Tree)</h2>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📖 ส่วนที่ 1: ทฤษฎีต้นไม้ตัดสินใจ</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 ความรู้พื้นฐาน:</strong> ต้นไม้ตัดสินใจ (Decision Tree) เป็นเทคนิคการเรียนรู้แบบมีผู้ดูแล (Supervised Learning) ที่ใช้สำหรับการจำแนกประเภท (Classification) และการทำนาย (Prediction)
+            </div>
+
+            <div class="math-formula">
+                <h3>สูตรสำคัญในการสร้างต้นไม้ตัดสินใจ</h3>
+                
+                <div class="formula-step">
+                    <h4>1. Entropy (เอนโทรปี)</h4>
+                    <div style="font-size: 18px; margin: 15px 0;">
+                        <strong>E(S) = -Σ P(vi) × log₂P(vi)</strong>
+                    </div>
+                    <p>โดยที่ P(vi) = ความน่าจะเป็นของแต่ละคลาส</p>
+                </div>
+
+                <div class="formula-step">
+                    <h4>2. Information Gain (การได้รับข้อมูล)</h4>
+                    <div style="font-size: 18px; margin: 15px 0;">
+                        <strong>Gain(S,A) = E(S) - Σ (|Sv|/|S|) × E(Sv)</strong>
+                    </div>
+                    <p>โดยที่ A = attribute ที่พิจารณา, Sv = subset ของ S ที่มีค่า v ใน attribute A</p>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>💡 หลักการทำงาน:</strong>
+                <ol>
+                    <li>คำนวณ Information Gain ของ attribute ทั้งหมด</li>
+                    <li>เลือก attribute ที่ให้ Information Gain สูงสุดเป็น root node</li>
+                    <li>แบ่งข้อมูลตาม attribute ที่เลือก</li>
+                    <li>ทำซ้ำกับ subset ย่อยจนกว่าจะได้ leaf node</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🍰 ส่วนที่ 2: ตัวอย่างการสำรวจลูกค้าสั่งของหวาน</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 โจทย์:</strong> จากข้อมูลการสำรวจลูกค้าที่สั่งของหวาน ให้สร้างต้นไม้ตัดสินใจเพื่อทำนายว่าลูกค้าจะชอบหรือไม่ชอบ
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>ลูกค้า</th>
+                        <th>สั่งของหวาน</th>
+                        <th>ของหวาน</th>
+                        <th>ความชอบ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A</td>
+                        <td>ไม่สั่ง</td>
+                        <td>ไอศครีม</td>
+                        <td>ไม่ชอบ</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>สั่ง</td>
+                        <td>ไอศครีม</td>
+                        <td>ชอบ</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>ไม่สั่ง</td>
+                        <td>ขนมเค้ก</td>
+                        <td>ไม่ชอบ</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>สั่ง</td>
+                        <td>ไอศครีม</td>
+                        <td>ชอบ</td>
+                    </tr>
+                    <tr>
+                        <td>E</td>
+                        <td>สั่ง</td>
+                        <td>ขนมเค้ก</td>
+                        <td>ชอบ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code1')">📋 Copy</button>
+                <div class="code-block" id="code1"># ===== การคำนวณต้นไม้ตัดสินใจด้วยมือ =====
+
+import pandas as pd
+import numpy as np
+import math
+
+# ข้อมูลตัวอย่าง
+data = {
+    'ลูกค้า': ['A', 'B', 'C', 'D', 'E'],
+    'สั่งของหวาน': ['ไม่สั่ง', 'สั่ง', 'ไม่สั่ง', 'สั่ง', 'สั่ง'],
+    'ของหวาน': ['ไอศครีม', 'ไอศครีม', 'ขนมเค้ก', 'ไอศครีม', 'ขนมเค้ก'],
+    'ความชอบ': ['ไม่ชอบ', 'ชอบ', 'ไม่ชอบ', 'ชอบ', 'ชอบ']
+}
+
+df = pd.DataFrame(data)
+print("=== ข้อมูลตัวอย่าง ===")
+print(df)
+print()
+
+def calculate_entropy(target_col):
+    """คำนวณ Entropy ของคอลัมน์เป้าหมาย"""
+    elements, counts = np.unique(target_col, return_counts=True)
+    entropy = 0
+    total = len(target_col)
+    
+    print(f"การคำนวณ Entropy:")
+    print(f"ข้อมูลทั้งหมด: {total} รายการ")
+    
+    for i in range(len(elements)):
+        probability = counts[i] / total
+        if probability > 0:
+            entropy_part = -probability * math.log2(probability)
+            entropy += entropy_part
+            print(f"  {elements[i]}: {counts[i]} รายการ, P = {probability:.3f}, -P×log₂P = {entropy_part:.4f}")
+    
+    print(f"Entropy รวม = {entropy:.4f}")
+    return entropy
+
+def calculate_information_gain(data, split_attribute, target_name):
+    """คำนวณ Information Gain ของ attribute"""
+    
+    print(f"\n=== คำนวณ Information Gain สำหรับ '{split_attribute}' ===")
+    
+    # คำนวณ Entropy ของข้อมูลทั้งหมด
+    total_entropy = calculate_entropy(data[target_name])
+    
+    # หาค่าที่ไม่ซ้ำใน attribute
+    vals, counts = np.unique(data[split_attribute], return_counts=True)
+    
+    # คำนวณ Weighted Entropy
+    weighted_entropy = 0
+    total_size = len(data)
+    
+    print(f"\nการคำนวณ Weighted Entropy:")
+    for i in range(len(vals)):
+        val_prob = counts[i] / total_size
+        subset = data[data[split_attribute] == vals[i]]
+        subset_entropy = calculate_entropy(subset[target_name])
+        weighted_entropy += val_prob * subset_entropy
+        print(f"  {vals[i]}: {counts[i]} รายการ, น้ำหนัก = {val_prob:.3f}, Entropy = {subset_entropy:.4f}")
+    
+    print(f"Weighted Entropy รวม = {weighted_entropy:.4f}")
+    
+    # คำนวณ Information Gain
+    information_gain = total_entropy - weighted_entropy
+    print(f"Information Gain = {total_entropy:.4f} - {weighted_entropy:.4f} = {information_gain:.4f}")
+    
+    return information_gain
+
+# คำนวณ Information Gain สำหรับแต่ละ attribute
+print("="*60)
+gain_ordering = calculate_information_gain(df, 'สั่งของหวาน', 'ความชอบ')
+
+print("\n" + "="*60)
+gain_dessert = calculate_information_gain(df, 'ของหวาน', 'ความชอบ')
+
+print("\n=== สรุปผลการคำนวณ ===")
+print(f"Information Gain (สั่งของหวาน): {gain_ordering:.4f}")
+print(f"Information Gain (ของหวาน): {gain_dessert:.4f}")
+
+if gain_ordering > gain_dessert:
+    print(f"\n✅ เลือก 'สั่งของหวาน' เป็น root node เพราะมี Information Gain สูงสุด")
+    root_attribute = 'สั่งของหวาน'
+else:
+    print(f"\n✅ เลือก 'ของหวาน' เป็น root node เพราะมี Information Gain สูงสุด")
+    root_attribute = 'ของหวาน'
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 2</h4>
+                <p>ให้ศึกษาการคำนวณ Information Gain ของ attribute "สั่งของหวาน" ตามขั้นตอน:</p>
+                <ol>
+                    <li>คำนวณ Entropy ของข้อมูลทั้งหมด E(S)</li>
+                    <li>แบ่งข้อมูลตาม attribute "สั่งของหวาน"</li>
+                    <li>คำนวณ Entropy ของแต่ละ subset</li>
+                    <li>คำนวณ Information Gain</li>
+                </ol>
+                <p>ให้ปรับการเขียนโค้ด Python เพื่อคำนวณตามโจทย์ดังนี้ </p>
+                <ol>
+                    <li>เปลี่ยน B เป็นไม่สั่ง และไม่ชอบ</li>
+                    <li>เปลี่ยน E เป็นไม่สั่ง และไม่ชอบ</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🎯 ส่วนที่ 3: โจทย์ท้าทาย - การวิเคราะห์ลูกค้าร้านอาหาร</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 สถานการณ์:</strong> ร้านอาหารต้องการวิเคราะห์พฤติกรรมการรอของลูกค้า เพื่อปรับปรุงการให้บริการ
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>ลูกค้า</th>
+                        <th>ราคา</th>
+                        <th>ร้านอาหาร</th>
+                        <th>เวลารอ (นาที)</th>
+                        <th>สถานะ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A</td>
+                        <td>Expensive</td>
+                        <td>Japanese</td>
+                        <td>10-30</td>
+                        <td>Wait</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>Cheap</td>
+                        <td>Thai</td>
+                        <td>10-30</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>Expensive</td>
+                        <td>Thai</td>
+                        <td>10-30</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>Expensive</td>
+                        <td>Japanese</td>
+                        <td>>30</td>
+                        <td>No</td>
+                    </tr>
+                    <tr>
+                        <td>E</td>
+                        <td>Expensive</td>
+                        <td>Japanese</td>
+                        <td>0-10</td>
+                        <td>Wait</td>
+                    </tr>
+                    <tr>
+                        <td>F</td>
+                        <td>Cheap</td>
+                        <td>Thai</td>
+                        <td>0-10</td>
+                        <td>Wait</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code4')">📋 Copy</button>
+                <div class="code-block" id="code4"># ===== โจทย์ท้าทาย: การวิเคราะห์ลูกค้าร้านอาหาร =====
+
+import pandas as pd
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier, plot_tree, export_text
+from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
+
+# ข้อมูลร้านอาหาร
+restaurant_data = {
+    'ลูกค้า': ['A', 'B', 'C', 'D', 'E', 'F'],
+    'ราคา': ['Expensive', 'Cheap', 'Expensive', 'Expensive', 'Expensive', 'Cheap'],
+    'ร้านอาหาร': ['Japanese', 'Thai', 'Thai', 'Japanese', 'Japanese', 'Thai'],
+    'เวลารอ': ['10-30', '10-30', '10-30', '>30', '0-10', '0-10'],
+    'สถานะ': ['Wait', 'No', 'No', 'No', 'Wait', 'Wait']
+}
+
+df_restaurant = pd.DataFrame(restaurant_data)
+print("=== ข้อมูลลูกค้าร้านอาหาร ===")
+print(df_restaurant)
+
+# เตรียม Label Encoders
+le_price = LabelEncoder()
+le_restaurant = LabelEncoder()
+le_time = LabelEncoder()
+le_status = LabelEncoder()
+
+# Encode ข้อมูล
+df_encoded = df_restaurant.copy()
+df_encoded['ราคา'] = le_price.fit_transform(df_restaurant['ราคา'])
+df_encoded['ร้านอาหาร'] = le_restaurant.fit_transform(df_restaurant['ร้านอาหาร'])
+df_encoded['เวลารอ'] = le_time.fit_transform(df_restaurant['เวลารอ'])
+df_encoded['สถานะ'] = le_status.fit_transform(df_restaurant['สถานะ'])
+
+print(f"\n=== การ Encoding ===")
+print(f"ราคา: {dict(zip(le_price.classes_, range(len(le_price.classes_))))}")
+print(f"ร้านอาหาร: {dict(zip(le_restaurant.classes_, range(len(le_restaurant.classes_))))}")
+print(f"เวลารอ: {dict(zip(le_time.classes_, range(len(le_time.classes_))))}")
+print(f"สถานะ: {dict(zip(le_status.classes_, range(len(le_status.classes_))))}")
+
+# เตรียมข้อมูลสำหรับ training
+X = df_encoded[['ราคา', 'ร้านอาหาร', 'เวลารอ']]
+y = df_encoded['สถานะ']
+
+# สร้างโมเดล
+clf_restaurant = DecisionTreeClassifier(criterion='entropy', random_state=42)
+clf_restaurant.fit(X, y)
+
+# แสดงข้อมูลต้นไม้
+print(f"\n=== ข้อมูลต้นไม้ ===")
+print(f"จำนวน node: {clf_restaurant.tree_.node_count}")
+print(f"ความลึก: {clf_restaurant.tree_.max_depth}")
+
+# แสดงกฎในรูปแบบข้อความ
+feature_names = ['ราคา', 'ร้านอาหาร', 'เวลารอ']
+class_names = le_status.classes_
+
+print(f"\n=== กฎของต้นไม้ ===")
+tree_rules = export_text(clf_restaurant, feature_names=feature_names)
+print(tree_rules)
+
+# วาดต้นไม้
+plt.figure(figsize=(15, 10))
+plot_tree(clf_restaurant, 
+          feature_names=feature_names,
+          class_names=class_names,
+          filled=True, 
+          rounded=True,
+          fontsize=10)
+plt.title('Decision Tree สำหรับการทำนายพฤติกรรมการรอของลูกค้า', fontsize=14, pad=20)
+plt.show()
+
+# การทำนายและการประเมินผล
+predictions = clf_restaurant.predict(X)
+accuracy = np.mean(predictions == y) * 100
+
+print(f"\n=== การประเมินผล ===")
+print(f"ความแม่นยำ: {accuracy:.1f}%")
+
+print(f"\nการเปรียบเทียบการทำนายกับค่าจริง:")
+for i in range(len(df_restaurant)):
+    predicted_encoded = predictions[i]
+    actual_encoded = y.iloc[i]
+    predicted = le_status.inverse_transform([predicted_encoded])[0]
+    actual = le_status.inverse_transform([actual_encoded])[0]
+    
+    print(f"ลูกค้า {df_restaurant.iloc[i]['ลูกค้า']}: "
+          f"ทำนาย={predicted}, จริง={actual} "
+          f"{'✓' if predicted == actual else '✗'}")
+
+# ทดสอบกับข้อมูลใหม่
+print(f"\n=== การทดสอบกับข้อมูลใหม่ ===")
+
+new_customers = [
+    {'ราคา': 'Cheap', 'ร้านอาหาร': 'Japanese', 'เวลารอ': '0-10'},
+    {'ราคา': 'Expensive', 'ร้านอาหาร': 'Thai', 'เวลารอ': '>30'},
+    {'ราคา': 'Cheap', 'ร้านอาหาร': 'Thai', 'เวลารอ': '>30'}
+]
+
+for i, customer in enumerate(new_customers, 1):
+    # Encode ข้อมูลใหม่
+    price_enc = le_price.transform([customer['ราคา']])[0]
+    restaurant_enc = le_restaurant.transform([customer['ร้านอาหาร']])[0]
+    time_enc = le_time.transform([customer['เวลารอ']])[0]
+    
+    # ทำนาย
+    prediction_enc = clf_restaurant.predict([[price_enc, restaurant_enc, time_enc]])[0]
+    prediction = le_status.inverse_transform([prediction_enc])[0]
+    
+    # ความน่าจะเป็น
+    probabilities = clf_restaurant.predict_proba([[price_enc, restaurant_enc, time_enc]])[0]
+    prob_dict = dict(zip(class_names, probabilities))
+    
+    print(f"ลูกค้าใหม่ {i}: {customer}")
+    print(f"  การทำนาย: {prediction}")
+    print(f"  ความน่าจะเป็น: {prob_dict}")
+    print()
+
+# การวิเคราะห์ความสำคัญของ features
+feature_importance = clf_restaurant.feature_importances_
+print(f"=== ความสำคัญของ Features ===")
+for i, importance in enumerate(feature_importance):
+    print(f"{feature_names[i]}: {importance:.4f}")
+
+# สร้างกราฟแสดงความสำคัญ
+plt.figure(figsize=(10, 6))
+plt.bar(feature_names, feature_importance)
+plt.title('ความสำคัญของ Features ในการตัดสินใจ')
+plt.ylabel('Feature Importance')
+plt.show()
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 โจทย์ท้าทาย 3</h4>
+                <ol>
+                    <li><strong>การวิเคราะห์เชิงลึก:</strong> อธิบายความหมายของต้นไม้ที่ได้และให้ข้อเสนอแนะเชิงธุรกิจ</li>
+                    <li><strong>การปรับปรุงโมเดล:</strong> เพิ่มข้อมูลใหม่ 3-5 รายการและดูการเปลี่ยนแปลงของต้นไม้</li>
+                    <li><strong>การประยุกต์ใช้:</strong> เสนอแนวทางการใช้โมเดลนี้ในการปรับปรุงการให้บริการ</li>
+                    <li><strong>การเปรียบเทียบ:</strong> เปรียบเทียบผลลัพธ์เมื่อใช้ criterion='gini' และ criterion='entropy'</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="section">
+        <div class="section-header">📋 การประเมินผลและการส่งงาน</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📁 ชื่อไฟล์:</strong> <code>Lab6_DecisionTree_[รหัสนักศึกษา].ipynb</code>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>หัวข้อ</th>
+                        <th>คะแนน</th>
+                        <th>รายละเอียด</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>การทำงานของโค้ด</strong></td>
+                        <td>30%</td>
+                        <td>โค้ดทำงานได้ถูกต้อง ไม่มี error</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ความเข้าใจทฤษฎี</strong></td>
+                        <td>25%</td>
+                        <td>อธิบาย Information Gain, Entropy และหลักการของ Decision Tree ได้ถูกต้อง</td>
+                    </tr>
+                    <tr>
+                        <td><strong>การคำนวณด้วยมือ</strong></td>
+                        <td>20%</td>
+                        <td>คำนวณ Entropy และ Information Gain ด้วยมือได้ถูกต้อง</td>
+                    </tr>
+                    <tr>
+                        <td><strong>การวิเคราะห์ผลลัพธ์</strong></td>
+                        <td>15%</td>
+                        <td>วิเคราะห์และตีความต้นไม้ที่ได้อย่างสมเหตุสมผล</td>
+                    </tr>
+                    <tr>
+                        <td><strong>โจทย์ท้าทาย</strong></td>
+                        <td>10%</td>
+                        <td>ทำโจทย์ท้าทายครบถ้วนและให้ข้อเสนอแนะที่ดี</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🎯 สรุปและแนวทางการประยุกต์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>🧠 จุดสำคัญที่ควรจำ:</strong>
+                <ol>
+                    <li><strong>Decision Tree</strong> เป็นเทคนิคที่เข้าใจง่ายและตีความได้</li>
+                    <li><strong>Information Gain</strong> เป็นเกณฑ์หลักในการเลือก attribute</li>
+                    <li><strong>Entropy</strong> วัดความไม่แน่นอนของข้อมูล</li>
+                    <li><strong>Overfitting</strong> เป็นปัญหาสำคัญที่ต้องระวัง</li>
+                    <li><strong>Feature Importance</strong> ช่วยเข้าใจความสำคัญของตัวแปร</li>
+                </ol>
+            </div>
+            <div class="exercise">
+                <h4>🚀 โจทย์ขยายผลสำหรับผู้สนใจ:</h4>
+                <ol>
+                    <li><strong>Random Forest:</strong> สร้าง ensemble ของ Decision Trees หลายต้น</li>
+                    <li><strong>Gradient Boosting:</strong> ใช้ XGBoost หรือ LightGBM</li>
+                    <li><strong>Online Learning:</strong> สร้าง Decision Tree ที่เรียนรู้แบบ incremental</li>
+                    <li><strong>Multivariate Trees:</strong> ใช้ linear combinations ของ features</li>
+                    <li><strong>Pruning Techniques:</strong> เทคนิคการตัดแต่งต้นไม้</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <strong>📚 แหล่งเรียนรู้เพิ่มเติม:</strong>
+                <ul>
+                    <li>📖 หนังสือ: "The Elements of Statistical Learning" - Hastie, Tibshirani, Friedman</li>
+                    <li>🌐 เว็บไซต์: scikit-learn documentation</li>
+                    <li>🎥 YouTube: StatQuest - Decision Trees</li>
+                    <li>💻 Course: Coursera - Machine Learning</li>
+                    <li>🔢 เครื่องมือ: Orange, Weka สำหรับ GUI-based analysis</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h4>💭 คำถามสำหรับการสะท้อนการเรียนรู้:</h4>
+                <ol>
+                    <li>Decision Tree ช่วยให้คุณเข้าใจการตัดสินใจอย่างไร?</li>
+                    <li>ในสถานการณ์ไหนที่ควรใช้ Decision Tree มากกว่าเทคนิคอื่น?</li>
+                    <li>คุณจะป้องกัน overfitting ใน Decision Tree ได้อย่างไร?</li>
+                    <li>การประยุกต์ใช้ในสาขาใดที่คุณสนใจมากที่สุด? เพราะอะไร?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h2 style="color: #667eea;">🌳 เก่งมาก! คุณเรียนรู้ Decision Tree สำเร็จแล้ว</h2>
+        <p style="color: #666; margin: 10px 0;">
+            Decision Tree เป็นเครื่องมือที่ทรงพลังสำหรับการตัดสินใจและการวิเคราะห์ข้อมูล<br>
+            นำไปประยุกต์ใช้ในงานจริงได้หลากหลายสาขา
+        </p>
+        <p style="color: #888; margin: 0; font-size: 14px;">
+            © 2024 ใบงานฝึกปฏิบัติ Decision Tree | จัดทำโดย อ.ดร.กริชบดินทร์ ผิวหอม| ภาควิชาวิทยาการคอมพิวเตอร์
+        </p>
+    </footer>
+
+    <script>
+        function copyCode(button, codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const text = codeBlock.textContent || codeBlock.innerText;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+                button.textContent = '❌ Error';
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+
+        // เพิ่ม Event Listener เมื่อโหลดหน้าเสร็จ
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🌳 ใบงานฝึกปฏิบัติ Decision Tree พร้อมใช้งาน!');
+            
+            // เพิ่มการแจ้งเตือนเมื่อ copy โค้ด
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // เพิ่ม animation เล็กน้อย
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

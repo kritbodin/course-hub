@@ -1,38 +1,113 @@
 {
   "courses": [
     {
-      "code": "CS101",
-      "name": "การเขียนโปรแกรมเบื้องต้น",
+      "code": "4124501",
+      "name": "ปัญญาประดิษฐ์ (Artificial Intelligence)",
       "semester": "1/2569",
-      "schedule": "จันทร์ 09:00-12:00 ห้อง 1201",
-      "teams_link": "https://teams.microsoft.com/l/team/xxxx",
+      "schedule": "พฤหัสบดี 08:00-10:00 (บรรยาย ห้อง 3303) | 10:00-12:00 (ปฏิบัติ ห้อง 4404)",
+      "teams_link": "",
       "weeks": [
         {
           "week": 1,
-          "topic": "แนะนำรายวิชาและการติดตั้งเครื่องมือ",
-          "slide_url": "https://onedrive.live.com/xxxx",
-          "assignment": "ติดตั้ง Python และ VS Code"
+          "topic": "แนะนำรายวิชา, ฝึกพิมพ์ดีดภาษาไทย",
+          "slide_url": "",
+          "assignment": "ฝึกพิมพ์ดีดที่ thaiedu.net และ 10fastfingers.com"
         },
         {
           "week": 2,
-          "topic": "ตัวแปรและชนิดข้อมูล",
-          "slide_url": "https://onedrive.live.com/xxxx",
-          "assignment": "แบบฝึกหัดบทที่ 2 (ส่งใน Teams)"
-        }
-      ]
-    },
-    {
-      "code": "DM402",
-      "name": "การทำเหมืองข้อมูล",
-      "semester": "1/2569",
-      "schedule": "พุธ 13:00-16:00 ห้อง 1305",
-      "teams_link": "https://teams.microsoft.com/l/team/yyyy",
-      "weeks": [
-        {
-          "week": 1,
-          "topic": "แนะนำการทำเหมืองข้อมูล",
-          "slide_url": "https://onedrive.live.com/yyyy",
+          "topic": "ความรู้เบื้องต้นเกี่ยวกับปัญญาประดิษฐ์ (Overview)",
+          "slide_url": "",
           "assignment": ""
+        },
+        {
+          "week": 3,
+          "topic": "การแก้ไขปัญหา (Problem Solving) — Search Techniques, Advanced Search",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 4,
+          "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 1",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 5,
+          "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 2",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 6,
+          "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (Uncertain Knowledge and Reasoning) — Bayes' Rule",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 7,
+          "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (ต่อ) — Bayesian Network",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 8,
+          "topic": "สอบกลางภาคเรียน (พิมพ์ดีดภาษาไทย)",
+          "slide_url": "",
+          "assignment": "สอบกลางภาค"
+        },
+        {
+          "week": 9,
+          "topic": "ระบบการเรียนรู้ (Learning) — Neural Network, Genetic Algorithm",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 10,
+          "topic": "ระบบการเรียนรู้ (ต่อ) — Genetic Algorithm",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 11,
+          "topic": "ระบบการเรียนรู้ (ต่อ) — Decision Tree",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 12,
+          "topic": "การเรียนรู้ของเครื่องจักร (Machine Learning) — K-Nearest Neighbors (kNN)",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 13,
+          "topic": "K-Nearest Neighbors (kNN) ต่อ",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 14,
+          "topic": "K-Nearest Neighbors (kNN) ต่อ",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 15,
+          "topic": "การประมวลผลภาษาธรรมชาติ (Natural Language Processing: NLP)",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 16,
+          "topic": "Natural Language Processing (NLP) ต่อ",
+          "slide_url": "",
+          "assignment": ""
+        },
+        {
+          "week": 17,
+          "topic": "สอบปลายภาคเรียน (พิมพ์ดีดภาษาอังกฤษ)",
+          "slide_url": "",
+          "assignment": "สอบปลายภาค"
         }
       ]
     }

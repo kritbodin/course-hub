@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 3: องค์ความรู้และการอนุมาน</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .logic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logic-table th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .logic-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .keyword {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .knowledge-base {
+            background: #f0f8ff;
+            border: 2px solid #4169e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .rule-box {
+            background: #fff5f5;
+            border: 2px solid #e53e3e;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติบทที่ 3: องค์ความรู้และการอนุมาน</h1>
+        <h2>เรื่อง: Knowledge Representation และ Logical Reasoning</h2>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🔄 กฎการอนุมานเชิงตรรกศาสตร์</div>
+        <div class="section-content">
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code2')">📋 Copy</button>
+                <div class="code-block" id="code2"># ===== Logical Inference Rules =====
+
+class LogicalInference:
+    def __init__(self):
+        self.rules_applied = []
+        
+    def modus_ponens(self, p_implies_q, p):
+        """
+        กฎ Modus Ponens: P→Q, P ∴ Q
+        ถ้า P แล้ว Q, และ P เป็นจริง ดังนั้น Q เป็นจริง
+        """
+        print(f"🔍 ใช้กฎ Modus Ponens:")
+        print(f"   กฎ: {p_implies_q}")
+        print(f"   ข้อเท็จจริง: {p}")
+        
+        # แยกการประยุกต์กฎ (ง่ายๆ สำหรับตัวอย่าง)
+        if "ถ้า" in p_implies_q and "แล้ว" in p_implies_q:
+            parts = p_implies_q.split("แล้ว")
+            condition = parts[0].replace("ถ้า", "").strip()
+            conclusion = parts[1].strip()
+            
+            if condition == p:
+                print(f"   ✅ ข้อสรุป: {conclusion}")
+                self.rules_applied.append("Modus Ponens")
+                return conclusion
+        
+        print(f"   ❌ ไม่สามารถใช้กฎได้")
+        return None
+        
+    def modus_tollens(self, p_implies_q, not_q):
+        """
+        กฎ Modus Tollens: P→Q, ¬Q ∴ ¬P
+        ถ้า P แล้ว Q, และ Q เป็นเท็จ ดังนั้น P เป็นเท็จ
+        """
+        print(f"🔍 ใช้กฎ Modus Tollens:")
+        print(f"   กฎ: {p_implies_q}")
+        print(f"   ข้อเท็จจริง: {not_q}")
+        
+        if "ถ้า" in p_implies_q and "แล้ว" in p_implies_q:
+            parts = p_implies_q.split("แล้ว")
+            condition = parts[0].replace("ถ้า", "").strip()
+            conclusion = parts[1].strip()
+            
+            # ตรวจสอบว่า not_q ตรงกับการปฏิเสธของ conclusion
+            if f"ไม่{conclusion}" == not_q or f"ไม่ได้{conclusion}" == not_q:
+                result = f"ไม่{condition}" if not condition.startswith("ไม่") else condition[2:]
+                print(f"   ✅ ข้อสรุป: {result}")
+                self.rules_applied.append("Modus Tollens")
+                return result
+        
+        print(f"   ❌ ไม่สามารถใช้กฎได้")
+        return None
+        
+    def hypothetical_syllogism(self, p_implies_q, q_implies_r):
+        """
+        กฎ Hypothetical Syllogism: P→Q, Q→R ∴ P→R
+        ถ้า P แล้ว Q, และ Q แล้ว R ดังนั้น P แล้ว R
+        """
+        print(f"🔍 ใช้กฎ Hypothetical Syllogism:")
+        print(f"   กฎที่ 1: {p_implies_q}")
+        print(f"   กฎที่ 2: {q_implies_r}")
+        
+        # แยกส่วนประกอบของกฎ
+        if "ถ้า" in p_implies_q and "แล้ว" in p_implies_q:
+            parts1 = p_implies_q.split("แล้ว")
+            p = parts1[0].replace("ถ้า", "").strip()
+            q = parts1[1].strip()
+            
+        if "ถ้า" in q_implies_r and "แล้ว" in q_implies_r:
+            parts2 = q_implies_r.split("แล้ว")
+            q2 = parts2[0].replace("ถ้า", "").strip()
+            r = parts2[1].strip()
+            
+            # ตรวจสอบว่า Q ในกฎแรกตรงกับ Q ในกฎที่สอง
+            if q == q2:
+                result = f"ถ้า{p}แล้ว{r}"
+                print(f"   ✅ ข้อสรุป: {result}")
+                self.rules_applied.append("Hypothetical Syllogism")
+                return result
+        
+        print(f"   ❌ ไม่สามารถใช้กฎได้")
+        return None
+
+# ===== ตัวอย่างการใช้งาน =====
+print("=== การทดสอบกฎการอนุมานเชิงตรรกศาสตร์ ===\n")
+
+logic = LogicalInference()
+
+print("1️⃣ ทดสอบ Modus Ponens")
+print("-" * 30)
+rule1 = "ถ้าฝนตกแล้วถนนเปียก"
+fact1 = "ฝนตก"
+result1 = logic.modus_ponens(rule1, fact1)
+
+print("\n2️⃣ ทดสอบ Modus Tollens")
+print("-" * 30)
+rule2 = "ถ้าเราออกไปแล้วเราจะเจอเพื่อน"
+fact2 = "ไม่ได้เจอเพื่อน"
+result2 = logic.modus_tollens(rule2, fact2)
+
+print("\n3️⃣ ทดสอบ Hypothetical Syllogism")
+print("-" * 30)
+rule3a = "ถ้าฝนตกแล้วถนนเปียก"
+rule3b = "ถ้าถนนเปียกแล้วขับรถต้องระวัง"
+result3 = logic.hypothetical_syllogism(rule3a, rule3b)
+
+print(f"\n📊 สรุป: ใช้กฎการอนุมาน {len(logic.rules_applied)} ครั้ง")
+print(f"กฎที่ใช้: {', '.join(logic.rules_applied)}")
+
+# ===== Truth Table Generator =====
+print("\n" + "="*50)
+print("=== ตารางค่าความจริง (Truth Table) ===")
+
+def generate_truth_table(proposition):
+    """สร้างตารางค่าความจริงสำหรับประพจน์ที่กำหนด"""
+    print(f"\nตารางค่าความจริงสำหรับ: {proposition}")
+    print("-" * 40)
+    
+    # ตัวอย่างง่ายๆ สำหรับ P → Q
+    if "P → Q" in proposition or "P->Q" in proposition:
+        print("P | Q | P→Q")
+        print("--|---|----")
+        combinations = [
+            (True, True, True),
+            (True, False, False),
+            (False, True, True),
+            (False, False, True)
+        ]
+        
+        for p, q, result in combinations:
+            p_str = "T" if p else "F"
+            q_str = "T" if q else "F"
+            r_str = "T" if result else "F"
+            print(f"{p_str} | {q_str} | {r_str}")
+
+# สร้างตารางค่าความจริง
+generate_truth_table("P → Q")</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 โจทย์ฝึกหัด 1.1: ตัวอย่างจากสไลด์ - แดดออก</h4>
+                <p>ให้นักศึกษาประยุกต์ใช้ตัวอย่างจากสไลด์เรียน โดยใช้กฎเกี่ยวกับ "แดดออก" ดังนี้:</p>
+                
+                <div class="knowledge-base">
+                    <h5>🌞 กฎจากสไลด์เรียน:</h5>
+                    <div class="rule-box">
+                        <strong>P:</strong> แดดออก<br>
+                        <strong>Q:</strong> เราจะไปชายหาด<br>
+                        <strong>R:</strong> เราจะเล่นบอลชายหาด<br>
+                        <strong>กฎที่ 1:</strong> P→Q (ถ้าแดดออก แล้วเราจะไปชายหาด)<br>
+                        <strong>กฎที่ 2:</strong> Q→R (ถ้าเราจะไปชายหาด แล้วเราจะเล่นบอลชายหาด)
+                    </div>
+                </div>
+
+                <p><strong>📝 ให้ทำ:</strong></p>
+                <ol>
+                    <li><strong>แก้ไขโค้ดในส่วน logic = LogicalInference()</strong> โดยเปลี่ยนตัวอย่างให้ใช้:</li>
+                    <ul>
+                        <li><strong>Modus Ponens:</strong> กฎ "ถ้าแดดออกแล้วเราจะไปชายหาด" + ข้อเท็จจริง "แดดออก"</li>
+                        <li><strong>Modus Tollens:</strong> กฎ "ถ้าแดดออกแล้วเราจะไปชายหาด" + ข้อเท็จจริง "ไม่ได้ไปชายหาด"</li>
+                        <li><strong>Hypothetical Syllogism:</strong> ใช้กฎทั้ง 2 ข้อ (P→Q และ Q→R)</li>
+                    </ul>
+                    <li><strong>รันโค้ดและบันทึกผลลัพธ์</strong> ของการอนุมานทั้ง 3 แบบ</li>
+                </ol>
+
+                <div class="note">
+                    <strong>💡 เคล็ดลับ:</strong> ให้คัดลอกโค้ดในส่วนที่ 2 ไปแก้ไขใน Jupyter Notebook/google Colab/VS code และเปลี่ยนตัวแปรดังนี้:<br>
+                    <code>rule1 = "ถ้าแดดออกแล้วเราจะไปชายหาด"</code><br>
+                    <code>fact1 = "แดดออก"</code><br>
+                    <code>fact2 = "ไม่ได้ไปชายหาด"</code><br>
+                    <code>rule3b = "ถ้าเราจะไปชายหาดแล้วเราจะเล่นบอลชายหาด"</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

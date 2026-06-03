@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 5: Genetic Algorithm</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .step-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .step-box {
+            flex: 1;
+            min-width: 200px;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติบทที่ 5: การเรียนรู้ (Learning)</h1>
+        <h2>เรื่อง: อัลกอริทึมเชิงพันธุกรรม (Genetic Algorithm)</h2>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📚 ทฤษฎีพื้นฐาน Genetic Algorithm</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 ความรู้พื้นฐาน:</strong> Genetic Algorithm (GA) เป็นเทคนิคการค้นหาและการเพิ่มประสิทธิภาพที่เลียนแบบกระบวนการวิวัฒนาการทางธรรมชาติ ใช้หลักการคัดเลือกธรรมชาติ (Natural Selection) การผสมพันธุ์ (Crossover) และการกลายพันธุ์ (Mutation)
+            </div>
+
+            <div class="step-container">
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <h4>สร้างประชากร</h4>
+                    <p>สร้างกลุ่มคำตอบเริ่มต้นแบบสุ่ม</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <h4>ประเมิน Fitness</h4>
+                    <p>คำนวณคะแนนความเหมาะสม</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">3</div>
+                    <h4>คัดเลือก</h4>
+                    <p>เลือกคำตอบที่ดีมาเป็นพ่อแม่</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">4</div>
+                    <h4>ผสมพันธุ์</h4>
+                    <p>สร้างลูกใหม่จากการแลกเปลี่ยน</p>
+                </div>
+                <div class="step-box">
+                    <div class="step-number">5</div>
+                    <h4>กลายพันธุ์</h4>
+                    <p>เปลี่ยนแปลงข้อมูลเล็กน้อย</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🔬 การสร้าง Genetic Algorithm แบบสมบูรณ์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 โจทย์ตัวอย่างที่ 1:</strong> กำหนดประชากร 4 ตัว ดังนี้ 123, 543, 121, 001 กำหนดค่าความเหมาะสมของแต่ละโครโมโซม คือ ผลรวมของตัวเลข ให้ใช้เทคนิค GA คำนวณหาประชากรรุ่นลูกที่มีค่าความเหมาะสมแบบร้อยละที่ดีที่สุดใน 1 รุ่นลูก โดยกำหนดประชากรในรูปแบบฐานสอง การคัดเลือกจากมากไปน้อย การไขว้เปลี่ยนและการกลายพันธุ์สุ่มแบบ 1 จุด
+            </div>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code1')">📋 Copy</button>
+                <div class="code-block" id="code1"># ===== Genetic Algorithm แบบสมบูรณ์ - ตัวอย่างที่ 1 =====
+
+import random
+import numpy as np
+import matplotlib.pyplot as plt
+
+class GeneticAlgorithmExample1:
+    def __init__(self, initial_population=[123, 543, 121, 1]):
+        self.initial_population = initial_population
+        self.population_size = len(initial_population)
+        self.chromosome_length = 9  # 3 หลัก x 3 บิตต่อหลัก
+        self.fitness_history = []
+        
+    def decimal_to_binary_chromosome(self, decimal_number):
+        """แปลงเลขฐาน 10 เป็น binary chromosome"""
+        # เติม 0 ข้างหน้าให้ครบ 3 หลัก
+        padded_number = str(decimal_number).zfill(3)
+        binary_chromosome = ""
+        
+        for digit in padded_number:
+            # แปลงแต่ละหลักเป็น 3 บิต
+            binary_digit = format(int(digit), '03b')
+            binary_chromosome += binary_digit
+            
+        return binary_chromosome
+    
+    def binary_chromosome_to_decimal(self, binary_chromosome):
+        """แปลง binary chromosome เป็นเลขฐาน 10"""
+        # แบ่งเป็นกลุ่มๆ ละ 3 บิต
+        decimal_digits = []
+        for i in range(0, len(binary_chromosome), 3):
+            binary_group = binary_chromosome[i:i+3]
+            decimal_digit = int(binary_group, 2)
+            decimal_digits.append(str(decimal_digit))
+        
+        return int(''.join(decimal_digits))
+    
+    def fitness_function(self, chromosome):
+        """คำนวณค่า fitness (ผลรวมของตัวเลข)"""
+        decimal_number = self.binary_chromosome_to_decimal(chromosome)
+        return sum(int(digit) for digit in str(decimal_number))
+    
+    def evaluate_population(self, population):
+        """ประเมิน fitness ของประชากรทั้งหมด"""
+        fitness_scores = []
+        for individual in population:
+            fitness = self.fitness_function(individual)
+            fitness_scores.append(fitness)
+        return fitness_scores
+    
+    def calculate_fitness_percentage(self, fitness_scores):
+        """คำนวณเปอร์เซ็นต์ fitness"""
+        total_fitness = sum(fitness_scores)
+        percentages = [(fitness * 100) / total_fitness for fitness in fitness_scores]
+        return percentages, total_fitness
+    
+    def selection_by_fitness(self, population, fitness_scores):
+        """การคัดเลือกจากมากไปน้อย"""
+        # จับคู่ประชากรกับ fitness
+        paired_data = list(zip(population, fitness_scores))
+        # เรียงลำดับตาม fitness จากมากไปน้อย
+        paired_data.sort(key=lambda x: x[1], reverse=True)
+        
+        # แยกประชากรที่เรียงแล้ว
+        sorted_population = [individual for individual, fitness in paired_data]
+        sorted_fitness = [fitness for individual, fitness in paired_data]
+        
+        return sorted_population, sorted_fitness
+    
+    def single_point_crossover(self, parent1, parent2, crossover_point):
+        """การผสมพันธุ์แบบ single-point crossover"""
+        # crossover_point นับจากขวาไปซ้าย
+        total_length = len(parent1)
+        cut_position = total_length - crossover_point
+        
+        child1 = parent1[:cut_position] + parent2[cut_position:]
+        child2 = parent2[:cut_position] + parent1[cut_position:]
+        
+        return child1, child2
+    
+    def bit_flip_mutation(self, chromosome, mutation_group, mutation_position):
+        """การกลายพันธุ์แบบ bit flip"""
+        # mutation_group: กลุ่มที่จะ mutate (นับจากขวาไปซ้าย)
+        # mutation_position: ตำแหน่งในกลุ่ม (นับจากขวาไปซ้าย)
+        
+        mutated = list(chromosome)
+        
+        # หาตำแหน่งที่แท้จริงในสตริง
+        groups = [chromosome[i:i+3] for i in range(0, len(chromosome), 3)]
+        group_index = len(groups) - mutation_group  # จากขวาไปซ้าย
+        bit_index_in_group = 3 - mutation_position  # จากขวาไปซ้าย
+        
+        overall_position = group_index * 3 + bit_index_in_group
+        
+        # พลิกบิต
+        if overall_position < len(mutated):
+            mutated[overall_position] = '1' if mutated[overall_position] == '0' else '0'
+        
+        return ''.join(mutated)
+    
+    def run_example1(self):
+        """รันตัวอย่างที่ 1 ตามเอกสาร"""
+        
+        print("=== การรัน Genetic Algorithm ตัวอย่างที่ 1 ===")
+        print(f"ประชากรเริ่มต้น: {self.initial_population}")
+        print()
+        
+        # ขั้นตอนที่ 1: แปลงเป็น binary
+        binary_population = []
+        for individual in self.initial_population:
+            binary_chromosome = self.decimal_to_binary_chromosome(individual)
+            binary_population.append(binary_chromosome)
+            print(f"{individual} -> {binary_chromosome}")
+        
+        print()
+        
+        # ขั้นตอนที่ 2: คำนวณ fitness
+        fitness_scores = self.evaluate_population(binary_population)
+        percentages, total_fitness = self.calculate_fitness_percentage(fitness_scores)
+        
+        print("=== การคำนวณ Fitness ===")
+        for i, (individual, binary, fitness, percentage) in enumerate(
+            zip(self.initial_population, binary_population, fitness_scores, percentages)):
+            print(f"{individual} ({binary}): Fitness = {fitness}, Percentage = {percentage:.2f}%")
+        
+        print(f"Total Fitness: {total_fitness}")
+        print()
+        
+        # ขั้นตอนที่ 3: การคัดเลือก
+        sorted_population, sorted_fitness = self.selection_by_fitness(binary_population, fitness_scores)
+        
+        print("=== การคัดเลือก (จากมากไปน้อย) ===")
+        for i, (chromosome, fitness) in enumerate(zip(sorted_population, sorted_fitness)):
+            decimal = self.binary_chromosome_to_decimal(chromosome)
+            print(f"ลำดับที่ {i+1}: {decimal} ({chromosome}) - Fitness: {fitness}")
+        
+        print()
+        
+        # ขั้นตอนที่ 4: การผสมพันธุ์ (ชุดที่ 2 กับ 1 นับจากขวาไปซ้าย)
+        # ชุดที่ 2 จากขวา = index 2, ชุดที่ 1 จากขวา = index 3
+        parent1 = sorted_population[2]  # 121
+        parent2 = sorted_population[3]  # 001
+        
+        print("=== การผสมพันธุ์ (Crossover) ===")
+        print(f"Parent 1: {self.binary_chromosome_to_decimal(parent1)} ({parent1})")
+        print(f"Parent 2: {self.binary_chromosome_to_decimal(parent2)} ({parent2})")
+        
+        # Crossover แบบ 1 จุด
+        child1, child2 = self.single_point_crossover(parent1, parent2, crossover_point=1)
+        
+        print(f"Child 1: {self.binary_chromosome_to_decimal(child1)} ({child1})")
+        print(f"Child 2: {self.binary_chromosome_to_decimal(child2)} ({child2})")
+        print()
+        
+        # อัพเดทประชากร
+        new_population = [
+            sorted_population[0],  # 543 เหมือนเดิม
+            sorted_population[1],  # 123 เหมือนเดิม
+            child1,
+            child2
+        ]
+        
+        # ขั้นตอนที่ 5: การกลายพันธุ์ (ชุดที่ 2 จากขวา ตำแหน่งที่ 2)
+        print("=== การกลายพันธุ์ (Mutation) ===")
+        mutation_target = new_population[2]  # ชุดที่ 2 จากขวา
+        
+        print(f"ก่อน Mutation: {self.binary_chromosome_to_decimal(mutation_target)} ({mutation_target})")
+        
+        mutated_individual = self.bit_flip_mutation(mutation_target, 
+                                                   mutation_group=2, 
+                                                   mutation_position=2)
+        
+        print(f"หลัง Mutation: {self.binary_chromosome_to_decimal(mutated_individual)} ({mutated_individual})")
+        print()
+        
+        # ประชากรสุดท้าย
+        final_population = [
+            new_population[0],
+            new_population[1],
+            mutated_individual,
+            new_population[3]
+        ]
+        
+        print("=== ประชากรรุ่นใหม่ (รุ่นลูก) ===")
+        final_fitness = self.evaluate_population(final_population)
+        final_percentages, final_total = self.calculate_fitness_percentage(final_fitness)
+        
+        for i, (chromosome, fitness, percentage) in enumerate(
+            zip(final_population, final_fitness, final_percentages)):
+            decimal = self.binary_chromosome_to_decimal(chromosome)
+            print(f"ลำดับที่ {i+1}: {decimal} ({chromosome}) - Fitness: {fitness}, Percentage: {percentage:.2f}%")
+        
+        print(f"Total Fitness: {final_total}")
+        
+        # เปรียบเทียบรุ่นเก่าและรุ่นใหม่
+        print("\n=== การเปรียบเทียบ ===")
+        print(f"รุ่นเดิม - Average Fitness: {np.mean(fitness_scores):.2f}")
+        print(f"รุ่นใหม่ - Average Fitness: {np.mean(final_fitness):.2f}")
+        print(f"การพัฒนา: {np.mean(final_fitness) - np.mean(fitness_scores):.2f}")
+        
+        return final_population, final_fitness
+
+# รันตัวอย่างที่ 1
+ga_example1 = GeneticAlgorithmExample1()
+final_population, final_fitness = ga_example1.run_example1()
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 1: ทำตามตัวอย่าง</h4>
+                <ol>
+                    <li>รันโค้ดตัวอย่างข้างต้นและศึกษาการทำงาน</li>
+                    <li>เปลี่ยนโจทย์ใหม่ กำหนดประชากร 4 ตัว ดังนี้ 123, 345, 121, 101</li>
+                    <li>นำโค้ดและผลลัพธ์ที่ได้ส่งตามที่กำหนดในแบบทดสอบ(MS team)</li>
+                </ol>
+            </div>
+
+
+
+            <div class="exercise">
+                <h4>📋 Deliverables ที่ต้องส่ง:</h4>
+                <ul>
+                    <li>✅ ไฟล์ Jupyter Notebook (.ipynb) ที่สมบูรณ์</li>
+                    <li>✅ ผลลัพธ์การรันตัวอย่างที่ 1 ตามเอกสาร</li>
+                    <li>✅ โค้ด GA แบบทั่วไปพร้อมผลลัพธ์</li>
+                    <li>✅ การทดลองกับประชากรเริ่มต้นที่แตกต่างกัน</li>
+                    <li>✅ กราฟแสดงการพัฒนาและการเปรียบเทียบ</li>
+                    <li>✅ คำตอบแบบฝึกหัดทุกข้อพร้อมคำอธิบาย</li>
+                    <li>✅ การวิเคราะห์และสรุปผลการทดลอง</li>
+                </ul>
+            </div>
+
+           
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🎯 สรุปและการประยุกต์ใช้</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>🧠 จุดสำคัญที่ได้เรียนรู้:</strong>
+                <ol>
+                    <li><strong>Genetic Algorithm</strong> เลียนแบบการวิวัฒนาการของธรรมชาติ</li>
+                    <li><strong>ขั้นตอนหลัก:</strong> Selection → Crossover → Mutation → Evaluation</li>
+                    <li><strong>การแทนข้อมูล:</strong> เลขฐาน 10 ↔ Binary Chromosome</li>
+                    <li><strong>การควบคุม:</strong> พารามิเตอร์ต่างๆ มีผลต่อประสิทธิภาพ</li>
+                    <li><strong>ความสุ่ม:</strong> ผลลัพธ์อาจแตกต่างกันในแต่ละครั้ง</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h2 style="color: #667eea;">🎊 ยินดีด้วย! คุณได้เรียนรู้ Genetic Algorithm แล้ว</h2>
+        <p style="color: #666; margin: 10px 0;">
+            Genetic Algorithm เป็นเครื่องมือที่ทรงพลังสำหรับการแก้ปัญหาเพิ่มประสิทธิภาพ<br>
+            นำไปประยุกต์ใช้ในการแก้ปัญหาที่ซับซ้อนได้อย่างมีประสิทธิภาพ
+        </p>
+        <p style="color: #888; margin: 0; font-size: 14px;">
+            © 2024 ใบงานฝึกปฏิบัติ Genetic Algorithm | ดร.กริชบดินทร์ ผิวหอม | ภาควิชาวิทยาการคอมพิวเตอร์
+        </p>
+    </footer>
+
+    <script>
+        function copyCode(button, codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const text = codeBlock.textContent || codeBlock.innerText;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+                button.textContent = '❌ Error';
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🧬 ใบงานฝึกปฏิบัติ Genetic Algorithm พร้อมใช้งาน!');
+            
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

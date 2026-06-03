@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 4: เบย์เซียนเน็ตเวิร์ค</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .output-block {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+            border-left: 4px solid #48bb78;
+            white-space: pre-line;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .keyword {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .network-viz {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .node {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            margin: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .arrow {
+            font-size: 24px;
+            color: #667eea;
+            margin: 0 15px;
+        }
+
+        .math-formula {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .formula-step {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background: white;
+        }
+
+        .cpt-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-size: 14px;
+        }
+
+        .cpt-table th {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .cpt-table td {
+            padding: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .table-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .table-item {
+            flex: 1;
+            min-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติบทที่ 4: การแก้ไขปัญหา (Problem Solving)</h1>
+        <h2>เรื่อง: เบย์เซียนเน็ตเวิร์ค (Bayesian Network)</h2>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📖 ส่วนที่ 1: ทบทวนเบย์เซียนเน็ตเวิร์ค</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 ความรู้พื้นฐาน:</strong> เบย์เซียนเน็ตเวิร์คเป็นแบบจำลองกราฟที่แสดงความสัมพันธ์เชิงสาเหตุระหว่างตัวแปรต่างๆ โดยใช้ทฤษฎีของเบย์ในการคำนวณความน่าจะเป็น
+            </div>
+
+            <div class="math-formula">
+                <h3>สูตรความน่าจะเป็นร่วมกัน (Joint Probability)</h3>
+                <div style="font-size: 20px; margin: 20px 0;">
+                    <strong>P(x₁, x₂, ..., xₙ) = ∏ᵢ₌₁ⁿ P(Xᵢ|Parents(Xᵢ))</strong>
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <p><strong>โดยที่:</strong></p>
+                    <ul>
+                        <li><strong>P(Xᵢ|Parents(Xᵢ))</strong> = ความน่าจะเป็นของตัวแปร Xᵢ เมื่อรู้ค่าของโหนดพ่อแม่</li>
+                        <li><strong>Parents(Xᵢ)</strong> = เซตของโหนดพ่อแม่ของ Xᵢ</li>
+                        <li><strong>∏</strong> = การคูณทุกค่า (Product)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🌐 ส่วนที่ 2: ปัญหาสนามหญ้าเปียก - โครงสร้างเครือข่าย</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 โจทย์:</strong> พิจารณาปัจจัยที่ทำให้สนามหญ้าเปียก ได้แก่ สภาพอากาศ (เมฆครึ้ม) ฝนตก และการเปิดระบบรดน้ำ (Sprinkler)
+            </div>
+
+            <div class="network-viz">
+                <h4>🔗 โครงสร้างเบย์เซียนเน็ตเวิร์ค</h4>
+                <div style="margin: 30px 0;">
+                    <div class="node">มีเมฆครึ้ม (C)</div>
+                </div>
+                <div style="margin: 20px 0;">
+                    <span class="arrow">↙</span>
+                    <span style="margin: 0 80px;"></span>
+                    <span class="arrow">↘</span>
+                </div>
+                <div style="margin: 30px 0;">
+                    <div class="node">ฝนตก (R)</div>
+                    <span style="margin: 0 50px;"></span>
+                    <div class="node">เปิด Sprinkler (S)</div>
+                </div>
+                <div style="margin: 20px 0;">
+                    <span class="arrow">↘</span>
+                    <span style="margin: 0 80px;"></span>
+                    <span class="arrow">↙</span>
+                </div>
+                <div style="margin: 30px 0;">
+                    <div class="node">สนามหญ้าเปียก (W)</div>
+                </div>
+            </div>
+
+            <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                <h4>🔍 ความสัมพันธ์เชิงสาเหตุ:</h4>
+                <ul>
+                    <li><strong>เมฆครึ้ม (C)</strong> → มีผลต่อ <strong>ฝนตก (R)</strong> และ <strong>การเปิด Sprinkler (S)</strong></li>
+                    <li><strong>ฝนตก (R)</strong> และ <strong>การเปิด Sprinkler (S)</strong> → มีผลต่อ <strong>สนามหญ้าเปียก (W)</strong></li>
+                    <li>C เป็น root node (ไม่มี parent)</li>
+                    <li>R และ S เป็น child ของ C</li>
+                    <li>W เป็น child ของ R และ S</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📊 ส่วนที่ 3: ตารางความน่าจะเป็นแบบมีเงื่อนไข (CPT)</div>
+        <div class="section-content">
+            <div class="table-container">
+                <div class="table-item">
+                    <h4>P(C) - มีเมฆครึ้ม</h4>
+                    <table class="cpt-table">
+                        <tr><th>C</th><th>P(C)</th></tr>
+                        <tr><td>T</td><td>0.5</td></tr>
+                        <tr><td>F</td><td>0.5</td></tr>
+                    </table>
+                </div>
+
+                <div class="table-item">
+                    <h4>P(R|C) - ฝนตกเมื่อรู้สถานะเมฆ</h4>
+                    <table class="cpt-table">
+                        <tr><th>C</th><th>R</th><th>P(R|C)</th></tr>
+                        <tr><td>T</td><td>T</td><td>0.8</td></tr>
+                        <tr><td>T</td><td>F</td><td>0.2</td></tr>
+                        <tr><td>F</td><td>T</td><td>0.2</td></tr>
+                        <tr><td>F</td><td>F</td><td>0.8</td></tr>
+                    </table>
+                </div>
+
+                <div class="table-item">
+                    <h4>P(S|C) - เปิด Sprinkler เมื่อรู้สถานะเมฆ</h4>
+                    <table class="cpt-table">
+                        <tr><th>C</th><th>S</th><th>P(S|C)</th></tr>
+                        <tr><td>T</td><td>T</td><td>0.1</td></tr>
+                        <tr><td>T</td><td>F</td><td>0.9</td></tr>
+                        <tr><td>F</td><td>T</td><td>0.5</td></tr>
+                        <tr><td>F</td><td>F</td><td>0.5</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <h4>P(W|R,S) - สนามหญ้าเปียกเมื่อรู้สถานะฝนและ Sprinkler</h4>
+                <table class="cpt-table" style="max-width: 600px; margin: 0 auto;">
+                    <tr><th>R</th><th>S</th><th>W</th><th>P(W|R,S)</th></tr>
+                    <tr><td>T</td><td>T</td><td>T</td><td>0.99</td></tr>
+                    <tr><td>T</td><td>T</td><td>F</td><td>0.01</td></tr>
+                    <tr><td>T</td><td>F</td><td>T</td><td>0.80</td></tr>
+                    <tr><td>T</td><td>F</td><td>F</td><td>0.20</td></tr>
+                    <tr><td>F</td><td>T</td><td>T</td><td>0.90</td></tr>
+                    <tr><td>F</td><td>T</td><td>F</td><td>0.10</td></tr>
+                    <tr><td>F</td><td>F</td><td>T</td><td>0.00</td></tr>
+                    <tr><td>F</td><td>F</td><td>F</td><td>1.00</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🧮 ส่วนที่ 4: การคำนวณความน่าจะเป็นร่วมกัน - Python Implementation</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 โจทย์หลัก:</strong> หาความน่าจะเป็นร่วมกันของ "สนามหญ้าเปียก โดยสภาพอากาศไม่มีเมฆครึ้ม, มีฝนตก, และเปิด Sprinkler"<br>
+                <strong>สัญลักษณ์:</strong> P(W=T, S=T, R=T, C=F)
+            </div>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code1')">📋 Copy</button>
+                <div class="code-block" id="code1"># ===== Bayesian Network: ปัญหาสนามหญ้าเปียก =====
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+class BayesianNetwork:
+    def __init__(self):
+        """สร้างเบย์เซียนเน็ตเวิร์คสำหรับปัญหาสนามหญ้าเปียก"""
+        
+        # P(C) - ความน่าจะเป็นของเมฆครึ้ม
+        self.P_C = {
+            True: 0.5,   # มีเมฆครึ้ม
+            False: 0.5   # ไม่มีเมฆครึ้ม
+        }
+        
+        # P(R|C) - ความน่าจะเป็นของฝนตกเมื่อรู้สถานะเมฆ
+        self.P_R_given_C = {
+            (True, True): 0.8,    # ฝนตกเมื่อมีเมฆครึ้ม
+            (True, False): 0.2,   # ไม่ฝนตกเมื่อมีเมฆครึ้ม
+            (False, True): 0.2,   # ฝนตกเมื่อไม่มีเมฆครึ้ม
+            (False, False): 0.8   # ไม่ฝนตกเมื่อไม่มีเมฆครึ้ม
+        }
+        
+        # P(S|C) - ความน่าจะเป็นของ Sprinkler เมื่อรู้สถานะเมฆ
+        self.P_S_given_C = {
+            (True, True): 0.1,    # เปิด Sprinkler เมื่อมีเมฆครึ้ม
+            (True, False): 0.9,   # ไม่เปิด Sprinkler เมื่อมีเมฆครึ้ม
+            (False, True): 0.5,   # เปิด Sprinkler เมื่อไม่มีเมฆครึ้ม
+            (False, False): 0.5   # ไม่เปิด Sprinkler เมื่อไม่มีเมฆครึ้ม
+        }
+        
+        # P(W|R,S) - ความน่าจะเป็นของสนามหญ้าเปียกเมื่อรู้สถานะฝนและ Sprinkler
+        self.P_W_given_R_S = {
+            (True, True, True): 0.99,    # เปียกเมื่อฝนตก + Sprinkler
+            (True, True, False): 0.01,   # ไม่เปียกเมื่อฝนตก + Sprinkler
+            (True, False, True): 0.80,   # เปียกเมื่อฝนตก, ไม่มี Sprinkler
+            (True, False, False): 0.20,  # ไม่เปียกเมื่อฝนตก, ไม่มี Sprinkler
+            (False, True, True): 0.90,   # เปียกเมื่อไม่ฝนตก, มี Sprinkler
+            (False, True, False): 0.10,  # ไม่เปียกเมื่อไม่ฝนตก, มี Sprinkler
+            (False, False, True): 0.00,  # เปียกเมื่อไม่ฝนตก, ไม่มี Sprinkler
+            (False, False, False): 1.00  # ไม่เปียกเมื่อไม่ฝนตก, ไม่มี Sprinkler
+        }
+    
+    def calculate_joint_probability(self, C, R, S, W, show_steps=True):
+        """
+        คำนวณความน่าจะเป็นร่วมกัน P(C, R, S, W)
+        
+        Parameters:
+        - C: สถานะเมฆครึ้ม (True/False)
+        - R: สถานะฝนตก (True/False)
+        - S: สถานะ Sprinkler (True/False)
+        - W: สถานะสนามหญ้าเปียก (True/False)
+        """
+        
+        if show_steps:
+            print("🔢 การคำนวณความน่าจะเป็นร่วมกัน")
+            print("=" * 50)
+            print(f"เหตุการณ์: C={C}, R={R}, S={S}, W={W}")
+            print()
+        
+        # หาค่าความน่าจะเป็นแต่ละส่วน
+        p_c = self.P_C[C]
+        p_r_given_c = self.P_R_given_C[(C, R)]
+        p_s_given_c = self.P_S_given_C[(C, S)]
+        p_w_given_r_s = self.P_W_given_R_S[(R, S, W)]
+        
+        if show_steps:
+            print("📐 สูตร: P(C,R,S,W) = P(C) × P(R|C) × P(S|C) × P(W|R,S)")
+            print()
+            print("🔍 ค่าที่หาได้จากตาราง CPT:")
+            print(f"   P(C={C}) = {p_c}")
+            print(f"   P(R={R}|C={C}) = {p_r_given_c}")
+            print(f"   P(S={S}|C={C}) = {p_s_given_c}")
+            print(f"   P(W={W}|R={R},S={S}) = {p_w_given_r_s}")
+            print()
+            print("💡 การคำนวณ:")
+            print(f"   P(C,R,S,W) = {p_c} × {p_r_given_c} × {p_s_given_c} × {p_w_given_r_s}")
+        
+        # คำนวณความน่าจะเป็นร่วม
+        joint_prob = p_c * p_r_given_c * p_s_given_c * p_w_given_r_s
+        
+        if show_steps:
+            print(f"   P(C,R,S,W) = {joint_prob:.6f}")
+            print()
+            print(f"✅ คำตอบ: {joint_prob:.6f} หรือ {joint_prob*100:.4f}%")
+        
+        return joint_prob
+
+# สร้าง Bayesian Network
+bn = BayesianNetwork()
+
+print("🌟 Bayesian Network: ปัญหาสนามหญ้าเปียก")
+print("=" * 60)
+
+# แก้โจทย์หลัก: P(W=T, S=T, R=T, C=F)
+print("🎯 โจทย์หลัก: สนามหญ้าเปียก + ไม่มีเมฆครึ้ม + ฝนตก + เปิด Sprinkler")
+result_main = bn.calculate_joint_probability(
+    C=False,  # ไม่มีเมฆครึ้ม
+    R=True,   # ฝนตก
+    S=True,   # เปิด Sprinkler
+    W=True    # สนามหญ้าเปียก
+)
+
+print("\n" + "="*60)
+print("🔬 ตัวอย่างเพิ่มเติม")
+
+# ตัวอย่างที่ 2: P(W=T, S=F, R=T, C=T)
+print("\n📝 ตัวอย่างที่ 2: สนามหญ้าเปียก + มีเมฆครึ้ม + ฝนตก + ไม่เปิด Sprinkler")
+result_2 = bn.calculate_joint_probability(
+    C=True,   # มีเมฆครึ้ม
+    R=True,   # ฝนตก
+    S=False,  # ไม่เปิด Sprinkler
+    W=True    # สนามหญ้าเปียก
+)
+
+# ตัวอย่างที่ 3: P(W=F, S=F, R=F, C=F)
+print("\n📝 ตัวอย่างที่ 3: สนามหญ้าไม่เปียก + ไม่มีเมฆครึ้ม + ไม่ฝนตก + ไม่เปิด Sprinkler")
+result_3 = bn.calculate_joint_probability(
+    C=False,  # ไม่มีเมฆครึ้ม
+    R=False,  # ไม่ฝนตก
+    S=False,  # ไม่เปิด Sprinkler
+    W=False   # สนามหญ้าไม่เปียก
+)
+
+print("\n🎓 สรุป: ได้เรียนรู้การคำนวณ Joint Probability ใน Bayesian Network แล้ว!")</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 4.1: คำนวณด้วยตัวเองพร้อมส่งผลการทำงานในแต่ละข้อ</h4>
+                <p>ให้นักศึกษาคำนวณความน่าจะเป็นร่วมกันของสถานการณ์ต่อไปนี้:</p>
+                <ol>
+                    <li><strong>สถานการณ์ A:</strong> P(W=T, S=T, R=F, C=F) - สนามหญ้าเปียก + ไม่มีเมฆ + ไม่ฝนตก + เปิด Sprinkler</li>
+                    <li><strong>สถานการณ์ B:</strong> P(W=F, S=F, R=F, C=T) - สนามหญ้าไม่เปียก + มีเมฆ + ไม่ฝนตก + ไม่เปิด Sprinkler</li>
+                </ol>
+                <p><strong>วิธีทำ:</strong> ใช้สูตร P(C,R,S,W) = P(C) × P(R|C) × P(S|C) × P(W|R,S)</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-header">🎯 การประยุกต์ใช้ในโลกจริง</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 สถานการณ์จริง:</strong> ระบบตัดสินใจอัตโนมัติสำหรับการรดน้ำสวน
+            </div>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code4')">📋 Copy</button>
+                <div class="code-block" id="code4"># ===== ระบบตัดสินใจอัตโนมัติสำหรับการรดน้ำสวน =====
+
+class SmartIrrigationSystem:
+    """ระบบรดน้ำอัจฉริยะที่ใช้ Bayesian Network"""
+    
+    def __init__(self, bayesian_network):
+        self.bn = bayesian_network
+        
+    def should_turn_on_sprinkler(self, weather_forecast, current_conditions):
+        """
+        ตัดสินใจว่าควรเปิดระบบรดน้ำหรือไม่
+        
+        Parameters:
+        - weather_forecast: {'cloudy': bool, 'rain_probability': float}
+        - current_conditions: {'soil_moisture': float}  # 0-1
+        """
+        
+        print("🌱 ระบบตัดสินใจการรดน้ำอัจฉริยะ")
+        print("=" * 50)
+        
+        cloudy = weather_forecast['cloudy']
+        rain_prob = weather_forecast['rain_probability']
+        soil_moisture = current_conditions['soil_moisture']
+        
+        print(f"📊 ข้อมูลปัจจุบัน:")
+        print(f"   - มีเมฆครึ้ม: {cloudy}")
+        print(f"   - โอกาสฝนตก: {rain_prob*100:.1f}%")
+        print(f"   - ความชื้นดิน: {soil_moisture*100:.1f}%")
+        
+        # คำนวณความน่าจะเป็นที่ต้องรดน้ำ
+        scenarios = [
+            (cloudy, True, True),   # มีฝน + เปิด sprinkler
+            (cloudy, True, False),  # มีฝน + ไม่เปิด sprinkler
+            (cloudy, False, True),  # ไม่มีฝน + เปิด sprinkler
+            (cloudy, False, False)  # ไม่มีฝน + ไม่เปิด sprinkler
+        ]
+        
+        expected_wetness = 0
+        
+        for c, r, s in scenarios:
+            # ความน่าจะเป็นของสถานการณ์นี้
+            p_scenario = (rain_prob if r else (1-rain_prob)) * (0.5 if s else 0.5)
+            
+            # ความน่าจะเป็นที่หญ้าเปียกในสถานการณ์นี้
+            p_wet = self.bn.P_W_given_R_S[(r, s, True)]
+            
+            expected_wetness += p_scenario * p_wet
+        
+        # ตัดสินใจขึ้นอยู่กับความชื้นดินและความน่าจะเป็นที่หญ้าจะเปียก
+        moisture_threshold = 0.3  # ต้องการความชื้นอย่างน้อย 30%
+        
+        if soil_moisture < moisture_threshold:
+            # ดินแห้ง ต้องพิจารณาเปิด sprinkler
+            if rain_prob < 0.3:  # โอกาสฝนต่ำ
+                recommendation = "เปิด Sprinkler"
+                reason = f"ดินแห้ง ({soil_moisture*100:.1f}%) และโอกาสฝนต่ำ ({rain_prob*100:.1f}%)"
+            else:
+                recommendation = "รอดูฝน"
+                reason = f"โอกาสฝนสูง ({rain_prob*100:.1f}%) อาจไม่ต้องรดน้ำ"
+        else:
+            recommendation = "ไม่ต้องเปิด Sprinkler"
+            reason = f"ความชื้นดินเพียงพอ ({soil_moisture*100:.1f}%)"
+        
+        print(f"\n🤖 คำแนะนำของระบบ: {recommendation}")
+        print(f"💡 เหตุผล: {reason}")
+        print(f"📈 ความน่าจะเป็นที่หญ้าจะเปียก: {expected_wetness*100:.1f}%")
+        
+        return recommendation, reason, expected_wetness
+
+def test_smart_irrigation():
+    """ทดสอบระบบรดน้ำอัจฉริยะ"""
+    
+    system = SmartIrrigationSystem(bn)
+    
+    # ทดสอบสถานการณ์ต่างๆ
+    test_cases = [
+        {
+            "name": "วันแดดจัด",
+            "weather": {"cloudy": False, "rain_probability": 0.1},
+            "conditions": {"soil_moisture": 0.2}
+        },
+        {
+            "name": "วันมีเมฆ",
+            "weather": {"cloudy": True, "rain_probability": 0.7},
+            "conditions": {"soil_moisture": 0.25}
+        },
+        {
+            "name": "หลังฝนตก",
+            "weather": {"cloudy": True, "rain_probability": 0.9},
+            "conditions": {"soil_moisture": 0.8}
+        },
+        {
+            "name": "ดินแห้งมาก",
+            "weather": {"cloudy": False, "rain_probability": 0.2},
+            "conditions": {"soil_moisture": 0.1}
+        }
+    ]
+    
+    results = []
+    
+    for test_case in test_cases:
+        print(f"\n🧪 ทดสอบ: {test_case['name']}")
+        print("-" * 40)
+        
+        recommendation, reason, wetness_prob = system.should_turn_on_sprinkler(
+            test_case['weather'],
+            test_case['conditions']
+        )
+        
+        results.append({
+            "สถานการณ์": test_case['name'],
+            "คำแนะนำ": recommendation,
+            "เหตุผล": reason[:50] + "..." if len(reason) > 50 else reason
+        })
+    
+    # สรุปผลลัพธ์
+    print("\n📋 สรุปผลการทดสอบ:")
+    df_results = pd.DataFrame(results)
+    display(df_results)
+
+# ทดสอบระบบ
+test_smart_irrigation()
+
+print("\n🎯 ประโยชน์ของ Bayesian Network ในการประยุกต์ใช้:")
+print("✅ ช่วยในการตัดสินใจภายใต้ความไม่แน่นอน")
+print("✅ สามารถรวมข้อมูลหลายแหล่งได้")
+print("✅ ให้เหตุผลที่สมเหตุสมผลในการตัดสินใจ")
+print("✅ ปรับปรุงการตัดสินใจได้เมื่อมีข้อมูลใหม่")
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 การประยุกต์ใช้ (ไม่ต้องทำส่ง)</h4>
+                <ol>
+                    <li>ออกแบบ Bayesian Network สำหรับระบบแนะนำการใส่เสื้อผ้าตามสภาพอากาศ</li>
+                    <li>เพิ่มตัวแปรใหม่ในระบบรดน้ำ เช่น อุณหภูมิ หรือ ฤดูกาล</li>
+                    <li>คิดตัวอย่างการประยุกต์ใช้ Bayesian Network ในสาขาที่คุณสนใจ</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-content">
+            <div class="exercise">
+                <h4>📋 Deliverables ที่ต้องส่ง:</h4>
+                <ul>
+                    <li>✅ ไฟล์ Jupyter Notebook (.ipynb) ที่สมบูรณ์ 📁 ชื่อไฟล์:</strong> <code>Lab4_BayesianNetwork_[รหัสนักศึกษา].ipynb</li>
+                    <li>✅ ผลลัพธ์การรันโค้ดทุกส่วนพร้อมกราฟ</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🎯 สรุปและแนวทางการประยุกต์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>🧠 จุดสำคัญที่ควรจำ:</strong>
+                <ol>
+                    <li><strong>Bayesian Network</strong> แสดงความสัมพันธ์เชิงสาเหตุด้วยโครงสร้างกราฟ</li>
+                    <li><strong>Joint Probability</strong> คำนวณจากผลคูณของ conditional probabilities</li>
+                    <li><strong>CPT (Conditional Probability Table)</strong> เก็บข้อมูลความน่าจะเป็นแบบมีเงื่อนไข</li>
+                    <li><strong>Monte Carlo Simulation</strong> ช่วยตรวจสอบความถูกต้องของการคำนวณ</li>
+                    <li><strong>การประยุกต์ใช้</strong> กว้างขวางในระบบตัดสินใจอัจฉริยะ</li>
+                </ol>
+            </div>
+
+            <div class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>สาขาการประยุกต์</th>
+                        <th>ตัวอย่างการใช้งาน</th>
+                        <th>ประโยชน์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">การแพทย์</span></td>
+                        <td>ระบบวินิจฉัยโรค, การตีความอาการ</td>
+                        <td>ตัดสินใจรักษาที่แม่นยำขึ้น</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">ปัญญาประดิษฐ์</span></td>
+                        <td>Spam Filter, Recommendation System</td>
+                        <td>ปรับปรุงความแม่นยำของระบบ</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">การเงิน</span></td>
+                        <td>การประเมินความเสี่ยง, Credit Scoring</td>
+                        <td>ลดความเสี่ยงในการลงทุน</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">วิศวกรรม</span></td>
+                        <td>ระบบควบคุมอัตโนมัติ, Fault Detection</td>
+                        <td>เพิ่มความน่าเชื่อถือของระบบ</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">สิ่งแวดล้อม</span></td>
+                        <td>ระบบรดน้ำอัจฉริยะ, พยากรณ์อากาศ</td>
+                        <td>อนุรักษ์ทรัพยากรและพลังงาน</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="exercise">
+                <h4>🚀 โจทย์ท้าทายสำหรับผู้ที่สนใจ:</h4>
+                <ol>
+                    <li><strong>ระบบแนะนำภาพยนตร์:</strong> สร้าง Bayesian Network ที่พิจารณาประเภทหนัง, อายุผู้ชม, และเวลา</li>
+                    <li><strong>ระบบตรวจจับการโกง:</strong> ออกแบบเครือข่ายที่ตรวจสอบพฤติกรรมผิดปกติในการสอบออนไลน์</li>
+                    <li><strong>Smart Home System:</strong> พัฒนาระบบบ้านอัจฉริยะที่ปรับการใช้พลังงานตามพฤติกรรมผู้อยู่อาศัย</li>
+                    <li><strong>ระบบวินิจฉัยโรคพืช:</strong> สร้างเครือข่ายที่วินิจฉัยโรคจากอาการที่สังเกตได้</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <strong>📚 แหล่งเรียนรู้เพิ่มเติม:</strong>
+                <ul>
+                    <li>📖 หนังสือ: "Probabilistic Graphical Models" โดย Daphne Koller</li>
+                    <li>🌐 เว็บไซต์: Stanford CS228 - Probabilistic Graphical Models</li>
+                    <li>🎥 YouTube: "Bayesian Networks" by Computerphile</li>
+                    <li>💻 Library: pgmpy (Python), bnlearn (R), BayesNet Toolbox (MATLAB)</li>
+                    <li>🔧 Tools: GeNIe, Hugin, Netica สำหรับสร้าง Bayesian Network แบบ GUI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h2 style="color: #667eea;">🎓 สำเร็จแล้ว! คุณได้เรียนรู้ Bayesian Network</h2>
+        <p style="color: #666; margin: 10px 0;">
+            Bayesian Network เป็นเครื่องมือทรงพลังในการแก้ปัญหาภายใต้ความไม่แน่นอน<br>
+            นำไปประยุกต์ใช้ในการพัฒนาระบบอัจฉริยะได้อย่างมีประสิทธิภาพ
+        </p>
+        <p style="color: #888; margin: 0; font-size: 14px;">
+            © 2024 ใบงานฝึกปฏิบัติ Bayesian Network | ภาควิชาวิทยาการคอมพิวเตอร์<br>
+            มหาวิทยาลัยราชภัฏศรีสะเกษ
+        </p>
+    </footer>
+
+    <script>
+        function copyCode(button, codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const text = codeBlock.textContent || codeBlock.innerText;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+                button.textContent = '❌ Error';
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+
+        // เพิ่มการแสดงผลสูตรทางคณิตศาสตร์
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎓 ใบงาน Bayesian Network พร้อมใช้งาน!');
+            
+            // เพิ่ม animation เมื่อ hover node
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => {
+                node.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                node.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // เพิ่ม interaction สำหรับตาราง
+            const tables = document.querySelectorAll('.cpt-table, .comparison-table');
+            tables.forEach(table => {
+                const rows = table.querySelectorAll('tr:not(:first-child)');
+                rows.forEach(row => {
+                    row.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = '#f8f9fa';
+                        this.style.transition = 'background-color 0.2s ease';
+                    });
+                    
+                    row.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = '';
+                    });
+                });
+            });
+
+            // เพิ่ม animation สำหรับ copy button
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+        });
+
+        // ฟังก์ชันสำหรับการคำนวณ Joint Probability แบบ Interactive
+        function calculateJointProbability() {
+            // ฟังก์ชันนี้สามารถขยายเป็น interactive calculator ได้
+            console.log('Interactive Calculator - Coming Soon!');
+        }
+
+        // Utility function สำหรับแสดง progress
+        function showProgress(message) {
+            console.log(`🔄 ${message}`);
+        }
+    </script>
+
+</body>
+</html>

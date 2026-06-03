@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 2 : การแทนปัญหา - Block World Problem</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .objectives {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .output-block {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+            border-left: 4px solid #48bb78;
+            white-space: pre-line;
+        }
+        
+        .step {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .keyword {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        .assessment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .assessment table {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .assessment th, .assessment td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .assessment th {
+            background: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติ</h1>
+        <h2>บทที่ 2 การแทนปัญหา - Block World Problem</h2>
+        <h3>วิชาปัญญาประดิษฐ์ สาขาวิทยาการคอมพิวเตอร์ มรภ.ศรีสะเกษ</h3>
+    </div>
+
+    <div class="objectives">
+        <h3>🎯 วัตถุประสงค์ของคาบนี้</h3>
+        <ol>
+            <li>เข้าใจหลักการการแทนปัญหาในรูปแบบ <span class="keyword">Well-Defined Problem</span></li>
+            <li>สามารถกำหนด Initial State, Goal State, Actions และ Path Cost ได้</li>
+            <li>ทำความเข้าใจปัญหา <span class="keyword">Block World Problem</span> ที่เป็นปัญหาคลาสสิกใน AI</li>
+            <li>ฝึกใช้อัลกอริทึม <span class="keyword">BFS</span> ในการแก้ปัญหาเบื้องต้น</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📚 ทฤษฎี: การแทนปัญหาแบบ Well-Defined Problem</div>
+        <div class="section-content">
+            <h3>องค์ประกอบของปัญหาที่ถูกต้อง</h3>
+            
+            <div class="step">
+                <strong>1. สถานะเริ่มต้น (Initial State)</strong><br>
+                สถานะของปัญหาในขณะเริ่มต้น เช่น ตำแหน่งของกล่องทั้งหมด
+            </div>
+            
+            <div class="step">
+                <strong>2. เซตของการกระทำ (Actions/Successor Function)</strong><br>
+                การกระทำที่สามารถทำได้ในแต่ละสถานะ เช่น หยิบกล่อง, วางกล่อง
+            </div>
+            
+            <div class="step">
+                <strong>3. สถานะเป้าหมาย (Goal State)</strong><br>
+                สถานะที่ต้องการให้เกิดขึ้น เช่น การเรียงกล่องตามต้องการ
+            </div>
+            
+            <div class="step">
+                <strong>4. ค่าใช้จ่าย (Path Cost)</strong><br>
+                จำนวนขั้นตอนหรือต้นทุนในการแก้ปัญหา เช่น จำนวนการเคลื่อนไหว
+            </div>
+
+            <div class="note">
+                <strong>📝 ตัวอย่างในชีวิตจริง:</strong> การเดินทางจากบ้านไปมหาวิทยาลัย
+                <ul>
+                    <li><strong>Initial State:</strong> อยู่ที่บ้าน</li>
+                    <li><strong>Actions:</strong> เดิน, ขับรถ, นั่งรถเมล์</li>
+                    <li><strong>Goal State:</strong> อยู่ที่มหาวิทยาลัย</li>
+                    <li><strong>Path Cost:</strong> เวลาที่ใช้ หรือ ค่าใช้จ่าย</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🧩 ปัญหา Block World Problem</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 คำอธิบาย:</strong> ปัญหากล่องเป็นปัญหาคลาสสิกใน AI ที่ต้องเรียงกล่องจากสถานะเริ่มต้นไปยังสถานะเป้าหมาย 
+                <br><strong>กฎสำคัญ:</strong>
+                <ul>
+                    <li>หยิบได้ทีละกล่อง</li>
+                    <li>หยิบได้เฉพาะกล่องที่อยู่บนสุด</li>
+                    <li>ไม่สามารถหยิบกล่องที่ถูกซ้อนทับได้</li>
+                </ul>
+            </div>
+
+            <h3>ตัวอย่าง : ปัญหาง่าย - ย้าย A ไปวางบน B</h3>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code1')">📋 Copy</button>
+                <div class="code-block" id="code1"># ===== Block World Problem - ตัวอย่างง่าย =====
+# ตัวอย่างที่สามารถ run บน Google Colab ได้เลย
+
+import copy
+from collections import deque
+
+class BlockWorld:
+    def __init__(self, initial_state, goal_state):
+        self.initial_state = initial_state
+        self.goal_state = goal_state
+        
+    def is_goal(self, state):
+        """ตรวจสอบว่าถึงสถานะเป้าหมายแล้วหรือไม่"""
+        # ลบ stack ว่างออกก่อนเปรียบเทียบ
+        clean_state = [stack for stack in state if stack]
+        clean_goal = [stack for stack in self.goal_state if stack]
+        return clean_state == clean_goal
+    
+    def get_possible_moves(self, state):
+        """หาการเคลื่อนไหวที่เป็นไปได้ทั้งหมด"""
+        moves = []
+        
+        # หากล่องบนสุดของแต่ละกอง (สามารถหยิบได้)
+        for i, stack in enumerate(state):
+            if stack:  # ถ้ามีกล่องในกอง
+                block = stack[-1]  # กล่องบนสุด
+                
+                # ย้ายไปวางบนกองอื่น
+                for j, target_stack in enumerate(state):
+                    if i != j:  # ไม่ใช่กองเดิม
+                        new_state = copy.deepcopy(state)
+                        moved_block = new_state[i].pop()
+                        new_state[j].append(moved_block)
+                        moves.append((new_state, f"Move {block} from stack {i+1} to stack {j+1}"))
+                
+                # ย้ายไปวางเป็นกองใหม่ (บนโต๊ะ)
+                new_state = copy.deepcopy(state)
+                moved_block = new_state[i].pop()
+                new_state.append([moved_block])
+                moves.append((new_state, f"Move {block} to table (new stack)"))
+        
+        return moves
+    
+    def bfs_solve(self):
+        """แก้ปัญหาด้วย BFS"""
+        queue = deque([(self.initial_state, [])])
+        visited = set()
+        nodes_explored = 0
+        
+        while queue:
+            current_state, path = queue.popleft()
+            nodes_explored += 1
+            
+            # แปลงเป็น tuple เพื่อใช้เป็น key ใน set (ลบ stack ว่างก่อน)
+            clean_state = [stack for stack in current_state if stack]
+            state_key = tuple(tuple(stack) for stack in clean_state)
+            
+            if state_key in visited:
+                continue
+                
+            visited.add(state_key)
+            
+            # แสดงสถานะที่กำลังตรวจสอบ
+            print(f"ตรวจสอบสถานะ: {clean_state}")
+            
+            if self.is_goal(current_state):
+                return path, nodes_explored
+            
+            for next_state, action in self.get_possible_moves(current_state):
+                queue.append((next_state, path + [action]))
+        
+        return None, nodes_explored
+    
+    def print_state(self, state, title="State"):
+        """แสดงสถานะของกล่อง"""
+        print(f"\n{title}:")
+        clean_state = [stack for stack in state if stack]
+        for i, stack in enumerate(clean_state):
+            print(f"Stack {i+1}: {stack}")
+        if not clean_state:
+            print("ไม่มีกล่อง")
+
+# ===== ตัวอย่างง่าย: ย้าย A ไปวางบน B =====
+print("=== ตัวอย่างง่าย: ย้าย A ไปวางบน B ===")
+
+# สถานะเริ่มต้น: A และ B อยู่แยกกัน
+simple_initial = [['A'], ['B']]
+# สถานะเป้าหมาย: A อยู่บน B
+simple_goal = [['B', 'A']]
+
+simple_problem = BlockWorld(simple_initial, simple_goal)
+simple_problem.print_state(simple_initial, "สถานะเริ่มต้น")
+simple_problem.print_state(simple_goal, "สถานะเป้าหมาย")
+
+print("\n=== การแก้ปัญหาแบบง่าย ===")
+simple_solution, simple_nodes = simple_problem.bfs_solve()
+
+if simple_solution:
+    print(f"\n✅ พบคำตอบใน {len(simple_solution)} ขั้นตอน:")
+    for i, step in enumerate(simple_solution, 1):
+        print(f"{i}. {step}")
+else:
+    print("❌ ไม่พบคำตอบ")
+</div>
+            </div>
+
+            <div class="output-block">ผลลัพธ์ที่คาดหวัง:
+=== ตัวอย่างง่าย: ย้าย A ไปวางบน B ===
+
+สถานะเริ่มต้น:
+Stack 1: ['A']
+Stack 2: ['B']
+
+สถานะเป้าหมาย:
+Stack 1: ['B', 'A']
+
+=== การแก้ปัญหาแบบง่าย ===
+ตรวจสอบสถานะ: [['A'], ['B']]
+ตรวจสอบสถานะ: [['A', 'B']]
+ตรวจสอบสถานะ: [['B'], ['A']]
+ตรวจสอบสถานะ: [['B', 'A']]
+
+✅ พบคำตอบใน 1 ขั้นตอน:
+1. Move A from stack 1 to stack 2</div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 1.1: ฝึกแก้ปัญหาด้วยตนเอง</h4>
+                <p>ให้นักศึกษาแก้ไขโค้ดเพื่อแก้ปัญหาต่อไปนี้:</p>
+                <ul>
+                    <li><strong>สถานะเริ่มต้น:</strong> <code>[['A', 'B'], ['C']]</code> (B อยู่บนสุด, A อยู่ล่างสุด, C อยู่แยกต่างหาก)</li>
+                    <li><strong>สถานะเป้าหมาย:</strong> <code>[['B', 'C', 'A']]</code> (B อยู่ล่างสุด, C อยู่กลาง, A อยู่บนสุด)</li>
+                </ul>
+                <p><strong>ให้แสดงผลการทำงาน:</strong> แสดงผลลัพธ์ที่ได้จากการ run โค้ด</p>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 1.2: ออกแบบปัญหาเอง</h4>
+                <p>ให้นักศึกษาออกแบบปัญหา Block World ของตนเอง:</p>
+                <ol>
+                    <li><strong>สถานะเริ่มต้น:</strong> <code>[['A', 'B', 'C', 'D']]</code></li>
+                    <li>กำหนดสถานะเป้าหมายที่ต้องการ</li>
+                </ol>
+                <p><strong>ให้แสดงผลการทำงาน:</strong> แสดงผลลัพธ์ที่ได้จากการ run โค้ด</p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h3 style="color: #667eea;">🎯 จัดทำโดย ดร.กริชบดินทร์ ผิวหอม</h3>
+    </footer>
+
+    <script>
+        function copyCode(button, codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const text = codeBlock.textContent || codeBlock.innerText;
+            
+    <script>
+        function copyCode(button, codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const text = codeBlock.textContent || codeBlock.innerText;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+                button.textContent = '❌ Error';
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>

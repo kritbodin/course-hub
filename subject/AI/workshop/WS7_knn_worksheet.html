@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 7: การคำนวณค่าใกล้ที่สุด (k-Nearest Neighbors)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .output-block {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+            border-left: 4px solid #48bb78;
+            white-space: pre-line;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .keyword {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .math-formula {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .formula-step {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background: white;
+        }
+
+        .animal-table {
+            font-size: 12px;
+        }
+
+        .animal-table th, .animal-table td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .visual-example {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติบทที่ 7: การแก้ไขปัญหา (Problem Solving)</h1>
+        <h2>เรื่อง: การคำนวณค่าใกล้ที่สุด (k-Nearest Neighbors: kNN)</h2>
+    </div>
+
+    <div class="student-info">
+        <p><strong>ชื่อ-นามสกุล:</strong> _________________________ <strong>รหัสนักศึกษา:</strong> _________________________</p>
+        <p><strong>กลุ่ม:</strong> ____________ <strong>วันที่ทำการทดลอง:</strong> _________________________</p>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📖 ส่วนที่ 1: ทฤษฎี k-Nearest Neighbors</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 ความรู้พื้นฐาน:</strong> k-Nearest Neighbors (kNN) เป็นอัลกอริทึมการจำแนกประเภท (Classification) และการทำนาย (Prediction) ที่ใช้หลักการ "บอกสภาพโดยดูเพื่อนบ้าน" โดยมองหาข้อมูลที่มีความใกล้เคียงกันมากที่สุด
+            </div>
+
+            <div class="visual-example">
+                <h4>🎯 หลักการทำงานของ kNN</h4>
+                <p>จินตนาการว่าคุณย้ายไปอยู่ย่านใหม่ และต้องการรู้ว่าย่านนี้เป็นอย่างไร</p>
+                <p><strong>วิธี kNN:</strong> ดูบ้าน k หลังที่อยู่ใกล้บ้านคุณมากที่สุด แล้วดูว่าเป็นแบบไหน</p>
+                <ul style="text-align: left; display: inline-block;">
+                    <li>หาก k=3 และบ้าน 3 หลังใกล้ที่สุดเป็นบ้านหรู → ย่านนี้น่าจะเป็นย่านหรู</li>
+                    <li>หาก k=5 และใน 5 หลังใกล้ที่สุด มี 3 หลังเป็นบ้านธรรมดา → ย่านนี้น่าจะเป็นย่านธรรมดา</li>
+                </ul>
+            </div>
+
+            <div class="math-formula">
+                <h3>สูตรระยะทาง Euclidean</h3>
+                <div style="font-size: 20px; margin: 20px 0;">
+                    <strong>d = √(Σ(pi - qi)²)</strong>
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <p><strong>โดยที่:</strong></p>
+                    <ul>
+                        <li><strong>d</strong> = ระยะทางระหว่างจุดสองจุด</li>
+                        <li><strong>p</strong> = ค่าในชุดข้อมูลที่ต้องการค้นหา</li>
+                        <li><strong>q</strong> = ค่าในชุดข้อมูลข้างเคียงที่มีอยู่</li>
+                        <li><strong>i</strong> = ตำแหน่งของแอททริบิวต์ (attribute)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>🔍 ขั้นตอนการทำงาน kNN:</strong>
+                <ol>
+                    <li><strong>คำนวณระยะทาง:</strong> หาระยะทางจากจุดที่ต้องการจำแนกไปยังทุกจุดในข้อมูล</li>
+                    <li><strong>เรียงลำดับ:</strong> เรียงระยะทางจากน้อยไปมาก</li>
+                    <li><strong>เลือก k จุดใกล้ที่สุด:</strong> เอา k จุดแรกที่มีระยะทางน้อยที่สุด</li>
+                    <li><strong>โหวต:</strong> ดูว่าใน k จุด กลุ่มไหนมีจำนวนมากที่สุด</li>
+                    <li><strong>ตัดสินใจ:</strong> จำแนกให้อยู่ในกลุ่มที่ได้คะแนนโหวตมากที่สุด</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🐾 ส่วนที่ 2: ตัวอย่างการจำแนกสัตว์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 สถานการณ์:</strong> นักชีววิทยาต้องการสร้างระบบจำแนกสัตว์โดยใช้คุณสมบัติต่างๆ ของสัตว์ เพื่อช่วยในการระบุสายพันธุ์ของสัตว์ปริศนา
+            </div>
+
+            <table class="comparison-table animal-table">
+                <thead>
+                    <tr>
+                        <th>สัตว์</th>
+                        <th>ออกลูก<br>เป็นตัว</th>
+                        <th>ออกลูก<br>เป็นไข่</th>
+                        <th>เลี้ยงลูก<br>ด้วยน้ำนม</th>
+                        <th>มีขน<br>ตามร่างกาย</th>
+                        <th>ผิวหยาบ<br>หรือมีเกล็ด</th>
+                        <th>สัตว์<br>เลือดอุ่น</th>
+                        <th>สัตว์<br>เลือดเย็น</th>
+                        <th>อยู่ทั้ง<br>ในน้ำ<br>และบนบก</th>
+                        <th>หายใจ<br>ด้วยเหงือก</th>
+                        <th>สายพันธุ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>กบ</strong></td>
+                        <td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td>
+                        <td>สัตว์ครึ่งบกครึ่งน้ำ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>เป็ด</strong></td>
+                        <td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td>
+                        <td>สัตว์จำพวกนก</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ค้างคาว</strong></td>
+                        <td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                        <td>สัตว์เลี้ยงลูกด้วยนม</td>
+                    </tr>
+                    <tr>
+                        <td><strong>งู</strong></td>
+                        <td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td>
+                        <td>สัตว์เลื้อยคลาน</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ปลา</strong></td>
+                        <td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td>
+                        <td>สัตว์จำพวกปลา</td>
+                    </tr>
+                    <tr style="background: #fff3cd;">
+                        <td><strong>สัตว์ปริศนา</strong></td>
+                        <td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td>
+                        <td><strong>?</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code1')">📋 Copy</button>
+                <div class="code-block" id="code1"># ===== การใช้ kNN สำหรับการจำแนกสัตว์ =====
+import numpy as np
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+import matplotlib.pyplot as plt
+
+# ข้อมูลสัตว์ (ตามตารางข้างต้น)
+animals_data = {
+    'สัตว์': ['กบ', 'เป็ด', 'ค้างคาว', 'งู', 'ปลา'],
+    'ออกลูกเป็นตัว': [0, 0, 1, 0, 0],
+    'ออกลูกเป็นไข่': [1, 1, 0, 1, 1],
+    'เลี้ยงลูกด้วยน้ำนม': [0, 0, 1, 0, 0],
+    'มีขนตามร่างกาย': [0, 1, 1, 0, 0],
+    'ผิวหยาบหรือมีเกล็ด': [0, 0, 0, 1, 1],
+    'สัตว์เลือดอุ่น': [0, 1, 0, 0, 0],
+    'สัตว์เลือดเย็น': [1, 0, 0, 1, 1],
+    'อยู่ทั้งในน้ำและบนบก': [1, 1, 0, 0, 0],
+    'หายใจด้วยเหงือก': [0, 0, 0, 0, 1],
+    'สายพันธุ์': ['สัตว์ครึ่งบกครึ่งน้ำ', 'สัตว์จำพวกนก', 'สัตว์เลี้ยงลูกด้วยนม', 'สัตว์เลื้อยคลาน', 'สัตว์จำพวกปลา']
+}
+
+# สร้าง DataFrame
+df = pd.DataFrame(animals_data)
+print("=== ข้อมูลสัตว์ ===")
+print(df)
+
+# แยกข้อมูล features และ labels
+feature_columns = ['ออกลูกเป็นตัว', 'ออกลูกเป็นไข่', 'เลี้ยงลูกด้วยน้ำนม', 'มีขนตามร่างกาย', 
+                  'ผิวหยาบหรือมีเกล็ด', 'สัตว์เลือดอุ่น', 'สัตว์เลือดเย็น', 'อยู่ทั้งในน้ำและบนบก', 'หายใจด้วยเหงือก']
+
+X = df[feature_columns].values
+y = df['สายพันธุ์'].values
+
+print(f"\nรูปแบบข้อมูล X: {X.shape}")
+print(f"รูปแบบข้อมูล y: {y.shape}")
+
+# สัตว์ปริศนา: ออกลูกเป็นไข่และอยู่ทั้งในน้ำและบนบก
+mystery_animal = np.array([[0, 1, 0, 0, 0, 0, 0, 1, 0]])
+
+print("\n=== สัตว์ปริศนา ===")
+print(f"คุณสมบัติ: {mystery_animal}")
+
+def manual_knn_classification(X_train, y_train, X_test, k=1):
+    """
+    การใช้ kNN แบบคำนวณเอง
+    """
+    distances = []
+    
+    # คำนวณระยะทาง Euclidean
+    for i, train_sample in enumerate(X_train):
+        # สูตร: d = sqrt(sum((p - q)^2))
+        distance = np.sqrt(np.sum((X_test - train_sample) ** 2))
+        distances.append((distance, y_train[i], i))
+        
+        print(f"ระยะทางถึง {y_train[i]}: {distance:.4f}")
+    
+    # เรียงลำดับตามระยะทาง
+    distances.sort(key=lambda x: x[0])
+    
+    print(f"\n=== k={k} Nearest Neighbors ===")
+    k_nearest = distances[:k]
+    
+    for i, (dist, label, idx) in enumerate(k_nearest, 1):
+        print(f"{i}. {label} (ระยะทาง: {dist:.4f})")
+    
+    # นับคะแนนโหวต
+    votes = {}
+    for _, label, _ in k_nearest:
+        votes[label] = votes.get(label, 0) + 1
+    
+    print(f"\nการโหวต: {votes}")
+    
+    # หาผู้ชนะ
+    predicted_class = max(votes, key=votes.get)
+    return predicted_class, k_nearest
+
+# ทดสอบด้วย k=1
+print("\n" + "="*60)
+print("=== การจำแนกแบบคำนวณเอง (k=1) ===")
+prediction_k1, nearest_k1 = manual_knn_classification(X, y, mystery_animal, k=1)
+print(f"\nผลการจำแนก (k=1): {prediction_k1}")
+
+# ทดสอบด้วย k=3
+print("\n" + "="*60)
+print("=== การจำแนกแบบคำนวณเอง (k=3) ===")
+prediction_k3, nearest_k3 = manual_knn_classification(X, y, mystery_animal, k=3)
+print(f"\nผลการจำแนก (k=3): {prediction_k3}")
+
+# เปรียบเทียบกับ sklearn
+print("\n" + "="*60)
+print("=== การเปรียบเทียบกับ scikit-learn ===")
+
+for k in [1, 3, 5]:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X, y)
+    sklearn_prediction = knn.predict(mystery_animal)
+    
+    print(f"k={k}: Manual={prediction_k1 if k==1 else prediction_k3}, sklearn={sklearn_prediction[0]}")
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 2.1: การคำนวณระยะทาง</h4>
+                <p>จากตัวอย่างข้างต้น ให้นักศึกษา:</p>
+                <ol>
+                    <li><strong>คำนวณระยะทางด้วยมือ:</strong> คำนวณระยะทาง Euclidean จากสัตว์ปริศนาถึงแต่ละสัตว์ในตาราง</li>
+                    <li><strong>เปรียบเทียบ k ต่างๆ:</strong> เปรียบเทียบผลลัพธ์เมื่อใช้ k=1, k=3, k=5</li>
+                    <li><strong>อธิบายผลลัพธ์:</strong> อธิบายว่าทำไมได้ผลลัพธ์แบบนี้</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📊 ส่วนที่ 3: แบบทดสอบที่ 1 - การขยายข้อมูล</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 โจทย์จาก PDF:</strong> ตารางที่ 2 มีข้อมูลสัตว์ 8 ชนิด โดยมีสัตว์ปริศนาที่มีคุณสมบัติ "ออกลูกเป็นไข่และอยู่ทั้งในน้ำและบนบก" ต้องการทราบว่าเป็นสัตว์ใกล้เคียงกับสายพันธุ์ใดมากที่สุด (กำหนด k=3, k=4)
+            </div>
+
+            <table class="comparison-table animal-table">
+                <thead>
+                    <tr>
+                        <th>สัตว์</th>
+                        <th>ออกลูก<br>เป็นตัว</th>
+                        <th>ออกลูก<br>เป็นไข่</th>
+                        <th>เลี้ยงลูก<br>ด้วยน้ำนม</th>
+                        <th>มีขน<br>ตามร่างกาย</th>
+                        <th>ผิวหยาบ<br>หรือมีเกล็ด</th>
+                        <th>สัตว์<br>เลือดอุ่น</th>
+                        <th>สัตว์<br>เลือดเย็น</th>
+                        <th>อยู่ทั้ง<br>ในน้ำ<br>และบนบก</th>
+                        <th>หายใจ<br>ด้วยเหงือก</th>
+                        <th>สายพันธุ์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>กบ</strong></td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>สัตว์ครึ่งบกครึ่งน้ำ</td></tr>
+                    <tr><td><strong>เป็ด</strong></td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>สัตว์จำพวกนก</td></tr>
+                    <tr><td><strong>ค้างคาว</strong></td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>สัตว์เลี้ยงลูกด้วยนม</td></tr>
+                    <tr><td><strong>งู</strong></td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>สัตว์เลื้อยคลาน</td></tr>
+                    <tr><td><strong>ปลา</strong></td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>สัตว์จำพวกปลา</td></tr>
+                    <tr><td><strong>จระเข้</strong></td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>สัตว์เลื้อยคลาน</td></tr>
+                    <tr><td><strong>แมว</strong></td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>สัตว์เลี้ยงลูกด้วยนม</td></tr>
+                    <tr><td><strong>นก</strong></td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>สัตว์จำพวกนก</td></tr>
+                    <tr style="background: #fff3cd;"><td><strong>สัตว์ปริศนา</strong></td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td><strong>?</strong></td></tr>
+                </tbody>
+            </table>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code2')">📋 Copy</button>
+                <div class="code-block" id="code2"># ===== แบบทดสอบที่ 1: ข้อมูลสัตว์ 8 ชนิด =====
+
+import numpy as np
+import pandas as pd
+from collections import Counter
+
+# ข้อมูลสัตว์ 8 ชนิดจากตารางที่ 2
+extended_animals_data = {
+    'สัตว์': ['กบ', 'เป็ด', 'ค้างคาว', 'งู', 'ปลา', 'จระเข้', 'แมว', 'นก'],
+    'ออกลูกเป็นตัว': [0, 0, 1, 0, 0, 0, 1, 0],
+    'ออกลูกเป็นไข่': [1, 1, 0, 1, 1, 1, 0, 1],
+    'เลี้ยงลูกด้วยน้ำนม': [0, 0, 1, 0, 0, 0, 1, 0],
+    'มีขนตามร่างกาย': [0, 1, 1, 0, 0, 0, 1, 1],
+    'ผิวหยาบหรือมีเกล็ด': [0, 0, 0, 1, 1, 1, 0, 0],
+    'สัตว์เลือดอุ่น': [0, 1, 0, 0, 0, 0, 1, 1],
+    'สัตว์เลือดเย็น': [1, 0, 0, 1, 1, 1, 0, 0],
+    'อยู่ทั้งในน้ำและบนบก': [1, 1, 0, 0, 0, 0, 0, 0],
+    'หายใจด้วยเหงือก': [0, 0, 0, 0, 1, 0, 0, 0],
+    'สายพันธุ์': ['สัตว์ครึ่งบกครึ่งน้ำ', 'สัตว์จำพวกนก', 'สัตว์เลี้ยงลูกด้วยนม', 'สัตว์เลื้อยคลาน', 
+                'สัตว์จำพวกปลา', 'สัตว์เลื้อยคลาน', 'สัตว์เลี้ยงลูกด้วยนม', 'สัตว์จำพวกนก']
+}
+
+# สร้าง DataFrame
+df_extended = pd.DataFrame(extended_animals_data)
+print("=== ข้อมูลสัตว์ 8 ชนิด ===")
+print(df_extended)
+
+# แยกข้อมูล features และ labels
+feature_columns = ['ออกลูกเป็นตัว', 'ออกลูกเป็นไข่', 'เลี้ยงลูกด้วยน้ำนม', 'มีขนตามร่างกาย', 
+                  'ผิวหยาบหรือมีเกล็ด', 'สัตว์เลือดอุ่น', 'สัตว์เลือดเย็น', 'อยู่ทั้งในน้ำและบนบก', 'หายใจด้วยเหงือก']
+
+X_extended = df_extended[feature_columns].values
+y_extended = df_extended['สายพันธุ์'].values
+
+# สัตว์ปริศนา: ออกลูกเป็นไข่และอยู่ทั้งในน้ำและบนบก
+mystery_animal = np.array([[0, 1, 0, 0, 0, 0, 0, 1, 0]])
+
+def detailed_knn_analysis(X_train, y_train, animal_names, X_test, k_values):
+    """
+    วิเคราะห์ kNN แบบละเอียด
+    """
+    distances = []
+    
+    # คำนวณระยะทางทั้งหมด
+    print("=== การคำนวณระยะทาง ===")
+    for i, train_sample in enumerate(X_train):
+        distance = np.sqrt(np.sum((X_test - train_sample) ** 2))
+        distances.append((distance, y_train[i], animal_names[i]))
+        
+        # แสดงการคำนวณแบบละเอียด
+        diff = X_test.flatten() - train_sample
+        diff_squared = diff ** 2
+        print(f"{animal_names[i]:<12}: ระยะทาง = √({'+'.join(map(str, diff_squared.astype(int)))}) = √{np.sum(diff_squared):.0f} = {distance:.4f}")
+    
+    # เรียงลำดับตามระยะทาง
+    distances.sort(key=lambda x: x[0])
+    
+    print(f"\n=== การเรียงลำดับตามระยะทาง ===")
+    for i, (dist, label, name) in enumerate(distances, 1):
+        print(f"{i}. {name:<12} ({label:<25}) = {dist:.4f}")
+    
+    # ทดสอบกับค่า k ต่างๆ
+    results = {}
+    for k in k_values:
+        print(f"\n{'='*60}")
+        print(f"=== การวิเคราะห์ k={k} ===")
+        
+        k_nearest = distances[:k]
+        print(f"k={k} เพื่อนบ้านที่ใกล้ที่สุด:")
+        
+        votes = Counter()
+        for i, (dist, label, name) in enumerate(k_nearest, 1):
+            votes[label] += 1
+            print(f"  {i}. {name:<12} ({label:<25}) ระยะทาง: {dist:.4f}")
+        
+        print(f"\nการนับคะแนนโหวต:")
+        for species, count in votes.most_common():
+            percentage = (count / k) * 100
+            print(f"  {species:<25}: {count}/{k} ({percentage:.1f}%)")
+        
+        # หาผู้ชนะ
+        winner = votes.most_common(1)[0][0]
+        winner_count = votes.most_common(1)[0][1]
+        
+        print(f"\n🏆 ผลการจำแนก k={k}: {winner}")
+        print(f"   ความมั่นใจ: {winner_count}/{k} ({(winner_count/k)*100:.1f}%)")
+        
+        results[k] = {
+            'prediction': winner,
+            'confidence': winner_count / k,
+            'votes': dict(votes)
+        }
+    
+    return results
+
+# ทำการวิเคราะห์
+animal_names = df_extended['สัตว์'].tolist()
+k_values = [3, 4]
+
+print("สัตว์ปริศนา: ออกลูกเป็นไข่และอยู่ทั้งในน้ำและบนบก")
+print("คุณสมบัติ:", mystery_animal.flatten())
+print()
+
+results = detailed_knn_analysis(X_extended, y_extended, animal_names, mystery_animal, k_values)
+
+# สรุปผลลัพธ์
+print("\n" + "="*60)
+print("=== สรุปผลการจำแนก ===")
+for k, result in results.items():
+    print(f"k={k}: {result['prediction']} (ความมั่นใจ {result['confidence']:.1%})")
+
+# การวิเคราะห์เพิ่มเติม
+print("\n=== การวิเคราะห์เพิ่มเติม ===")
+print("จากผลการทดลอง เราสามารถสังเกตได้ว่า:")
+
+if results[3]['prediction'] == results[4]['prediction']:
+    print("✅ ผลการจำแนกด้วย k=3 และ k=4 ให้ผลลัพธ์เหมือนกัน")
+    print("   แสดงว่าการจำแนกมีความน่าเชื่อถือสูง")
+else:
+    print("⚠️  ผลการจำแนกด้วย k=3 และ k=4 ให้ผลลัพธ์ต่างกัน")
+    print("   ควรพิจารณาเพิ่มข้อมูลหรือปรับค่า k")
+
+# แสดงคุณสมบัติที่สำคัญ
+print("\n=== คุณสมบัติที่มีผลต่อการจำแนก ===")
+mystery_features = mystery_animal.flatten()
+important_features = []
+
+for i, feature in enumerate(feature_columns):
+    if mystery_features[i] == 1:
+        important_features.append(feature)
+
+print("สัตว์ปริศนามีคุณสมบัติ:", ', '.join(important_features))
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 3.1: แบบทดสอบที่ 1</h4>
+                <ol>
+                    <li><strong>คำนวณด้วยมือ:</strong> คำนวณระยะทาง Euclidean จากสัตว์ปริศนาถึงสัตว์ทั้ง 8 ชนิด</li>
+                    <li><strong>เรียงลำดับ:</strong> เรียงลำดับสัตว์ตามระยะทางจากน้อยไปมาก</li>
+                    <li><strong>จำแนกด้วย k=3:</strong> เลือก 3 สัตว์ที่ใกล้ที่สุดและนับคะแนนโหวต</li>
+                    <li><strong>จำแนกด้วย k=4:</strong> เลือก 4 สัตว์ที่ใกล้ที่สุดและนับคะแนนโหวต</li>
+                    <li><strong>จำแนกด้วย k=5:</strong> เลือก 5 สัตว์ที่ใกล้ที่สุดและนับคะแนนโหวต</li>
+                    <li><strong>จำแนกด้วย k=6:</strong> เลือก 6 สัตว์ที่ใกล้ที่สุดและนับคะแนนโหวต</li>
+                    <li><strong>เปรียบเทียบ:</strong> เปรียบเทียบผลลัพธ์และอธิบายความแตกต่าง</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🔧 ส่วนที่ 4: การปรับปรุงและเพิ่มประสิทธิภาพ</div>
+        <div class="section-content">
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code3')">📋 Copy</button>
+                <div class="code-block" id="code3"># ===== การปรับปรุง kNN และการสำรวจพารามิเตอร์ =====
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix, classification_report
+import seaborn as sns
+
+# ฟังก์ชันสำหรับทดสอบค่า k ต่างๆ
+def find_optimal_k(X, y, k_range=range(1, 11)):
+    """
+    หาค่า k ที่เหมาะสมที่สุด
+    """
+    accuracies = []
+    
+    for k in k_range:
+        knn = KNeighborsClassifier(n_neighbors=k)
+        # ใช้ cross-validation เพื่อประเมินประสิทธิภาพ
+        scores = cross_val_score(knn, X, y, cv=3, scoring='accuracy')
+        accuracies.append(scores.mean())
+        print(f"k={k}: ความแม่นยำเฉลี่ย = {scores.mean():.4f} (±{scores.std():.4f})")
+    
+    # หาค่า k ที่ให้ความแม่นยำสูงสุด
+    optimal_k = k_range[np.argmax(accuracies)]
+    max_accuracy = max(accuracies)
+    
+    # สร้างกราฟ
+    plt.figure(figsize=(10, 6))
+    plt.plot(k_range, accuracies, 'bo-', linewidth=2, markersize=8)
+    plt.axvline(x=optimal_k, color='r', linestyle='--', alpha=0.7)
+    plt.xlabel('ค่า k')
+    plt.ylabel('ความแม่นยำ (Accuracy)')
+    plt.title('การเปรียบเทียบประสิทธิภาพของ kNN ด้วยค่า k ต่างๆ')
+    plt.grid(True, alpha=0.3)
+    plt.xticks(k_range)
+    
+    # เพิ่มข้อความแสดงค่าที่เหมาะสม
+    plt.annotate(f'k ที่เหมาะสม = {optimal_k}\nความแม่นยำ = {max_accuracy:.4f}',
+                xy=(optimal_k, max_accuracy), xytext=(optimal_k+1, max_accuracy-0.02),
+                arrowprops=dict(arrowstyle='->', color='red'),
+                fontsize=12, ha='left')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    return optimal_k, max_accuracy
+
+# ฟังก์ชันสำหรับการทดสอบ distance metrics ต่างๆ
+def compare_distance_metrics(X, y, mystery_sample):
+    """
+    เปรียบเทียบ distance metrics ต่างๆ
+    """
+    metrics = {
+        'euclidean': 'Euclidean (L2)',
+        'manhattan': 'Manhattan (L1)', 
+        'minkowski': 'Minkowski (p=3)',
+        'chebyshev': 'Chebyshev'
+    }
+    
+    results = {}
+    
+    print("=== การเปรียบเทียบ Distance Metrics ===")
+    
+    for metric, name in metrics.items():
+        if metric == 'minkowski':
+            knn = KNeighborsClassifier(n_neighbors=3, metric=metric, p=3)
+        else:
+            knn = KNeighborsClassifier(n_neighbors=3, metric=metric)
+        
+        knn.fit(X, y)
+        prediction = knn.predict(mystery_sample)
+        
+        # หา neighbors และระยะทาง
+        distances, indices = knn.kneighbors(mystery_sample)
+        
+        print(f"\n{name}:")
+        print(f"  ผลการจำแนก: {prediction[0]}")
+        print(f"  3 เพื่อนบ้านใกล้ที่สุด:")
+        
+        for i, (idx, dist) in enumerate(zip(indices[0], distances[0])):
+            print(f"    {i+1}. {df_extended.iloc[idx]['สัตว์']} (ระยะทาง: {dist:.4f})")
+        
+        results[name] = {
+            'prediction': prediction[0],
+            'distances': distances[0],
+            'neighbors': [df_extended.iloc[idx]['สัตว์'] for idx in indices[0]]
+        }
+    
+    return results
+
+# ฟังก์ชันสำหรับ weighted kNN
+def weighted_knn_prediction(X, y, mystery_sample, k=3):
+    """
+    kNN แบบถ่วงน้ำหนักด้วยระยะทาง
+    """
+    from sklearn.neighbors import KNeighborsClassifier
+    
+    # kNN ปกติ
+    knn_uniform = KNeighborsClassifier(n_neighbors=k, weights='uniform')
+    knn_uniform.fit(X, y)
+    prediction_uniform = knn_uniform.predict(mystery_sample)
+    
+    # kNN แบบถ่วงน้ำหนัก
+    knn_weighted = KNeighborsClassifier(n_neighbors=k, weights='distance')
+    knn_weighted.fit(X, y)
+    prediction_weighted = knn_weighted.predict(mystery_sample)
+    
+    # แสดงผลลัพธ์
+    print("=== การเปรียบเทียบ kNN ปกติ vs kNN ถ่วงน้ำหนัก ===")
+    print(f"kNN ปกติ (uniform weights):     {prediction_uniform[0]}")
+    print(f"kNN ถ่วงน้ำหนัก (distance weights): {prediction_weighted[0]}")
+    
+    # แสดงรายละเอียดเพิ่มเติม
+    distances, indices = knn_uniform.kneighbors(mystery_sample)
+    weights = 1 / (distances[0] + 1e-6)  # เพิ่มค่าเล็กๆ เพื่อไม่ให้หารด้วย 0
+    weights = weights / np.sum(weights)  # normalize
+    
+    print(f"\nรายละเอียด k={k} เพื่อนบ้าน:")
+    print(f"{'อันดับ':<6} {'สัตว์':<12} {'สายพันธุ์':<25} {'ระยะทาง':<10} {'น้ำหนัก':<10}")
+    print("-" * 75)
+    
+    for i, (idx, dist, weight) in enumerate(zip(indices[0], distances[0], weights)):
+        animal_name = df_extended.iloc[idx]['สัตว์']
+        species = df_extended.iloc[idx]['สายพันธุ์']
+        print(f"{i+1:<6} {animal_name:<12} {species:<25} {dist:<10.4f} {weight:<10.4f}")
+    
+    return prediction_uniform[0], prediction_weighted[0]
+
+# ใช้ข้อมูลจากส่วนที่แล้ว
+X_extended = df_extended[feature_columns].values
+y_extended = df_extended['สายพันธุ์'].values
+mystery_animal = np.array([[0, 1, 0, 0, 0, 0, 0, 1, 0]])
+
+print("=== การปรับปรุงประสิทธิภาพ kNN ===")
+print("ข้อมูล: สัตว์ 8 ชนิด")
+print("สัตว์ปริศนา: ออกลูกเป็นไข่และอยู่ทั้งในน้ำและบนบก")
+print()
+
+# หาค่า k ที่เหมาะสม
+print("1. การหาค่า k ที่เหมาะสม")
+optimal_k, max_acc = find_optimal_k(X_extended, y_extended, range(1, 8))
+print(f"ค่า k ที่เหมาะสม: {optimal_k}")
+
+print("\n" + "="*60)
+
+# เปรียบเทียบ distance metrics
+print("2. การเปรียบเทียบ Distance Metrics")
+distance_results = compare_distance_metrics(X_extended, y_extended, mystery_animal)
+
+print("\n" + "="*60)
+
+# ทดสอบ weighted kNN
+print("3. การเปรียบเทียบ kNN ปกติ vs ถ่วงน้ำหนัก")
+uniform_pred, weighted_pred = weighted_knn_prediction(X_extended, y_extended, mystery_animal, k=3)
+
+# สรุปผลการทดลอง
+print("\n" + "="*60)
+print("=== สรุปผลการทดลอง ===")
+print(f"ค่า k ที่เหมาะสม: {optimal_k}")
+print(f"Distance metric ที่ดีที่สุด: Euclidean (มาตรฐาน)")
+print(f"kNN ปกติ vs ถ่วงน้ำหนัก: {uniform_pred} vs {weighted_pred}")
+
+# แนะนำการใช้งาน
+print("\n=== คำแนะนำ ===")
+print("1. ใช้ k=3 หรือ k=5 สำหรับข้อมูลขนาดเล็ก")
+print("2. Euclidean distance เหมาะสำหรับข้อมูลที่ normalized แล้ว")
+print("3. Weight by distance ช่วยลดผลกระทบของ outliers")
+print("4. ควร standardize ข้อมูลก่อนใช้ kNN ถ้า features มี scale ต่างกัน")
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 4.1: การเพิ่มประสิทธิภาพ</h4>
+                <ol>
+                    <li><strong>ทดสอบ k ต่างๆ:</strong> รันโค้ดและสังเกตกราฟเพื่อหาค่า k ที่เหมาะสม</li>
+                    <li><strong>เปรียบเทียบ distance metrics:</strong> ทดสอบ Euclidean, Manhattan, และ Minkowski</li>
+                    <li><strong>ถ่วงน้ำหนัก:</strong> เปรียบเทียบ uniform weights vs distance weights</li>
+                    <li><strong>วิเคราะห์ผล:</strong> อธิบายว่าแต่ละวิธีส่งผลต่อการจำแนกอย่างไร</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🚀 ส่วนที่ 5: การประยุกต์ใช้จริง - ระบบแนะนำภาพยนตร์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 สถานการณ์:</strong> บริษัทสตรีมมิ่งต้องการสร้างระบบแนะนำภาพยนตร์โดยใช้ kNN เพื่อหาภาพยนตร์ที่คล้ายกันตามความชอบของผู้ใช้
+            </div>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code4')">📋 Copy</button>
+                <div class="code-block" id="code4"># ===== ระบบแนะนำภาพยนตร์ด้วย kNN =====
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier, NearestNeighbors
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics.pairwise import cosine_similarity
+
+class MovieRecommendationSystem:
+    def __init__(self):
+        self.scaler = StandardScaler()
+        self.knn_model = NearestNeighbors(n_neighbors=5, metric='cosine')
+        
+    def create_movie_dataset(self):
+        """สร้างข้อมูลภาพยนตร์จำลอง"""
+        
+        movies_data = {
+            'ภาพยนตร์': [
+                'Avengers: Endgame', 'Titanic', 'The Dark Knight', 'Frozen', 'Joker',
+                'Avatar', 'Toy Story 4', 'The Lion King', 'Spider-Man', 'Interstellar',
+                'The Notebook', 'Inception', 'Finding Nemo', 'Black Panther', 'La La Land'
+            ],
+            'แอคชัน': [10, 2, 9, 1, 6, 8, 2, 3, 9, 3, 1, 7, 2, 9, 2],
+            'โรแมนติก': [2, 9, 1, 3, 2, 3, 1, 4, 3, 2, 10, 2, 2, 3, 9],
+            'ตลก': [7, 3, 2, 8, 3, 2, 9, 7, 6, 1, 4, 2, 8, 5, 6],
+            'ดราม่า': [6, 8, 7, 6, 9, 4, 4, 8, 5, 9, 9, 6, 4, 7, 8],
+            'ไซไฟ': [9, 1, 3, 1, 2, 10, 1, 1, 7, 10, 1, 9, 1, 8, 1],
+            'แฟนตาซี': [8, 2, 4, 9, 3, 6, 2, 8, 5, 2, 2, 6, 3, 6, 3],
+            'เด็ก': [5, 2, 2, 10, 2, 3, 10, 9, 6, 2, 2, 2, 9, 4, 3],
+            'คะแนน_IMDB': [8.4, 7.8, 9.0, 7.4, 8.4, 7.8, 7.7, 6.8, 7.3, 8.6, 7.8, 8.8, 8.2, 7.3, 8.0],
+            'ปีที่ออก': [2019, 1997, 2008, 2013, 2019, 2009, 2019, 2019, 2002, 2014, 2004, 2010, 2003, 2018, 2016]
+        }
+        
+        return pd.DataFrame(movies_data)
+    
+    def fit(self, df):
+        """ฝึกฝนโมเดล"""
+        
+        # เลือก features สำหรับการคำนวณความคล้าย
+        self.feature_cols = ['แอคชัน', 'โรแมนติก', 'ตลก', 'ดราม่า', 'ไซไฟ', 'แฟนตาซี', 'เด็ก', 'คะแนน_IMDB']
+        self.df = df.copy()
+        
+        # Normalize ข้อมูล
+        self.features_scaled = self.scaler.fit_transform(df[self.feature_cols])
+        
+        # ฝึกฝน kNN
+        self.knn_model.fit(self.features_scaled)
+        
+        print("✅ ระบบแนะนำพร้อมใช้งาน!")
+        
+    def get_recommendations(self, movie_name, n_recommendations=5):
+        """แนะนำภาพยนตร์คล้ายกัน"""
+        
+        try:
+            # หา index ของภาพยนตร์
+            movie_idx = self.df[self.df['ภาพยนตร์'] == movie_name].index[0]
+            
+            # หาภาพยนตร์ที่คล้ายกัน
+            distances, indices = self.knn_model.kneighbors([self.features_scaled[movie_idx]], 
+                                                         n_neighbors=n_recommendations+1)
+            
+            # ลบภาพยนตร์ต้นฉบับออก (อันดับแรกจะเป็นตัวเอง)
+            similar_indices = indices[0][1:]
+            similar_distances = distances[0][1:]
+            
+            print(f"🎬 ภาพยนตร์ที่คล้ายกับ '{movie_name}':")
+            print("-" * 80)
+            
+            recommendations = []
+            for i, (idx, distance) in enumerate(zip(similar_indices, similar_distances)):
+                similar_movie = self.df.iloc[idx]
+                similarity = 1 - distance  # แปลง distance เป็น similarity
+                
+                recommendations.append({
+                    'ภาพยนตร์': similar_movie['ภาพยนตร์'],
+                    'ความคล้าย': similarity,
+                    'คะแนน_IMDB': similar_movie['คะแนน_IMDB'],
+                    'ปี': similar_movie['ปีที่ออก']
+                })
+                
+                print(f"{i+1}. {similar_movie['ภาพยนตร์']:<20} "
+                      f"(ความคล้าย: {similarity:.3f}, "
+                      f"IMDB: {similar_movie['คะแนน_IMDB']}, "
+                      f"ปี: {similar_movie['ปีที่ออก']})")
+            
+            return recommendations
+            
+        except IndexError:
+            print(f"❌ ไม่พบภาพยนตร์ '{movie_name}' ในระบบ")
+            return []
+    
+    def analyze_user_profile(self, favorite_movies):
+        """วิเคราะห์รสนิยมผู้ใช้"""
+        
+        user_features = np.zeros(len(self.feature_cols))
+        valid_movies = []
+        
+        print("🔍 วิเคราะห์รสนิยมจากภาพยนตร์ที่ชอบ:")
+        print("-" * 50)
+        
+        for movie in favorite_movies:
+            try:
+                movie_data = self.df[self.df['ภาพยนตร์'] == movie].iloc[0]
+                movie_features = movie_data[self.feature_cols].values
+                user_features += movie_features
+                valid_movies.append(movie)
+                
+                print(f"✅ {movie}")
+            except IndexError:
+                print(f"❌ ไม่พบ: {movie}")
+        
+        if len(valid_movies) == 0:
+            print("ไม่มีภาพยนตร์ที่ถูกต้อง")
+            return None
+        
+        # คำนวณค่าเฉลี่ย
+        user_features = user_features / len(valid_movies)
+        
+        print(f"\n📊 โปรไฟล์รสนิยม (คะแนน 1-10):")
+        for feature, score in zip(self.feature_cols, user_features):
+            print(f"  {feature:<15}: {score:.1f}")
+        
+        # หาภาพยนตร์ที่เหมาะสม
+        user_features_scaled = self.scaler.transform([user_features])
+        distances, indices = self.knn_model.kneighbors(user_features_scaled, n_neighbors=5)
+        
+        print(f"\n🎯 ภาพยนตร์ที่แนะนำตามรสนิยม:")
+        print("-" * 50)
+        
+        recommendations = []
+        for i, idx in enumerate(indices[0]):
+            if self.df.iloc[idx]['ภาพยนตร์'] not in favorite_movies:
+                movie = self.df.iloc[idx]
+                similarity = 1 - distances[0][i]
+                
+                recommendations.append({
+                    'ภาพยนตร์': movie['ภาพยนตร์'],
+                    'ความเหมาะสม': similarity,
+                    'คะแนน_IMDB': movie['คะแนน_IMDB']
+                })
+                
+                print(f"{len(recommendations)}. {movie['ภาพยนตร์']:<20} "
+                      f"(เหมาะสม: {similarity:.3f}, "
+                      f"IMDB: {movie['คะแนน_IMDB']})")
+        
+        return recommendations
+    
+    def create_similarity_heatmap(self):
+        """สร้าง heatmap แสดงความคล้ายระหว่างภาพยนตร์"""
+        
+        # คำนวณ cosine similarity
+        similarity_matrix = cosine_similarity(self.features_scaled)
+        
+        plt.figure(figsize=(12, 10))
+        
+        # สร้าง heatmap
+        import seaborn as sns
+        mask = np.triu(similarity_matrix, k=1)  # ซ่อนส่วนบน
+        
+        sns.heatmap(similarity_matrix, 
+                   annot=False,
+                   mask=mask,
+                   xticklabels=self.df['ภาพยนตร์'],
+                   yticklabels=self.df['ภาพยนตร์'],
+                   cmap='viridis',
+                   cbar_kws={'label': 'Cosine Similarity'})
+        
+        plt.title('ความคล้ายระหว่างภาพยนตร์', fontsize=16)
+        plt.xticks(rotation=45, ha='right')
+        plt.yticks(rotation=0)
+        plt.tight_layout()
+        plt.show()
+
+# สร้างและทดสอบระบบ
+recommender = MovieRecommendationSystem()
+
+# สร้างข้อมูลภาพยนตร์
+movies_df = recommender.create_movie_dataset()
+print("=== ข้อมูลภาพยนตร์ ===")
+print(movies_df[['ภาพยนตร์', 'แอคชัน', 'โรแมนติก', 'ตลก', 'คะแนน_IMDB', 'ปีที่ออก']].head(10))
+
+# ฝึกฝนโมเดล
+print("\n=== การฝึกฝนโมเดล ===")
+recommender.fit(movies_df)
+
+# ทดสอบการแนะนำ
+print("\n=== การทดสอบระบบแนะนำ ===")
+
+# ทดสอบ 1: หาภาพยนตร์คล้าย The Dark Knight
+recommendations_1 = recommender.get_recommendations('The Dark Knight', n_recommendations=4)
+
+print("\n" + "="*80)
+
+# ทดสอบ 2: หาภาพยนตร์คล้าย Frozen
+recommendations_2 = recommender.get_recommendations('Frozen', n_recommendations=4)
+
+print("\n" + "="*80)
+
+# ทดสอบ 3: วิเคราะห์รสนิยมผู้ใช้
+print("=== การวิเคราะห์รสนิยมผู้ใช้ ===")
+user_favorites = ['Avengers: Endgame', 'The Dark Knight', 'Spider-Man']
+user_recommendations = recommender.analyze_user_profile(user_favorites)
+
+# สร้าง heatmap
+print("\n=== การแสดงความคล้ายระหว่างภาพยนตร์ ===")
+recommender.create_similarity_heatmap()
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 5.1: ระบบแนะนำ</h4>
+                <ol>
+                    <li><strong>ทดสอบระบบ:</strong> ลองหาภาพยนตร์ที่คล้ายกับ 'Titanic' และ 'Inception'</li>
+                    <li><strong>สร้างโปรไฟล์:</strong> ใส่ภาพยนตร์ที่คุณชอบและดูคำแนะนำ</li>
+                    <li><strong>วิเคราะห์ Heatmap:</strong> สังเกตคู่ภาพยนตร์ที่มีความคล้ายสูง</li>
+                    <li><strong>ปรับปรุงระบบ:</strong> เสนอวิธีปรับปรุงระบบให้แม่นยำขึ้น</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📊 ส่วนที่ 6: การประเมินผลและข้อจำกัด</div>
+        <div class="section-content">
+            <div class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>หัวข้อ</th>
+                        <th>ข้อดี</th>
+                        <th>ข้อเสีย</th>
+                        <th>วิธีแก้ไข</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">ความเรียบง่าย</span></td>
+                        <td>เข้าใจง่าย, ไม่ต้องฝึกฝนโมเดล</td>
+                        <td>ช้าเมื่อข้อมูลมาก</td>
+                        <td>ใช้ indexing algorithms (Ball Tree, KD Tree)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">ความแม่นยำ</span></td>
+                        <td>ดีกับข้อมูลที่มี local pattern</td>
+                        <td>ไวต่อ noise และ outliers</td>
+                        <td>ทำ data cleaning, ใช้ weighted kNN</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">การเลือก k</span></td>
+                        <td>ปรับได้ตามข้อมูล</td>
+                        <td>ต้องทดลองหา k ที่เหมาะสม</td>
+                        <td>ใช้ cross-validation</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Curse of Dimensionality</span></td>
+                        <td>ใช้งานได้กับหลาย features</td>
+                        <td>ประสิทธิภาพลดลงเมื่อ features มาก</td>
+                        <td>Feature selection, PCA</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">ความจำ</span></td>
+                        <td>Lazy learning</td>
+                        <td>ต้องเก็บข้อมูลทั้งหมด</td>
+                        <td>Data compression, sampling</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <strong>🎯 แนวทางการปรับปรุง kNN:</strong>
+                <ol>
+                    <li><strong>Data Preprocessing:</strong> Normalization, Feature scaling</li>
+                    <li><strong>Feature Engineering:</strong> เลือกเฉพาะ features ที่สำคัญ</li>
+                    <li><strong>Distance Weighting:</strong> ให้น้ำหนักตามระยะทาง</li>
+                    <li><strong>Ensemble Methods:</strong> รวม kNN หลายโมเดล</li>
+                    <li><strong>Approximate Methods:</strong> ใช้ LSH สำหรับข้อมูลขนาดใหญ่</li>
+                </ol>
+            </div>
+
+            <div class="visual-example">
+                <h4>📈 เมื่อไหร่ควรใช้ kNN?</h4>
+                <div style="text-align: left; display: inline-block;">
+                    <p><strong>✅ เหมาะสำหรับ:</strong></p>
+                    <ul>
+                        <li>ข้อมูลที่มี local patterns ชัดเจน</li>
+                        <li>ระบบแนะนำ (Recommendation Systems)</li>
+                        <li>การจำแนกภาพ (Image Classification)</li>
+                        <li>Text mining และ NLP</li>
+                        <li>ข้อมูลขนาดเล็กถึงปานกลาง</li>
+                    </ul>
+                    
+                    <p><strong>❌ ไม่เหมาะสำหรับ:</strong></p>
+                    <ul>
+                        <li>ข้อมูลมี noise เยอะ</li>
+                        <li>Features มีมิติสูงมาก (>100)</li>
+                        <li>ต้องการ real-time prediction</li>
+                        <li>ข้อมูล imbalanced รุนแรง</li>
+                        <li>ต้องการ interpretability สูง</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📋 การประเมินผลและการส่งงาน</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📁 ชื่อไฟล์:</strong> <code>Lab7_kNN_[รหัสนักศึกษา].ipynb</code>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>หัวข้อ</th>
+                        <th>คะแนน</th>
+                        <th>รายละเอียด</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>การทำงานของโค้ด</strong></td>
+                        <td>40%</td>
+                        <td>โค้ดทำงานได้ถูกต้อง ไม่มี error</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ความเข้าใจอัลกอริทึม</strong></td>
+                        <td>25%</td>
+                        <td>อธิบาย kNN และการคำนวณระยะทางได้ถูกต้อง</td>
+                    </tr>
+                    <tr>
+                        <td><strong>แบบทดสอบที่ 1</strong></td>
+                        <td>20%</td>
+                        <td>แก้โจทย์จาก PDF ได้ครบถ้วน</td>
+                    </tr>
+                    <tr>
+                        <td><strong>การประยุกต์ใช้</strong></td>
+                        <td>10%</td>
+                        <td>ทำระบบแนะนำและวิเคราะห์ผลได้</td>
+                    </tr>
+                    <tr>
+                        <td><strong>การนำเสนอ</strong></td>
+                        <td>5%</td>
+                        <td>จัดรูปแบบและอธิบายชัดเจน</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="exercise">
+                <h4>📋 Deliverables ที่ต้องส่ง:</h4>
+                <ul>
+                    <li>✅ ไฟล์ Jupyter Notebook (.ipynb) ที่สมบูรณ์</li>
+                    <li>✅ ผลลัพธ์การรันโค้ดทุกส่วนพร้อมกราฟ</li>
+                    <li>✅ คำตอบแบบทดสอบที่ 1 (k=3, k=4) พร้อมการคำนวณ</li>
+                    <li>✅ การวิเคราะห์การเปรียบเทียบ distance metrics</li>
+                    <li>✅ ผลการทดสอบระบบแนะนำภาพยนตร์</li>
+                    <li>✅ สรุปข้อดี-ข้อเสียของ kNN และแนวทางแก้ไข</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>📅 กำหนดส่ง:</strong> ภายในสัปดาห์หน้า
+            </div>
+
+            <div class="note">
+                <strong>💡 เกณฑ์การประเมิน:</strong>
+                <ul>
+                    <li><strong>ดีเยี่ยม (A):</strong> เข้าใจทฤษฎี ทำงานครบ วิเคราะห์ลึก สร้างสรรค์</li>
+                    <li><strong>ดี (B):</strong> เข้าใจพื้นฐาน ทำงานครบ วิเคราะห์ได้</li>
+                    <li><strong>พอใช้ (C):</strong> เข้าใจเบื้องต้น ทำงานได้บางส่วน</li>
+                    <li><strong>ต้องปรับปรุง (D/F):</strong> ไม่เข้าใจทฤษฎี โค้ดไม่ทำงาน</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🎯 ส่วนที่ 7: สรุปและแนวทางการประยุกต์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>🧠 จุดสำคัญที่ควรจำ:</strong>
+                <ol>
+                    <li><strong>k-Nearest Neighbors</strong> ใช้หลักการ "บอกสภาพโดยดูเพื่อนบ้าน"</li>
+                    <li><strong>ระยะทาง Euclidean</strong> เป็น distance metric พื้นฐานที่นิยมใช้</li>
+                    <li><strong>การเลือกค่า k</strong> ส่งผลต่อประสิทธิภาพมาก</li>
+                    <li><strong>Data preprocessing</strong> มีความสำคัญต่อผลลัพธ์</li>
+                    <li><strong>Lazy learning</strong> ไม่ต้องฝึกฝนโมเดลล่วงหน้า</li>
+                </ol>
+            </div>
+
+            <div class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>สาขาการประยุกต์</th>
+                        <th>ตัวอย่างการใช้งาน</th>
+                        <th>ประโยชน์</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="highlight">E-commerce</span></td>
+                        <td>ระบบแนะนำสินค้า, ลูกค้าที่คล้ายกัน</td>
+                        <td>เพิ่มยอดขาย, ความพึงพอใจลูกค้า</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">การแพทย์</span></td>
+                        <td>การวินิจฉัยโรค, การจับคู่ผู้ป่วย</td>
+                        <td>ช่วยแพทย์ตัดสินใจ, หาการรักษา</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">การเงิน</span></td>
+                        <td>การประเมินความเสี่ยงเครดิต</td>
+                        <td>ลดความเสี่ยงในการให้สินเชื่อ</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">Image Recognition</span></td>
+                        <td>การจำแนกภาพ, Face recognition</td>
+                        <td>ระบบรักษาความปลอดภัย</td>
+                    </tr>
+                    <tr>
+                        <td><span class="highlight">NLP</span></td>
+                        <td>Text classification, Sentiment analysis</td>
+                        <td>วิเคราะห์ความรู้สึกจากข้อความ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="exercise">
+                <h4>🚀 โจทย์ท้าทายสำหรับผู้ที่สนใจ:</h4>
+                <ol>
+                    <li><strong>Music Recommendation:</strong> สร้างระบบแนะนำเพลงตาม genre และ mood</li>
+                    <li><strong>House Price Prediction:</strong> ทำนายราคาบ้านจากบ้านใกล้เคียง</li>
+                    <li><strong>Fraud Detection:</strong> ตรวจจับการทำธุรกรรมผิดปกติ</li>
+                    <li><strong>Gene Classification:</strong> จำแนกยีนตามหน้าที่และโครงสร้าง</li>
+                </ol>
+            </div>
+
+            <div class="note">
+                <strong>📚 แนวทางพัฒนาต่อ:</strong>
+                <ul>
+                    <li>🔗 เรียนรู้ Advanced kNN variants (Weighted kNN, Fuzzy kNN)</li>
+                    <li>📊 ศึกษา Dimensionality Reduction (PCA, t-SNE)</li>
+                    <li>⚡ เรียนรู้ Fast similarity search (LSH, Approximate kNN)</li>
+                    <li>🤖 รวม kNN เข้ากับ Deep Learning</li>
+                    <li>📱 สร้าง Mobile App ที่ใช้ kNN</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h4>💭 คำถามสำหรับการสะท้อนการเรียนรู้:</h4>
+                <ol>
+                    <li>kNN เหมาะสำหรับปัญหาประเภทใดในงานของคุณ?</li>
+                    <li>จะปรับปรุง kNN ให้เหมาะกับข้อมูลขนาดใหญ่ได้อย่างไร?</li>
+                    <li>ความแตกต่างระหว่าง kNN กับ Decision Tree คืออะไร?</li>
+                    <li>ในอนาคตเทคโนโลยี kNN จะพัฒนาไปในทิศทางใด?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h2 style="color: #667eea;">🎊 ยินดีด้วย! คุณได้เรียนรู้ k-Nearest Neighbors แล้ว</h2>
+        <p style="color: #666; margin: 10px 0;">
+            kNN เป็นอัลกอริทึมที่เรียบง่ายแต่ทรงพลัง เหมาะสำหรับการเริ่มต้นศึกษา Machine Learning<br>
+            นำไปประยุกต์ใช้ในการแก้ปัญหาจริงได้หลากหลาย
+        </p>
+        <p style="color: #888; margin: 0; font-size: 14px;">
+            © 2024 ใบงานฝึกปฏิบัติ k-Nearest Neighbors |จัดทำโดย อ.ดร.กริชบดินทร์ ผิวหอม | ภาควิชาวิทยาการคอมพิวเตอร์
+        </p>
+    </footer>
+
+    <script>
+        function copyCode(button, codeId) {
+            const codeBlock = document.getElementById(codeId);
+            const text = codeBlock.textContent || codeBlock.innerText;
+            
+            navigator.clipboard.writeText(text).then(function() {
+                button.textContent = '✅ Copied!';
+                button.classList.add('copied');
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+                button.textContent = '❌ Error';
+                setTimeout(function() {
+                    button.textContent = '📋 Copy';
+                }, 2000);
+            });
+        }
+
+        // เพิ่มการตรวจสอบและ animation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎓 ใบงานฝึกปฏิบัติ k-Nearest Neighbors พร้อมใช้งาน!');
+            
+            // เพิ่ม animation สำหรับปุ่ม copy
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

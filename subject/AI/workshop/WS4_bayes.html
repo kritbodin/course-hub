@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติบทที่ 4: ความไม่แน่นอนและทฤษฎีของเบย์</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .student-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .section-content {
+            padding: 25px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .copy-button:hover {
+            background: #218838;
+        }
+        
+        .copy-button.copied {
+            background: #17a2b8;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre;
+            border-left: 4px solid #4299e1;
+            position: relative;
+        }
+        
+        .exercise {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .output-block {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: 15px 0;
+            border-left: 4px solid #48bb78;
+            white-space: pre-line;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .keyword {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+
+        .probability-viz {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .cookie-bowl {
+            display: inline-block;
+            margin: 10px 20px;
+            text-align: center;
+        }
+
+        .bowl {
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(to bottom, #8B4513 0%, #D2691E 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            margin: 0 auto;
+            border: 3px solid #654321;
+        }
+
+        .bowl-label {
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .cookies {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .math-formula {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .formula-step {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ใบงานฝึกปฏิบัติบทที่ 4: การแก้ไขปัญหา (Problem Solving)</h1>
+        <h2>เรื่อง: ความไม่แน่นอนและทฤษฎีของเบย์ (Uncertainty & Bayes' Theorem)</h2>
+    </div>
+
+    <div class="section">
+        <div class="section-header">📖 ส่วนที่ 1: ทบทวนทฤษฎีของเบย์</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 ความรู้พื้นฐาน:</strong> ทฤษฎีของเบย์เป็นเครื่องมือสำคัญในการคำนวณความน่าจะเป็นแบบมีเงื่อนไข โดยใช้ข้อมูลที่มีอยู่แล้วมาปรับปรุงการคาดการณ์
+            </div>
+
+            <div class="math-formula">
+                <h3>สูตรของเบย์</h3>
+                <div style="font-size: 20px; margin: 20px 0;">
+                    <strong>P(A|B) = [P(B|A) × P(A)] / P(B)</strong>
+                </div>
+                <div style="text-align: left; margin-top: 20px;">
+                    <p><strong>โดยที่:</strong></p>
+                    <ul>
+                        <li><strong>P(A|B)</strong> = ความน่าจะเป็นของเหตุการณ์ A เมื่อเกิดเหตุการณ์ B แล้ว</li>
+                        <li><strong>P(B|A)</strong> = ความน่าจะเป็นของเหตุการณ์ B เมื่อเกิดเหตุการณ์ A แล้ว</li>
+                        <li><strong>P(A)</strong> = ความน่าจะเป็นของเหตุการณ์ A</li>
+                        <li><strong>P(B)</strong> = ความน่าจะเป็นของเหตุการณ์ B</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">🍪 ส่วนที่ 2: ปัญหาคุกกี้ - การใช้งาน Python</div>
+        <div class="section-content">
+            <div class="note">
+                <strong>📝 โจทย์:</strong> วรรณเพ็ญหิวขนมกลางดึก มีชามคุกกี้ 2 ใบ แต่ละใบมี 40 ชิ้น<br>
+                • ชามที่ 1: คุกกี้รสนม 30 ชิ้น, รสโกโก้ 10 ชิ้น<br>
+                • ชามที่ 2: คุกกี้รสนม 20 ชิ้น, รสโกโก้ 20 ชิ้น<br>
+                <strong>คำถาม:</strong> หาความน่าจะเป็นที่จะหยิบได้ชามใบที่ 2 และได้คุกกี้รสโกโก้
+            </div>
+
+            <div class="probability-viz">
+                <h4>การแสดงภาพปัญหา</h4>
+                <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+                    <div class="cookie-bowl">
+                        <div class="bowl"></div>
+                        <div class="bowl-label">ชามที่ 1</div>
+                        <div class="cookies">
+                            🥛 รสนม: 30 ชิ้น<br>
+                            🍫 รสโกโก้: 10 ชิ้น
+                        </div>
+                    </div>
+                    <div style="font-size: 24px; margin: 0 20px;">+</div>
+                    <div class="cookie-bowl">
+                        <div class="bowl"></div>
+                        <div class="bowl-label">ชามที่ 2</div>
+                        <div class="cookies">
+                            🥛 รสนม: 20 ชิ้น<br>
+                            🍫 รสโกโก้: 20 ชิ้น
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <button class="copy-button" onclick="copyCode(this, 'code1')">📋 Copy</button>
+                <div class="code-block" id="code1"># ===== โจทย์คุกกี้: การใช้ทฤษฎีของเบย์ =====
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ข้อมูลปัญหา
+print("=== ปัญหาคุกกี้ของวรรณเพ็ญ ===")
+print("ชามที่ 1: รสนม 30 ชิ้น, รสโกโก้ 10 ชิ้น")
+print("ชามที่ 2: รสนม 20 ชิ้น, รสโกโก้ 20 ชิ้น")
+print()
+
+def solve_cookie_problem():
+    """
+    แก้ปัญหาคุกกี้โดยใช้ทฤษฎีของเบย์
+    หา P(ชามที่ 2 | คุกกี้รสโกโก้)
+    """
+    
+    # กำหนดตัวแปร
+    # A = ชามที่ 2, B = คุกกี้รสโกโก้
+    
+    # ความน่าจะเป็นเลือกชาม (เท่าๆ กัน)
+    P_bowl1 = 0.5  # P(ชามที่ 1)
+    P_bowl2 = 0.5  # P(ชามที่ 2)
+    
+    # ความน่าจะเป็นได้คุกกี้โกโก้จากแต่ละชาม
+    P_cocoa_given_bowl1 = 10/40  # P(โกโก้|ชามที่ 1) = 10/40
+    P_cocoa_given_bowl2 = 20/40  # P(โกโก้|ชามที่ 2) = 20/40
+    
+    print("=== ขั้นตอนการคำนวณ ===")
+    print(f"P(ชามที่ 1) = {P_bowl1}")
+    print(f"P(ชามที่ 2) = {P_bowl2}")
+    print(f"P(โกโก้|ชามที่ 1) = {P_cocoa_given_bowl1}")
+    print(f"P(โกโก้|ชามที่ 2) = {P_cocoa_given_bowl2}")
+    print()
+    
+    # คำนวณ P(โกโก้) โดยใช้ Law of Total Probability
+    P_cocoa = (P_cocoa_given_bowl1 * P_bowl1) + (P_cocoa_given_bowl2 * P_bowl2)
+    
+    print("=== คำนวณ P(โกโก้) ===")
+    print(f"P(โกโก้) = P(โกโก้|ชามที่ 1) × P(ชามที่ 1) + P(โกโก้|ชามที่ 2) × P(ชามที่ 2)")
+    print(f"P(โกโก้) = {P_cocoa_given_bowl1} × {P_bowl1} + {P_cocoa_given_bowl2} × {P_bowl2}")
+    print(f"P(โกโก้) = {P_cocoa}")
+    print()
+    
+    # คำนวณ P(ชามที่ 2|โกโก้) โดยใช้สูตรของเบย์
+    P_bowl2_given_cocoa = (P_cocoa_given_bowl2 * P_bowl2) / P_cocoa
+    
+    print("=== ใช้สูตรของเบย์ ===")
+    print("P(ชามที่ 2|โกโก้) = [P(โกโก้|ชามที่ 2) × P(ชามที่ 2)] / P(โกโก้)")
+    print(f"P(ชามที่ 2|โกโก้) = [{P_cocoa_given_bowl2} × {P_bowl2}] / {P_cocoa}")
+    print(f"P(ชามที่ 2|โกโก้) = {P_bowl2_given_cocoa:.4f}")
+    print(f"P(ชามที่ 2|โกโก้) = {P_bowl2_given_cocoa:.1%}")
+    print()
+    
+    return {
+        'P_bowl1': P_bowl1,
+        'P_bowl2': P_bowl2,
+        'P_cocoa_given_bowl1': P_cocoa_given_bowl1,
+        'P_cocoa_given_bowl2': P_cocoa_given_bowl2,
+        'P_cocoa': P_cocoa,
+        'P_bowl2_given_cocoa': P_bowl2_given_cocoa
+    }
+
+# แก้ปัญหา
+result = solve_cookie_problem()
+
+print("=== สรุปผลลัพธ์ ===")
+print(f"✅ ความน่าจะเป็นที่วรรณเพ็ญจะหยิบได้ชามที่ 2 และได้คุกกี้รสโกโก้")
+print(f"📊 คำตอบ: {result['P_bowl2_given_cocoa']:.4f} หรือ {result['P_bowl2_given_cocoa']:.1%}")
+</div>
+            </div>
+
+            <div class="exercise">
+                <h4>💡 แบบฝึกหัด 2.1: ปรับเปลี่ยนโจทย์</h4>
+                <p>ให้นักศึกษาแก้ไขโค้ดเพื่อตอบคำถามต่อไปนี้:</p>
+                <ol>
+                    <li><strong>คำถาม A:</strong> หาความน่าจะเป็นที่จะหยิบได้ชามที่ 1 และได้คุกกี้รสนม</li>
+                    <li><strong>คำถาม B:</strong> ถ้าหยิบได้คุกกี้รสนม แล้วความน่าจะเป็นที่จะมาจากชามที่ 1 เป็นเท่าไร?</li>
+                    <li><strong>คำถาม C:</strong> ถ้าเปลี่ยนชามที่ 2 ให้มีคุกกี้รสนม 10 ชิ้น และรสโกโก้ 30 ชิ้น ผลลัพธ์จะเปลี่ยนแปลงอย่างไร?</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+        <h2 style="color: #667eea;">🎊 สำเร็จแล้ว! คุณได้เรียนรู้ทฤษฎีของเบย์</h2>
+        <p style="color: #666; margin: 10px 0;">
+            ทฤษฎีของเบย์เป็นเครื่องมือที่ทรงพลังในการตัดสินใจภายใต้ความไม่แน่นอน<br>
+            นำไปประยุกต์ใช้ในชีวิตประจำวันและการทำงานได้อย่างมีประสิทธิภาพ
+        </p>
+        <p style="color: #888; margin: 0; font-size: 14px;">
+            © 2024 ใบงานฝึกปฏิบัติ Uncertainty & Bayes' Theorem | ภาควิชาวิทยาการคอมพิวเตอร์
+        </p>
+    </footer>
+</body>
+</html>
