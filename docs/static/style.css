@@ -1,0 +1,80 @@
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --ink: #1f2933;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --border: #e5e7eb;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Sarabun", system-ui, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+.site-header {
+  background: var(--card);
+  padding: 2rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.site-header h1 { margin: .25rem 0; }
+.muted { color: var(--muted); }
+main { max-width: 880px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.course-card {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  color: var(--ink);
+  transition: box-shadow .15s, transform .15s;
+}
+.course-card:hover {
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+  transform: translateY(-2px);
+}
+.course-card .code { font-weight: 700; color: var(--accent); }
+.course-card .name { font-size: 1.1rem; font-weight: 600; }
+.course-card .term { font-size: .9rem; color: var(--muted); }
+
+.info-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: .55rem 1rem;
+  border-radius: 8px;
+}
+.btn:hover { text-decoration: none; opacity: .9; }
+
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
+th, td { text-align: left; padding: .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: #eef2ff; font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+
+@media (max-width: 560px) {
+  table, thead, tbody, th, td, tr { display: block; }
+  thead { display: none; }
+  tr { margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 10px; }
+  td { border: none; }
+  td::before { content: attr(data-label); font-weight: 600; display: block; color: var(--muted); }
+}

@@ -1,0 +1,40 @@
+{
+  "courses": [
+    {
+      "code": "CS101",
+      "name": "การเขียนโปรแกรมเบื้องต้น",
+      "semester": "1/2569",
+      "schedule": "จันทร์ 09:00-12:00 ห้อง 1201",
+      "teams_link": "https://teams.microsoft.com/l/team/xxxx",
+      "weeks": [
+        {
+          "week": 1,
+          "topic": "แนะนำรายวิชาและการติดตั้งเครื่องมือ",
+          "slide_url": "https://onedrive.live.com/xxxx",
+          "assignment": "ติดตั้ง Python และ VS Code"
+        },
+        {
+          "week": 2,
+          "topic": "ตัวแปรและชนิดข้อมูล",
+          "slide_url": "https://onedrive.live.com/xxxx",
+          "assignment": "แบบฝึกหัดบทที่ 2 (ส่งใน Teams)"
+        }
+      ]
+    },
+    {
+      "code": "DM402",
+      "name": "การทำเหมืองข้อมูล",
+      "semester": "1/2569",
+      "schedule": "พุธ 13:00-16:00 ห้อง 1305",
+      "teams_link": "https://teams.microsoft.com/l/team/yyyy",
+      "weeks": [
+        {
+          "week": 1,
+          "topic": "แนะนำการทำเหมืองข้อมูล",
+          "slide_url": "https://onedrive.live.com/yyyy",
+          "assignment": ""
+        }
+      ]
+    }
+  ]
+}
