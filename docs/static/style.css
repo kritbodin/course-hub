@@ -353,10 +353,6 @@ a:hover { text-decoration: underline; }
   color: var(--muted);
   margin-bottom: .25rem;
 }
-.footer-contact {
-  font-size: .8rem;
-  margin-bottom: .75rem;
-}
 .footer-copy {
   font-size: .72rem;
   color: var(--muted);
