@@ -183,6 +183,7 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   padding: .85rem 1rem;
   transition: box-shadow .12s;
+  position: relative;
 }
 .week-row:hover { box-shadow: 0 2px 8px rgba(0,0,0,.06); }
 
@@ -241,12 +242,13 @@ a:hover { text-decoration: underline; }
 }
 
 .ws-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: .3rem;
-  font-size: .75rem;
-  font-weight: 600;
+  position: absolute;
+  top: .55rem;
+  right: .65rem;
   color: #7e22ce;
+  opacity: .75;
+  cursor: default;
+  line-height: 1;
 }
 
 /* ── Sidebar sections ────────────────────────────────────── */
