@@ -124,6 +124,7 @@
             {% endif %}
           </div>
           <div class="week-body">
+            {% if w.chapter %}<span class="week-chapter">{{ w.chapter }}</span>{% endif %}
             <p class="week-topic">{{ w.topic }}</p>
             <div class="week-meta">
               {% if w.has_workshop %}

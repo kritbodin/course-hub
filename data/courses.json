@@ -31,108 +31,23 @@
         }
       ],
       "weeks": [
-        {
-          "week": 1,
-          "topic": "แนะนำรายวิชา, ฝึกพิมพ์ดีดภาษาไทย",
-          "has_workshop": false,
-          "note": "ฝึกพิมพ์ดีดที่ thaiedu.net และ 10fastfingers.com"
-        },
-        {
-          "week": 2,
-          "topic": "ความรู้เบื้องต้นเกี่ยวกับปัญญาประดิษฐ์ (Overview)",
-          "has_workshop": true,
-          "note": ""
-        },
-        {
-          "week": 3,
-          "topic": "การแก้ไขปัญหา (Problem Solving) — Search Techniques, Advanced Search",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 4,
-          "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 1",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 5,
-          "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 2",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 6,
-          "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (Uncertain Knowledge and Reasoning) — Bayes' Rule",
-          "has_workshop": true,
-          "note": ""
-        },
-        {
-          "week": 7,
-          "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (ต่อ) — Bayesian Network",
-          "has_workshop": true,
-          "note": ""
-        },
-        {
-          "week": 8,
-          "topic": "สอบกลางภาคเรียน (พิมพ์ดีดภาษาไทย)",
-          "has_workshop": false,
-          "note": "สอบกลางภาค"
-        },
-        {
-          "week": 9,
-          "topic": "ระบบการเรียนรู้ (Learning) — Neural Network, Genetic Algorithm",
-          "has_workshop": true,
-          "note": ""
-        },
-        {
-          "week": 10,
-          "topic": "ระบบการเรียนรู้ (ต่อ) — Genetic Algorithm",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 11,
-          "topic": "ระบบการเรียนรู้ (ต่อ) — Decision Tree",
-          "has_workshop": true,
-          "note": ""
-        },
-        {
-          "week": 12,
-          "topic": "การเรียนรู้ของเครื่องจักร (Machine Learning) — K-Nearest Neighbors (kNN)",
-          "has_workshop": true,
-          "note": ""
-        },
-        {
-          "week": 13,
-          "topic": "K-Nearest Neighbors (kNN) ต่อ",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 14,
-          "topic": "K-Nearest Neighbors (kNN) ต่อ",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 15,
-          "topic": "การประมวลผลภาษาธรรมชาติ (Natural Language Processing: NLP)",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 16,
-          "topic": "Natural Language Processing (NLP) ต่อ",
-          "has_workshop": false,
-          "note": ""
-        },
-        {
-          "week": 17,
-          "topic": "สอบปลายภาคเรียน (พิมพ์ดีดภาษาอังกฤษ)",
-          "has_workshop": false,
-          "note": "สอบปลายภาค"
-        }
+        { "week": 1,  "chapter": "",        "topic": "แนะนำรายวิชา, ฝึกพิมพ์ดีดภาษาไทย",                                                                       "has_workshop": false, "note": "ฝึกพิมพ์ดีดที่ thaiedu.net และ 10fastfingers.com" },
+        { "week": 2,  "chapter": "บทที่ 1", "topic": "ความรู้เบื้องต้นเกี่ยวกับปัญญาประดิษฐ์ (Overview)",                                                         "has_workshop": true,  "note": "" },
+        { "week": 3,  "chapter": "บทที่ 2", "topic": "การแก้ไขปัญหา (Problem Solving) — Search Techniques, Advanced Search",                                       "has_workshop": false, "note": "" },
+        { "week": 4,  "chapter": "บทที่ 3", "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 1",                                                    "has_workshop": false, "note": "" },
+        { "week": 5,  "chapter": "บทที่ 3", "topic": "องค์ความรู้และเหตุผล (Knowledge and Reasoning) ตอนที่ 2",                                                    "has_workshop": false, "note": "" },
+        { "week": 6,  "chapter": "บทที่ 4", "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (Uncertain Knowledge and Reasoning) — Bayes' Rule",                   "has_workshop": true,  "note": "" },
+        { "week": 7,  "chapter": "บทที่ 4", "topic": "องค์ความรู้และเหตุผลด้วยความไม่แน่นอน (ต่อ) — Bayesian Network",                                            "has_workshop": true,  "note": "" },
+        { "week": 8,  "chapter": "",        "topic": "สอบกลางภาคเรียน (พิมพ์ดีดภาษาไทย)",                                                                         "has_workshop": false, "note": "สอบกลางภาค" },
+        { "week": 9,  "chapter": "บทที่ 5", "topic": "ระบบการเรียนรู้ (Learning) — Neural Network, Genetic Algorithm",                                             "has_workshop": true,  "note": "" },
+        { "week": 10, "chapter": "บทที่ 5", "topic": "ระบบการเรียนรู้ (ต่อ) — Genetic Algorithm",                                                                  "has_workshop": false, "note": "" },
+        { "week": 11, "chapter": "บทที่ 6", "topic": "ระบบการเรียนรู้ (ต่อ) — Decision Tree",                                                                      "has_workshop": true,  "note": "" },
+        { "week": 12, "chapter": "บทที่ 7", "topic": "การเรียนรู้ของเครื่องจักร (Machine Learning) — K-Nearest Neighbors (kNN)",                                   "has_workshop": true,  "note": "" },
+        { "week": 13, "chapter": "บทที่ 7", "topic": "K-Nearest Neighbors (kNN) ต่อ",                                                                               "has_workshop": false, "note": "" },
+        { "week": 14, "chapter": "บทที่ 7", "topic": "K-Nearest Neighbors (kNN) ต่อ",                                                                               "has_workshop": false, "note": "" },
+        { "week": 15, "chapter": "บทที่ 8", "topic": "การประมวลผลภาษาธรรมชาติ (Natural Language Processing: NLP)",                                                  "has_workshop": false, "note": "" },
+        { "week": 16, "chapter": "บทที่ 8", "topic": "Natural Language Processing (NLP) ต่อ",                                                                       "has_workshop": false, "note": "" },
+        { "week": 17, "chapter": "",        "topic": "สอบปลายภาคเรียน (พิมพ์ดีดภาษาอังกฤษ)",                                                                      "has_workshop": false, "note": "สอบปลายภาค" }
       ]
     }
   ]

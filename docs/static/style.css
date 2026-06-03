@@ -213,6 +213,15 @@ a:hover { text-decoration: underline; }
 }
 
 .week-body { flex: 1; min-width: 0; }
+.week-chapter {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .18rem;
+}
 .week-topic { font-size: .92rem; line-height: 1.45; margin-bottom: .4rem; }
 .week-meta { display: flex; flex-wrap: wrap; gap: .4rem; }
 
