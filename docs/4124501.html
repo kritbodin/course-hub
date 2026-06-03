@@ -87,46 +87,83 @@
 
       <!-- Grading -->
       
+      
+      
       <div class="sidebar-card sidebar-card--section">
         <h2 class="sidebar-section-title">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           การประเมินผล
         </h2>
-        <p class="grading-total">คะแนนเต็ม 100 คะแนน</p>
-        <div class="grading-list">
-          
-          <div class="grading-row">
-            <span class="grading-label">คะแนนเก็บ</span>
-            <span class="grading-score">40</span>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 100 100">
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#2563eb"
+              stroke-dasharray="100.52000000000001 150.78"
+              stroke-dashoffset="251.3"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#7c3aed"
+              stroke-dasharray="50.260000000000005 201.04000000000002"
+              stroke-dashoffset="150.78"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#0891b2"
+              stroke-dasharray="25.130000000000003 226.17000000000002"
+              stroke-dashoffset="100.51999999999998"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#059669"
+              stroke-dasharray="75.39 175.91000000000003"
+              stroke-dashoffset="75.38999999999999"
+            />
+            
+            
+            <text x="50" y="46" class="donut-label-top">100</text>
+            <text x="50" y="58" class="donut-label-bot">คะแนน</text>
+          </svg>
+          <div class="donut-legend">
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#2563eb"></span>
+              <span class="legend-label">คะแนนเก็บ</span>
+              <span class="legend-score">40</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#7c3aed"></span>
+              <span class="legend-label">สอบกลางภาค</span>
+              <span class="legend-score">20</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#0891b2"></span>
+              <span class="legend-label">จิตพิสัย (เข้าเรียนและอื่นๆ)</span>
+              <span class="legend-score">10</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#059669"></span>
+              <span class="legend-label">สอบปลายภาค</span>
+              <span class="legend-score">30</span>
+            </div>
+            
           </div>
-          <div class="grading-bar-wrap">
-            <div class="grading-bar" style="width:40%"></div>
-          </div>
-          
-          <div class="grading-row">
-            <span class="grading-label">สอบกลางภาค</span>
-            <span class="grading-score">20</span>
-          </div>
-          <div class="grading-bar-wrap">
-            <div class="grading-bar" style="width:20%"></div>
-          </div>
-          
-          <div class="grading-row">
-            <span class="grading-label">จิตพิสัย (เข้าเรียนและอื่นๆ)</span>
-            <span class="grading-score">10</span>
-          </div>
-          <div class="grading-bar-wrap">
-            <div class="grading-bar" style="width:10%"></div>
-          </div>
-          
-          <div class="grading-row">
-            <span class="grading-label">สอบปลายภาค</span>
-            <span class="grading-score">30</span>
-          </div>
-          <div class="grading-bar-wrap">
-            <div class="grading-bar" style="width:30%"></div>
-          </div>
-          
         </div>
       </div>
       
