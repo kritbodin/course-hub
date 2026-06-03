@@ -3,52 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ course.code }} - {{ course.name }}</title>
+  <title>{{ course.code }} · {{ course.name }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <p><a href="index.html">← กลับหน้ารวมวิชา</a></p>
-    <h1>{{ course.name }}</h1>
-    <p class="muted">{{ course.code }} · ภาคเรียน {{ course.semester }}</p>
-  </header>
-  <main>
-    <section class="info-box">
-      <p><strong>ตารางสอน:</strong> {{ course.schedule }}</p>
-      {% if course.teams_link %}
-      <p><a class="btn" href="{{ course.teams_link }}" target="_blank" rel="noopener">เปิด MS Teams (ส่งงาน)</a></p>
-      {% endif %}
-    </section>
 
-    <section>
-      <h2>เนื้อหารายสัปดาห์</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>สัปดาห์</th>
-            <th>หัวข้อ</th>
-            <th>สไลด์/เอกสาร</th>
-            <th>งาน</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for w in course.weeks %}
-          <tr>
-            <td>{{ w.week }}</td>
-            <td>{{ w.topic }}</td>
-            <td>
+  <nav class="topbar">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      รายวิชาทั้งหมด
+    </a>
+  </nav>
+
+  <div class="course-layout">
+
+    <aside class="course-sidebar">
+      <div class="sidebar-card">
+        <span class="badge">{{ course.code }}</span>
+        <h1 class="course-title">{{ course.name }}</h1>
+        <p class="semester-tag">ภาคเรียน {{ course.semester }}</p>
+
+        <div class="meta-list">
+          <div class="meta-item">
+            <span class="meta-icon">🗓</span>
+            <div>
+              <div class="meta-label">ตารางสอน</div>
+              <div class="meta-value">{{ course.schedule }}</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">👨‍🏫</span>
+            <div>
+              <div class="meta-label">ผู้สอน</div>
+              <div class="meta-value">อาจารย์กริชบดินทร์ ผิวหอม</div>
+              <div class="meta-value"><a href="mailto:kritbodin.p@sskru.ac.th">kritbodin.p@sskru.ac.th</a></div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">🕐</span>
+            <div>
+              <div class="meta-label">Office Hours</div>
+              <div class="meta-value">พุธ 13:30–15:00 ห้องสมุด ชั้น 3</div>
+            </div>
+          </div>
+        </div>
+
+        {% if course.teams_link %}
+        <a class="btn-primary" href="{{ course.teams_link }}" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          ส่งงาน MS Teams
+        </a>
+        {% endif %}
+      </div>
+    </aside>
+
+    <main class="course-main">
+      <h2 class="section-heading">เนื้อหารายสัปดาห์</h2>
+      <div class="week-list">
+        {% for w in course.weeks %}
+        <div class="week-row {% if 'สอบ' in w.topic %}week-exam{% endif %}">
+          <div class="week-num">
+            {% if 'สอบ' in w.topic %}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            {% else %}
+              {{ w.week }}
+            {% endif %}
+          </div>
+          <div class="week-body">
+            <p class="week-topic">{{ w.topic }}</p>
+            <div class="week-meta">
               {% if w.slide_url %}
-                <a href="{{ w.slide_url }}" target="_blank" rel="noopener">เปิดสไลด์</a>
-              {% else %}-{% endif %}
-            </td>
-            <td>{{ w.assignment or "-" }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </section>
-  </main>
+              <a class="pill pill-slide" href="{{ w.slide_url }}" target="_blank" rel="noopener">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                สไลด์
+              </a>
+              {% endif %}
+              {% if w.assignment %}
+              <span class="pill pill-assign">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                {{ w.assignment }}
+              </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+
+  </div>
+
 </body>
 </html>
