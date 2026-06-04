@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4123118 · อินเทอร์เน็ตแห่งสรรพสิ่ง (Internet of Things)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "943bd094c77746988df3268cecfab155"}'></script>
+</head>
+<body>
+
+  <nav class="topbar">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      รายวิชาทั้งหมด
+    </a>
+  </nav>
+
+  <div class="course-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="course-sidebar">
+
+      <!-- Course info -->
+      <div class="sidebar-card">
+        <span class="badge">4123118</span>
+        <h1 class="course-title">อินเทอร์เน็ตแห่งสรรพสิ่ง (Internet of Things)</h1>
+        <p class="semester-tag">ภาคเรียน 1/2569 · ชั้นปีที่ 3</p>
+
+        <div class="meta-list">
+          <div class="meta-item">
+            <span class="meta-icon">🗓</span>
+            <div>
+              <div class="meta-label">ตารางสอน</div>
+              <div class="meta-value">อังคาร 09:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 3301)</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">👨‍🏫</span>
+            <div>
+              <div class="meta-label">ผู้สอน</div>
+              <div class="meta-value">อาจารย์ ดร.กริชบดินทร์ ผิวหอม</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">🕐</span>
+            <div>
+              <div class="meta-label">Office Hours</div>
+              <div class="meta-value">พุธ 13:30–15:00 (ออนไลน์)</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">🛠</span>
+            <div>
+              <div class="meta-label">เครื่องมือหลัก</div>
+              <div class="meta-value"><a href="https://wokwi.com" target="_blank" rel="noopener">Wokwi Simulator</a> + ESP32</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Classroom -->
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Google Classroom
+        </h2>
+        <p class="teams-note">ส่งงานทุกชิ้นผ่าน Google Classroom เท่านั้น</p>
+        <p class="teams-note">Lab ส่งเป็น Wokwi share link หรือรูปภาพ</p>
+      </div>
+
+      <!-- Grading -->
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          การประเมินผล
+        </h2>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 100 100">
+            <!-- Lab 20% -->
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#2563eb"
+              stroke-dasharray="50.27 201.06"
+              stroke-dashoffset="251.33"
+            />
+            <!-- กลางภาค 30% -->
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#7c3aed"
+              stroke-dasharray="75.40 175.93"
+              stroke-dashoffset="201.06"
+            />
+            <!-- โครงงาน 20% -->
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#0891b2"
+              stroke-dasharray="50.27 201.06"
+              stroke-dashoffset="125.66"
+            />
+            <!-- ปลายภาค 30% -->
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#059669"
+              stroke-dasharray="75.40 175.93"
+              stroke-dashoffset="75.39"
+            />
+            <text x="50" y="46" class="donut-label-top">100</text>
+            <text x="50" y="58" class="donut-label-bot">คะแนน</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#2563eb"></span>
+              <span class="legend-label">Lab (L1–L9)</span>
+              <span class="legend-score">20</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#7c3aed"></span>
+              <span class="legend-label">กลางภาค</span>
+              <span class="legend-score">30</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#0891b2"></span>
+              <span class="legend-label">โครงงานกลุ่ม</span>
+              <span class="legend-score">20</span>
+            </div>
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#059669"></span>
+              <span class="legend-label">ปลายภาค</span>
+              <span class="legend-score">30</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ── Main ── -->
+    <main class="course-main">
+      <h2 class="section-heading">เนื้อหารายสัปดาห์</h2>
+      <div class="week-list">
+
+        <div class="week-row">
+          <div class="week-num">1</div>
+          <div class="week-body">
+            <p class="week-topic">แนะนำรายวิชา + IoT Overview</p>
+            <div class="week-meta">
+              <span class="pill pill-note">W1: วาด Block Diagram IoT (กลุ่ม)</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">2</div>
+          <div class="week-body">
+            <p class="week-topic">Wokwi + Serial Monitor + Blink LED</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L1: Hello World · Blink · SOS Morse</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">3</div>
+          <div class="week-body">
+            <p class="week-topic">Digital I/O — Button + Traffic Light</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L2: Button Toggle · Traffic Light</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">4</div>
+          <div class="week-body">
+            <p class="week-topic">Analog I/O — ADC + PWM + LED Dimming</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L3: LED Dimming · Buzzer Tone</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">5</div>
+          <div class="week-body">
+            <p class="week-topic">DHT11 Sensor + LCD I2C</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L4: DHT11 Serial · LCD Display</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">6</div>
+          <div class="week-body">
+            <p class="week-topic">LDR + Buzzer + ระบบรวม (Combined System)</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L5: Smart Light · DHT11+LDR+LCD+Buzzer</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">7</div>
+          <div class="week-body">
+            <p class="week-topic">Wi-Fi + Web Server + Quiz ทบทวน</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L6: Web Server DHT11 · auto-refresh</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row week-exam">
+          <div class="week-num">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="week-body">
+            <p class="week-topic">สอบกลางภาคเรียน (ทฤษฎี 30 นาที + ปฏิบัติ Wokwi 90 นาที)</p>
+            <div class="week-meta">
+              <span class="pill pill-note">สอบกลางภาค 30%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">9</div>
+          <div class="week-body">
+            <p class="week-topic">MQTT Protocol — Publish / Subscribe</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L7: Publish DHT11 · Subscribe Topic</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">10</div>
+          <div class="week-body">
+            <p class="week-topic">Cloud IoT — ThingSpeak / Line Notify</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L8: ส่งข้อมูลขึ้น Cloud · Dashboard</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">11</div>
+          <div class="week-body">
+            <p class="week-topic">ของจริง — Flash ESP32 + ประกอบวงจรบน Breadboard</p>
+            <div class="week-meta">
+              <span class="pill pill-note">L9: รูปวงจรจริง · Serial Monitor</span>
+            </div>
+          </div>
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">12</div>
+          <div class="week-body">
+            <p class="week-topic">โครงงานกลุ่ม — เลือกหัวข้อ + Block Diagram + Wokwi Prototype เบื้องต้น</p>
+            <div class="week-meta">
+              <span class="pill pill-note">ส่ง Proposal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">13</div>
+          <div class="week-body">
+            <p class="week-topic">โครงงานกลุ่ม สัปดาห์ที่ 1 — พัฒนา Wokwi Prototype ครบ Function หลัก</p>
+            <div class="week-meta">
+              <span class="pill pill-note">ส่ง Checkpoint 1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">14</div>
+          <div class="week-body">
+            <p class="week-topic">โครงงานกลุ่ม สัปดาห์ที่ 2 — ทดสอบ + Debug + Interim Demo 5 นาที</p>
+            <div class="week-meta">
+              <span class="pill pill-note">ส่ง Checkpoint 2 + Interim Demo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-row">
+          <div class="week-num">15</div>
+          <div class="week-body">
+            <p class="week-topic">โครงงานกลุ่ม สัปดาห์ที่ 3 — นำเสนอ 10 นาที + ถามตอบ 5 นาที</p>
+            <div class="week-meta">
+              <span class="pill pill-note">ส่ง Final Demo + Report 1 หน้า A4</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="week-row week-exam">
+          <div class="week-num">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="week-body">
+            <p class="week-topic">สอบปลายภาคเรียน (ทฤษฎี 30 นาที + ปฏิบัติ Wokwi 90 นาที)</p>
+            <div class="week-meta">
+              <span class="pill pill-note">สอบปลายภาค 30%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p class="footer-name">อาจารย์ ดร.กริชบดินทร์ ผิวหอม</p>
+      <p class="footer-affil">สาขาวิชาวิทยาการคอมพิวเตอร์ · คณะศิลปศาสตร์และวิทยาศาสตร์ · มหาวิทยาลัยราชภัฏศรีสะเกษ</p>
+      <p class="footer-copy">&copy; <span id="yr"></span> สงวนลิขสิทธิ์ตามพระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

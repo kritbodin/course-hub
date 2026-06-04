@@ -87,6 +87,38 @@
         { "week": 16, "chapter": "",   "topic": "การเขียนโปรแกรมจัดการไฟล์ (ต่อ)",                                                                 "has_workshop": false, "note": "" },
         { "week": 17, "chapter": "",   "topic": "สอบปลายภาคเรียน",                                                                                 "has_workshop": false, "note": "สอบปลายภาค" }
       ]
+    },
+    {
+      "code": "4123118",
+      "name": "อินเทอร์เน็ตแห่งสรรพสิ่ง (Internet of Things)",
+      "semester": "1/2569",
+      "schedule": "อังคาร 09:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 3301)",
+      "teams_link": "",
+      "textbooks": [],
+      "grading": [
+        { "label": "Lab (L1–L9)",   "score": 20 },
+        { "label": "กลางภาค",       "score": 30 },
+        { "label": "โครงงานกลุ่ม", "score": 20 },
+        { "label": "ปลายภาค",      "score": 30 }
+      ],
+      "weeks": [
+        { "week": 1,  "chapter": "", "topic": "แนะนำรายวิชา + IoT Overview",                                                                        "has_workshop": true,  "note": "W1: วาด Block Diagram IoT (กลุ่ม)" },
+        { "week": 2,  "chapter": "", "topic": "Wokwi + Serial Monitor + Blink LED",                                                                  "has_workshop": true,  "note": "L1: Hello World · Blink · SOS Morse" },
+        { "week": 3,  "chapter": "", "topic": "Digital I/O — Button + Traffic Light",                                                                "has_workshop": true,  "note": "L2: Button Toggle · Traffic Light" },
+        { "week": 4,  "chapter": "", "topic": "Analog I/O — ADC + PWM + LED Dimming",                                                               "has_workshop": true,  "note": "L3: LED Dimming · Buzzer Tone" },
+        { "week": 5,  "chapter": "", "topic": "DHT11 Sensor + LCD I2C",                                                                             "has_workshop": true,  "note": "L4: DHT11 Serial · LCD Display" },
+        { "week": 6,  "chapter": "", "topic": "LDR + Buzzer + ระบบรวม (Combined System)",                                                           "has_workshop": true,  "note": "L5: Smart Light · DHT11+LDR+LCD+Buzzer" },
+        { "week": 7,  "chapter": "", "topic": "Wi-Fi + Web Server + Quiz ทบทวน",                                                                    "has_workshop": true,  "note": "L6: Web Server DHT11 · auto-refresh" },
+        { "week": 8,  "chapter": "", "topic": "สอบกลางภาคเรียน (ทฤษฎี 30 นาที + ปฏิบัติ Wokwi 90 นาที)",                                          "has_workshop": false, "note": "สอบกลางภาค 30%" },
+        { "week": 9,  "chapter": "", "topic": "MQTT Protocol — Publish / Subscribe",                                                                 "has_workshop": true,  "note": "L7: Publish DHT11 · Subscribe Topic" },
+        { "week": 10, "chapter": "", "topic": "Cloud IoT — ThingSpeak / Line Notify",                                                               "has_workshop": true,  "note": "L8: ส่งข้อมูลขึ้น Cloud · Dashboard" },
+        { "week": 11, "chapter": "", "topic": "ของจริง — Flash ESP32 + ประกอบวงจรบน Breadboard",                                                    "has_workshop": true,  "note": "L9: รูปวงจรจริง · Serial Monitor" },
+        { "week": 12, "chapter": "", "topic": "โครงงานกลุ่ม — เลือกหัวข้อ + Block Diagram + Wokwi Prototype เบื้องต้น",                            "has_workshop": false, "note": "ส่ง Proposal" },
+        { "week": 13, "chapter": "", "topic": "โครงงานกลุ่ม สัปดาห์ที่ 1 — พัฒนา Wokwi Prototype ครบ Function หลัก",                               "has_workshop": false, "note": "ส่ง Checkpoint 1" },
+        { "week": 14, "chapter": "", "topic": "โครงงานกลุ่ม สัปดาห์ที่ 2 — ทดสอบ + Debug + Interim Demo 5 นาที",                                   "has_workshop": false, "note": "ส่ง Checkpoint 2 + Interim Demo" },
+        { "week": 15, "chapter": "", "topic": "โครงงานกลุ่ม สัปดาห์ที่ 3 — นำเสนอ 10 นาที + ถามตอบ 5 นาที",                                       "has_workshop": false, "note": "ส่ง Final Demo + Report 1 หน้า A4" },
+        { "week": 16, "chapter": "", "topic": "สอบปลายภาคเรียน (ทฤษฎี 30 นาที + ปฏิบัติ Wokwi 90 นาที)",                                          "has_workshop": false, "note": "สอบปลายภาค 30%" }
+      ]
     }
   ]
 }
