@@ -49,6 +49,44 @@
         { "week": 16, "chapter": "บทที่ 8", "topic": "Natural Language Processing (NLP) ต่อ",                                                                       "has_workshop": false, "note": "" },
         { "week": 17, "chapter": "",        "topic": "สอบปลายภาคเรียน (พิมพ์ดีดภาษาอังกฤษ)",                                                                      "has_workshop": false, "note": "สอบปลายภาค" }
       ]
+    },
+    {
+      "code": "4121206",
+      "name": "การเขียนโปรแกรมคอมพิวเตอร์ (Computer Programming)",
+      "semester": "1/2569",
+      "schedule": "พุธ 09:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 4406)",
+      "teams_link": "",
+      "textbooks": [
+        "รศ. ธีรวัฒน์ ประกอบผล, \"คู่มือการเขียนโปรแกรมภาษา C ฉบับสมบูรณ์\", ซิมพลิฟาย, พิมพ์ครั้งที่ 4, 2557.",
+        "ศิริเพ็ญ วิกัยสุขสกุล, \"การเขียนโปรแกรมแบบโครงสร้างโดยใช้ภาษา C\", โฟร์เพซ, พิมพ์ครั้งที่ 1, 2554.",
+        "Stephen G. Kochan, \"Programming in C\", Sams Publishing, 2004.",
+        "Michael Vine, \"C Programming for the Absolute Beginner\", 2nd ed., Thomson, 2008."
+      ],
+      "grading": [
+        { "label": "คะแนนเก็บ", "score": 40 },
+        { "label": "กลางภาค",   "score": 20 },
+        { "label": "จิตพิสัย",  "score": 10 },
+        { "label": "ปลายภาค",  "score": 30 }
+      ],
+      "weeks": [
+        { "week": 1,  "chapter": "",   "topic": "แนะนำแผนการสอน, ฝึกพิมพ์ดีดภาษาไทย, ความรู้เบื้องต้นเกี่ยวกับการเขียนโปรแกรมคอมพิวเตอร์", "has_workshop": false, "note": "ป้อนรายชื่อ · จัดกลุ่ม · ลงโปรแกรม · สำรวจคอมพิวเตอร์" },
+        { "week": 2,  "chapter": "",   "topic": "ขั้นตอนการทำงานของ Algorithm",                                                                   "has_workshop": false, "note": "" },
+        { "week": 3,  "chapter": "",   "topic": "โครงสร้างภาษาซี",                                                                                "has_workshop": false, "note": "" },
+        { "week": 4,  "chapter": "",   "topic": "ประเภทของข้อมูลและตัวดำเนินการ",                                                                  "has_workshop": false, "note": "แจ้งงานหัวข้อโปรเจค" },
+        { "week": 5,  "chapter": "",   "topic": "การเลือกทำตามเงื่อนไข (Selection)",                                                               "has_workshop": false, "note": "" },
+        { "week": 6,  "chapter": "",   "topic": "โปรแกรมแบบวนรอบทำซ้ำ (Loop)",                                                                    "has_workshop": false, "note": "นำเสนอหัวข้อ" },
+        { "week": 7,  "chapter": "",   "topic": "โปรแกรมแบบวนรอบทำซ้ำ (ต่อ)",                                                                     "has_workshop": false, "note": "" },
+        { "week": 8,  "chapter": "",   "topic": "สอบกลางภาคเรียน",                                                                                 "has_workshop": false, "note": "สอบกลางภาค" },
+        { "week": 9,  "chapter": "",   "topic": "การสร้างฟังก์ชันในภาษาซี",                                                                        "has_workshop": false, "note": "นำเสนอ Flow" },
+        { "week": 10, "chapter": "",   "topic": "การสร้างฟังก์ชันในภาษาซี (ต่อ)",                                                                   "has_workshop": false, "note": "" },
+        { "week": 11, "chapter": "",   "topic": "ตัวแปรชนิดอาร์เรย์และสตริง (Array & String)",                                                     "has_workshop": false, "note": "" },
+        { "week": 12, "chapter": "",   "topic": "ตัวแปรชนิดอาร์เรย์และสตริง (ต่อ)",                                                                "has_workshop": false, "note": "" },
+        { "week": 13, "chapter": "",   "topic": "ตัวแปรชนิดโครงสร้างและพอยน์เตอร์ (Struct & Pointer)",                                             "has_workshop": false, "note": "" },
+        { "week": 14, "chapter": "",   "topic": "ตัวแปรชนิดโครงสร้างและพอยน์เตอร์ (ต่อ)",                                                         "has_workshop": false, "note": "" },
+        { "week": 15, "chapter": "",   "topic": "การเขียนโปรแกรมจัดการไฟล์, โปรแกรมติดต่อกับหน้าจอ แป้นพิมพ์ และกราฟิกในภาษาซี",                 "has_workshop": false, "note": "นำเสนอโปรเจค" },
+        { "week": 16, "chapter": "",   "topic": "การเขียนโปรแกรมจัดการไฟล์ (ต่อ)",                                                                 "has_workshop": false, "note": "" },
+        { "week": 17, "chapter": "",   "topic": "สอบปลายภาคเรียน",                                                                                 "has_workshop": false, "note": "สอบปลายภาค" }
+      ]
     }
   ]
 }

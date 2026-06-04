@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติ บทที่ 3 โครงสร้างโปรแกรมภาษาซี</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #e74c3c;
+            border-left: 5px solid #e74c3c;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #27ae60;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #8e44ad;
+            margin-top: 20px;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+        .header-info p {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #34495e;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 2px solid #34495e;
+            white-space: pre-wrap;
+        }
+        .output-block {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            border: 2px solid #333;
+        }
+        .analysis-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .analysis-section h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .objective-section {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #27ae60;
+        }
+        .task-section {
+            background-color: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9800;
+        }
+        .submission-section {
+            background-color: #f3e5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #9c27b0;
+        }
+        .example-section {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        ol li {
+            margin: 5px 0;
+        }
+        .note-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .note-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .important-note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .important-note h4 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        .flowchart-tips {
+            background-color: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .flowchart-tips h4 {
+            color: #6c5ce7;
+            margin-top: 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            margin: 40px 0;
+        }
+        @media print {
+            body { font-size: 12px; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ใบงานฝึกปฏิบัติ บทที่ 3 โครงสร้างโปรแกรมภาษาซี</h1>
+        
+        <div class="header-info">
+            <p><strong>วิชา การเขียนโปรแกรมคอมพิวเตอร์</strong></p>
+            <p><strong>สาขาวิทยาการคอมพิวเตอร์</strong></p>
+            <p><strong>อาจารย์ผู้สอน ดร.กริชบดินทร์ ผิวหอม</strong></p>
+        </div>
+
+        <div class="objective-section">
+            <h2><strong>วัตถุประสงค์ของใบงานฝึกปฏิบัติ:</strong></h2>
+            <ol>
+                <li>เพื่อฝึกกระบวนการคิดอย่างเป็นระบบ</li>
+                <li>เพื่อให้สามารถเขียนโปรแกรมภาษาซีจาก Flow Chart ที่ออกแบบไว้ได้</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติที่ 1: การหาค่ามากที่สุด (Maximum)</h2>
+
+        <div class="task-section">
+            <h3><strong>สิ่งที่ต้องทำ:</strong></h3>
+            <p>ให้เขียนผังโปรแกรม (Flow chart) ตามลำดับต่อไปนี้</p>
+            <ol>
+                <li>กำหนดค่าให้ A, B, C เป็นจำนวนตัวเลข</li>
+                <li>ตรวจสอบว่าค่าใดมากที่สุด (Maximum)</li>
+                <li>ให้แสดงค่าที่มากที่สุดออกจากจอภาพ</li>
+            </ol>
+        </div>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อหาค่าที่มากที่สุดจากตัวเลข 3 ตัว (A, B, C)</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>แสดงค่าที่มากที่สุดออกทางจอภาพ</li>
+            </ul>
+            <div class="output-block">-- Input Data --
+A = 15.00
+B = 8.00
+C = 12.00
+-- Output Data --
+Maximum = 15.00</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>รับค่าตัวเลข A, B, C จากผู้ใช้</li>
+                <li>เปรียบเทียบค่าทั้ง 3 ตัวเพื่อหาค่าที่มากที่สุด</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>A = ตัวแปรเก็บตัวเลขที่ 1</li>
+                <li>B = ตัวแปรเก็บตัวเลขที่ 2</li>
+                <li>C = ตัวแปรเก็บตัวเลขที่ 3</li>
+                <li>max = ตัวแปรเก็บค่าที่มากที่สุด</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>รับค่า A, B, C จากผู้ใช้</li>
+                <li>เปรียบเทียบ A กับ B หาค่าที่มากกว่า</li>
+                <li>เปรียบเทียบผลลัพธ์จากข้อ 3 กับ C หาค่าที่มากที่สุด</li>
+                <li>แสดงค่าที่มากที่สุดออกทางจอภาพ</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <div class="submission-section">
+            <h3><strong>สิ่งที่ต้องส่ง:</strong></h3>
+            <ol>
+                <li>สร้างไฟล์ผังโปรแกรม (Flow chart) ด้วยโปรแกรม diagrams.net บันทึกเป็น รหัส_ชื่อ.pdf (file/export as/.pdf)</li>
+                <li>อัพโหลดไฟล์ผ่าน Google Classroom ในหัวข้อที่มอบหมายงาน</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติที่ 2: การหาค่าตรงกลาง (Middle Value)</h2>
+
+        <div class="task-section">
+            <h3><strong>สิ่งที่ต้องทำ:</strong></h3>
+            <p>ให้เขียนผังโปรแกรม (Flow chart) ตามลำดับต่อไปนี้</p>
+            <ol>
+                <li>กำหนดค่าให้ A, B, C เป็นจำนวนตัวเลข</li>
+                <li>ตรวจสอบว่าค่าใดอยู่ตรงกลาง (Middle)</li>
+                <li>ให้แสดงค่าจากข้อ 2 ออกจากจอภาพ</li>
+            </ol>
+        </div>
+
+        <div class="example-section">
+            <h3><strong>ตัวอย่าง:</strong></h3>
+            <div class="code-block">A = 3;
+B = 5;
+C = 1;
+แสดงค่าที่อยู่ตรงกลาง คือ 3</div>
+        </div>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อหาค่าที่อยู่ตรงกลางจากตัวเลข 3 ตัว (A, B, C)</li>
+                <li>ค่าตรงกลาง คือ ค่าที่ไม่ใช่ค่าสูงสุดและไม่ใช่ค่าต่ำสุด</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>แสดงค่าที่อยู่ตรงกลางออกทางจอภาพ</li>
+            </ul>
+            <div class="output-block">-- Input Data --
+A = 3.00
+B = 5.00
+C = 1.00
+-- Output Data --
+Middle Value = 3.00</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>รับค่าตัวเลข A, B, C จากผู้ใช้</li>
+                <li>เปรียบเทียบค่าทั้ง 3 ตัวเพื่อหาค่าที่อยู่ตรงกลาง</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>A = ตัวแปรเก็บตัวเลขที่ 1</li>
+                <li>B = ตัวแปรเก็บตัวเลขที่ 2</li>
+                <li>C = ตัวแปรเก็บตัวเลขที่ 3</li>
+                <li>middle = ตัวแปรเก็บค่าที่อยู่ตรงกลาง</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>รับค่า A, B, C จากผู้ใช้</li>
+                <li>ตรวจสอบเงื่อนไขต่างๆ เพื่อหาค่าตรงกลาง:
+                    <ul>
+                        <li><strong>ถ้า A > B เป็นจริง</strong>
+                            <ul>
+                                <li>ถ้า A > C เป็นจริง แล้ว ถ้า B > C เป็นจริง แล้ว middle = B เท็จ middle = C</li>
+                            </ul>
+                        </li>
+                        <li><strong>ถ้า A > B เป็นเท็จ</strong>
+                            <ul>
+                                <li>ถ้า A > C เป็นจริง แล้ว middle = A</li>
+                                <li>ถ้า A > C เป็นเท็จ แล้ว ถ้า B > C เป็นจริง แล้ว middle = C เท็จ middle = B</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>แสดงค่าที่อยู่ตรงกลางออกทางจอภาพ</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <div class="submission-section">
+            <h3><strong>สิ่งที่ต้องส่ง:</strong></h3>
+            <ol>
+                <li>สร้างไฟล์ผังโปรแกรม (Flow chart) ด้วยโปรแกรม diagrams.net บันทึกเป็น รหัส_ชื่อ.pdf (file/export as/.pdf)</li>
+                <li>อัพโหลดไฟล์ผ่าน Google Classroom ในหัวข้อที่มอบหมายงาน</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <div class="flowchart-tips">
+            <h4>เคล็ดลับการเขียน Flow Chart:</h4>
+            <ul>
+                <li><strong>รูปรี (Oval):</strong> ใช้สำหรับ Start และ End</li>
+                <li><strong>รูปสี่เหลี่ยมผืนผ้า (Rectangle):</strong> ใช้สำหรับการประมวลผล/การคำนวณ</li>
+                <li><strong>รูปสี่เหลี่ยมขนมเปียกปูน (Parallelogram):</strong> ใช้สำหรับ Input/Output</li>
+                <li><strong>รูปเพชร (Diamond):</strong> ใช้สำหรับการตัดสินใจ (Decision)</li>
+                <li><strong>ลูกศร (Arrow):</strong> ใช้แสดงทิศทางการไหลของโปรแกรม</li>
+            </ul>
+        </div>
+
+        <div class="note-box">
+            <h3>คำแนะนำในการทำแบบฝึกหัด:</h3>
+            <ol>
+                <li><strong>วิเคราะห์ปัญหา:</strong> ทำความเข้าใจโจทย์ให้ชัดเจนก่อนเริ่มเขียน Flow Chart</li>
+                <li><strong>กำหนดตัวแปร:</strong> ระบุตัวแปรที่จำเป็นและประเภทข้อมูล</li>
+                <li><strong>เขียน Flow Chart:</strong> เริ่มจาก Start และจบด้วย End</li>
+                <li><strong>ตรวจสอบลำดับ:</strong> ให้แน่ใจว่าขั้นตอนเป็นไปตามลำดับที่ถูกต้อง</li>
+                <li><strong>ทดสอบด้วยตัวอย่าง:</strong> ลองใส่ค่าตัวอย่างเพื่อตรวจสอบความถูกต้อง</li>
+            </ol>
+        </div>
+
+        <div class="important-note">
+            <h4>หมายเหตุสำคัญ:</h4>
+            <ul>
+                <li>Flow Chart ต้องมีจุดเริ่มต้น (Start) และจุดสิ้นสุด (End) เพียงจุดเดียว</li>
+                <li>ทุกขั้นตอนต้องเชื่อมต่อกันด้วยลูกศร</li>
+                <li>การตัดสินใจ (Decision) ต้องมีทางเลือก Yes/No หรือ True/False</li>
+                <li>ใช้ภาษาที่เข้าใจง่ายในการเขียนคำสั่ง</li>
+                <li>ตรวจสอบให้แน่ใจว่าไม่มี Dead Lock หรือ Infinite Loop</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

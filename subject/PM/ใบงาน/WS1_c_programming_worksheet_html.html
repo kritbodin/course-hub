@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติ บทที่ 1 หลักการเขียนโปรแกรมคอมพิวเตอร์</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #e74c3c;
+            border-left: 5px solid #e74c3c;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #27ae60;
+            margin-top: 25px;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+        .header-info p {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #34495e;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 2px solid #34495e;
+            white-space: pre-wrap;
+        }
+        .output-block {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            border: 2px solid #333;
+        }
+        .analysis-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .analysis-section h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        ol li {
+            margin: 5px 0;
+        }
+        .note-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .note-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .important-note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .important-note h4 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            margin: 40px 0;
+        }
+        @media print {
+            body { font-size: 12px; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ใบงานฝึกปฏิบัติ บทที่ 1 หลักการเขียนโปรแกรมคอมพิวเตอร์</h1>
+        
+        <div class="header-info">
+            <p><strong>วิชา การเขียนโปรแกรมคอมพิวเตอร์</strong></p>
+            <p><strong>สาขาวิทยาการคอมพิวเตอร์</strong></p>
+            <p><strong>อาจารย์ผู้สอน ดร.กริชบดินทร์ ผิวหอม</strong></p>
+        </div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติที่ 1: Hello World Program</h2>
+
+        <h3>คำแนะนำ:</h3>
+        <p>ให้นักศึกษาพิมพ์โปรแกรมตัวอย่างด้านล่างตามตัวอักษร และทำความเข้าใจการทำงานของแต่ละส่วน</p>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อแสดงข้อความทักทาย Hello World ออกทางจอภาพ</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>พิมพ์ผลลัพธ์ออกทางจอภาพ ดังนี้</li>
+            </ul>
+            <div class="output-block">-- Output Data --
+Hello, World!
+ยินดีต้อนรับสู่การเขียนโปรแกรม C</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>ไม่มีข้อมูลนำเข้าจากผู้ใช้</li>
+                <li>ใช้คำสั่ง printf() ในการแสดงข้อความ</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>ไม่มีตัวแปร (ใช้เฉพาะการแสดงข้อความ)</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>แสดงข้อความ "Hello, World!" ออกทางจอภาพ</li>
+                <li>แสดงข้อความ "ยินดีต้อนรับสู่การเขียนโปรแกรม C" ออกทางจอภาพ</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <h3>โปรแกรมที่ต้องพิมพ์:</h3>
+        <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, World!\n");
+    printf("ยินดีต้อนรับสู่การเขียนโปรแกรม C\n");
+    return 0;
+}</div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติที่ 2: การคำนวณพื้นที่สามเหลี่ยม</h2>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อคำนวณพื้นที่สามเหลี่ยมจำนวน 1 รูป</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>พิมพ์ผลลัพธ์ออกทางจอภาพ ดังนี้</li>
+            </ul>
+            <div class="output-block">-- Input Data --
+Base = 10.00
+Height = 5.00
+-- Output Data --
+Area = 25.00</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>สูตรคำนวณพื้นที่สามเหลี่ยม Area = (Base × Height) ÷ 2</li>
+                <li>รับค่าความยาวฐานและความสูงของสามเหลี่ยมผ่านทางคีย์บอร์ด</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>Base = ตัวแปรที่ใช้เก็บความยาวฐานของสามเหลี่ยม</li>
+                <li>Height = ตัวแปรที่ใช้เก็บความสูงของสามเหลี่ยม</li>
+                <li>Area = ตัวแปรที่ใช้เก็บพื้นที่ของสามเหลี่ยม</li>
+                <li>โดยคำนวณได้จากสูตร Area = (Base × Height) ÷ 2</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>รับข้อมูลค่าความยาวฐานและความสูงของสามเหลี่ยมผ่านทางคีย์บอร์ด</li>
+                <li>คำนวณพื้นที่สามเหลี่ยมตามสูตร Area = (Base × Height) ÷ 2</li>
+                <li>พิมพ์ค่าความยาวฐาน ความสูง และพื้นที่สามเหลี่ยมออกทางจอภาพ</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <h3>โปรแกรมที่ต้องพิมพ์:</h3>
+        <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    float base, height, area;
+    
+    printf("โปรแกรมคำนวณพื้นที่สามเหลี่ยม\n");
+    printf("กรุณาใส่ความยาวฐาน: ");
+    scanf("%f", &base);
+    
+    printf("กรุณาใส่ความสูง: ");
+    scanf("%f", &height);
+    
+    area = (base * height) / 2;
+    
+    printf("\n-- Input Data --\n");
+    printf("Base = %.2f\n", base);
+    printf("Height = %.2f\n", height);
+    printf("-- Output Data --\n");
+    printf("Area = %.2f\n", area);
+    
+    return 0;
+}</div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติที่ 3: การคำนวณพื้นที่วงกลม</h2>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อคำนวณพื้นที่วงกลมจำนวน 1 รูป</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>พิมพ์ผลลัพธ์ออกทางจอภาพ ดังนี้</li>
+            </ul>
+            <div class="output-block">-- Input Data --
+Radius = 7.00
+-- Output Data --
+Area = 153.94</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>สูตรคำนวณพื้นที่วงกลม Area = π × Radius²</li>
+                <li>ค่า π (pi) = 3.14159</li>
+                <li>รับค่ารัศมีของวงกลมผ่านทางคีย์บอร์ด</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>Radius = ตัวแปรที่ใช้เก็บรัศมีของวงกลม</li>
+                <li>Area = ตัวแปรที่ใช้เก็บพื้นที่ของวงกลม</li>
+                <li>Pi = ตัวแปรที่ใช้เก็บค่า π (3.14159)</li>
+                <li>โดยคำนวณได้จากสูตร Area = Pi × Radius × Radius</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>กำหนดค่า π = 3.14159</li>
+                <li>รับข้อมูลค่ารัศมีของวงกลมผ่านทางคีย์บอร์ด</li>
+                <li>คำนวณพื้นที่วงกลมตามสูตร Area = π × Radius²</li>
+                <li>พิมพ์ค่ารัศมีและพื้นที่วงกลมออกทางจอภาพ</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <h3>โปรแกรมที่ต้องพิมพ์:</h3>
+        <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    float radius, area;
+    float pi = 3.14159;
+    
+    printf("โปรแกรมคำนวณพื้นที่วงกลม\n");
+    printf("กรุณาใส่รัศมีของวงกลม: ");
+    scanf("%f", &radius);
+    
+    area = pi * radius * radius;
+    
+    printf("\n-- Input Data --\n");
+    printf("Radius = %.2f\n", radius);
+    printf("-- Output Data --\n");
+    printf("Area = %.2f\n", area);
+    
+    return 0;
+}</div>
+
+        <hr>
+
+        <div class="note-box">
+            <h3>คำแนะนำในการทำแบบฝึกหัด:</h3>
+            <ol>
+                <li><strong>ให้พิมพ์โปรแกรมตามตัวอักษรทุกตัว</strong> อย่าข้ามหรือเปลี่ยนแปลงโค้ด</li>
+                <li><strong>ตรวจสอบการพิมพ์</strong> ให้ครบถ้วนทุกบรรทัด รวมถึงเครื่องหมายวรรคตอนต่างๆ</li>
+                <li><strong>รันโปรแกรมทดสอบ</strong> หลังจากพิมพ์เสร็จแล้ว เพื่อดูผลลัพธ์</li>
+                <li><strong>ทดลองใส่ข้อมูลต่างๆ</strong> เพื่อดูการทำงานของโปรแกรม</li>
+            </ol>
+        </div>
+
+        <div class="important-note">
+            <h4>หมายเหตุสำคัญ:</h4>
+            <ul>
+                <li><code>#include &lt;stdio.h&gt;</code> = เรียกใช้ไลบรารี่สำหรับการรับและแสดงข้อมูล</li>
+                <li><code>scanf("%f", &ตัวแปร)</code> = รับค่าทศนิยมจากแป้นพิมพ์</li>
+                <li><code>printf("%.2f", ตัวแปร)</code> = แสดงทศนิยม 2 ตำแหน่ง</li>
+                <li><code>\n</code> = ขึ้นบรรทัดใหม่</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

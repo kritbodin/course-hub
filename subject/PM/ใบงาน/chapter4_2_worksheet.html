@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติ บทที่ 4-2 การเลือกทำตามเงื่อนไข (การคิดเกรด)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #e74c3c;
+            border-left: 5px solid #e74c3c;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #27ae60;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #8e44ad;
+            margin-top: 20px;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+        .header-info p {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #34495e;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 2px solid #34495e;
+            white-space: pre-wrap;
+        }
+        .output-block {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            border: 2px solid #333;
+        }
+        .analysis-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .analysis-section h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .objective-section {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #27ae60;
+        }
+        .task-section {
+            background-color: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9800;
+        }
+        .submission-section {
+            background-color: #f3e5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #9c27b0;
+        }
+        .example-section {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .syntax-section {
+            background-color: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        .grade-table {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #4169e1;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        ol li {
+            margin: 5px 0;
+        }
+        .note-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .note-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .important-note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .important-note h4 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        .flowchart-tips {
+            background-color: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .flowchart-tips h4 {
+            color: #6c5ce7;
+            margin-top: 0;
+        }
+        .condition-section {
+            background-color: #fdf2e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #e67e22;
+        }
+        .grade-criteria {
+            background-color: #e8f5e8;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            margin: 40px 0;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        @media print {
+            body { font-size: 12px; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ใบงานฝึกปฏิบัติ บทที่ 4-2 การเลือกทำตามเงื่อนไข (การคิดเกรด)</h1>
+        
+        <div class="header-info">
+            <p><strong>วิชา การเขียนโปรแกรมคอมพิวเตอร์</strong></p>
+            <p><strong>สาขาวิทยาการคอมพิวเตอร์</strong></p>
+            <p><strong>อาจารย์ผู้สอน ดร.กริชบดินทร์ ผิวหอม</strong></p>
+        </div>
+
+        <div class="objective-section">
+            <h2><strong>วัตถุประสงค์ของใบงานฝึกปฏิบัติ:</strong></h2>
+            <ol>
+                <li>เพื่อฝึกการใช้คำสั่ง if-else แบบซ้อน (Nested if-else) ในการตรวจสอบหลายเงื่อนไข</li>
+                <li>เพื่อให้สามารถเขียนโปรแกรมคิดเกรดจากคะแนนได้</li>
+                <li>เพื่อฝึกการสร้าง Flow Chart สำหรับการตัดสินใจแบบหลายขั้นตอน</li>
+                <li>เพื่อให้เข้าใจการใช้ Logical Operators (&& และ ||) ในการตรวจสอบช่วงข้อมูล</li>
+            </ol>
+        </div>
+
+        <div class="grade-criteria">
+            <h3><strong>เกณฑ์การให้เกรด:</strong></h3>
+            <table>
+                <tr>
+                    <th>เกรด</th>
+                    <th>ช่วงคะแนน</th>
+                    <th>คำอธิบาย</th>
+                </tr>
+                <tr>
+                    <td><strong>A</strong></td>
+                    <td>80 - 100</td>
+                    <td>ดีเยี่ยม (Excellent)</td>
+                </tr>
+                <tr>
+                    <td><strong>B</strong></td>
+                    <td>70 - 79</td>
+                    <td>ดี (Good)</td>
+                </tr>
+                <tr>
+                    <td><strong>C</strong></td>
+                    <td>60 - 69</td>
+                    <td>พอใช้ (Fair)</td>
+                </tr>
+                <tr>
+                    <td><strong>D</strong></td>
+                    <td>50 - 59</td>
+                    <td>อ่อน (Poor)</td>
+                </tr>
+                <tr>
+                    <td><strong>E</strong></td>
+                    <td>0 - 49</td>
+                    <td>ไม่ผ่าน (Fail)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="syntax-section">
+            <h3><strong>โครงสร้างคำสั่ง if-else แบบซ้อน (Nested if-else):</strong></h3>
+            <div class="code-block">// รูปแบบ if-else แบบซ้อนสำหรับหลายเงื่อนไข
+if (เงื่อนไขที่ 1) {
+    // คำสั่งสำหรับเงื่อนไขที่ 1
+} else if (เงื่อนไขที่ 2) {
+    // คำสั่งสำหรับเงื่อนไขที่ 2
+} else if (เงื่อนไขที่ 3) {
+    // คำสั่งสำหรับเงื่อนไขที่ 3
+} else {
+    // คำสั่งสำหรับกรณีอื่นๆ
+}
+
+// ตัวอย่างการใช้สำหรับการคิดเกรด
+if (score >= 80 && score <= 100) {
+    printf("เกรด A");
+} else if (score >= 70 && score <= 79) {
+    printf("เกรด B");
+} else if (score >= 60 && score <= 69) {
+    printf("เกรด C");
+} else if (score >= 50 && score <= 59) {
+    printf("เกรด D");
+} else {
+    printf("เกรด E");
+}</div>
+
+            <h4><strong>Logical Operators:</strong></h4>
+            <ul>
+                <li><code>&&</code> = AND (และ) - ทั้งสองเงื่อนไขต้องเป็นจริง</li>
+                <li><code>||</code> = OR (หรือ) - เงื่อนไขอย่างน้อยหนึ่งข้อต้องเป็นจริง</li>
+                <li><code>!</code> = NOT (ไม่) - กลับค่าความจริง</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติ: โปรแกรมคิดเกรดจากคะแนน</h2>
+
+        <div class="task-section">
+            <h3><strong>สิ่งที่ต้องทำ:</strong></h3>
+            <p>ให้เขียนผังโปรแกรม (Flow chart) และโปรแกรมภาษา C ตามลำดับต่อไปนี้</p>
+            <ol>
+                <li>รับค่าคะแนนที่เป็นจำนวนเต็มไม่เกิน 100 จากผู้ใช้</li>
+                <li>ตรวจสอบคะแนนและกำหนดเกรดตามเกณฑ์ที่กำหนด</li>
+                <li>แสดงคะแนนและเกรดที่ได้ออกทางหน้าจอ</li>
+                <li>แสดงคำอธิบายระดับผลการเรียน</li>
+            </ol>
+        </div>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อคิดเกรดจากคะแนนตามเกณฑ์ที่กำหนด</li>
+                <li>เพื่อฝึกการใช้คำสั่ง if-else แบบซ้อนและ Logical Operators</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>แสดงคะแนน เกรด และคำอธิบายออกทางจอภาพ</li>
+            </ul>
+            <div class="output-block">โปรแกรมคิดเกรดจากคะแนน
+กรุณาใส่คะแนน (0-100): 85
+
+-- Input Data --
+Score = 85
+-- Output Data --
+Grade = A
+Description = ดีเยี่ยม (Excellent)</div>
+
+            <div class="output-block">โปรแกรมคิดเกรดจากคะแนน
+กรุณาใส่คะแนน (0-100): 65
+
+-- Input Data --
+Score = 65
+-- Output Data --
+Grade = C
+Description = พอใช้ (Fair)</div>
+
+            <div class="output-block">โปรแกรมคิดเกรดจากคะแนน
+กรุณาใส่คะแนน (0-100): 45
+
+-- Input Data --
+Score = 45
+-- Output Data --
+Grade = E
+Description = ไม่ผ่าน (Fail)</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>รับค่าคะแนนที่เป็นจำนวนเต็มระหว่าง 0-100 จากผู้ใช้</li>
+                <li>ใช้เงื่อนไขแบบซ้อนในการตรวจสอบช่วงคะแนน</li>
+                <li>กำหนดเกรดและคำอธิบายตามเกณฑ์ที่กำหนด</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>score = ตัวแปรเก็บคะแนนที่รับจากผู้ใช้ (int)</li>
+                <li>grade = ตัวแปรเก็บเกรดที่คำนวณได้ (char หรือ string)</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>แสดงข้อความแนะนำให้ผู้ใช้ป้อนคะแนนระหว่าง 0-100</li>
+                <li>รับค่าคะแนนจากผู้ใช้</li>
+                <li>ตรวจสอบเงื่อนไขแบบซ้อน:
+                    <ul>
+                        <li>ถ้า score >= 80 && score <= 100 → เกรด A (ดีเยี่ยม)</li>
+                        <li>ถ้า score >= 70 && score <= 79 → เกรด B (ดี)</li>
+                        <li>ถ้า score >= 60 && score <= 69 → เกรด C (พอใช้)</li>
+                        <li>ถ้า score >= 50 && score <= 59 → เกรด D (อ่อน)</li>
+                        <li>นอกนั้น → เกรด E (ไม่ผ่าน)</li>
+                    </ul>
+                </li>
+                <li>แสดงข้อมูล Input, เกรด และคำอธิบาย</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <div class="condition-section">
+            <h3><strong>การทำงานของเงื่อนไขแบบซ้อน:</strong></h3>
+            <div class="code-block">คะแนน 85: 85 >= 80 && 85 <= 100 → เป็นจริง → เกรด A
+คะแนน 75: 75 >= 70 && 75 <= 79 → เป็นจริง → เกรด B  
+คะแนน 65: 65 >= 60 && 65 <= 69 → เป็นจริง → เกรด C
+คะแนน 55: 55 >= 50 && 55 <= 59 → เป็นจริง → เกรด D
+คะแนน 45: ไม่เข้าเงื่อนไขใด → เกรด E</div>
+
+            <h4><strong>ลำดับการตรวจสอบ:</strong></h4>
+            <p>โปรแกรมจะตรวจสอบเงื่อนไขจากบนลงล่าง หากพบเงื่อนไขที่เป็นจริงจะหยุดตรวจสอบและทำงานในส่วนนั้น</p>
+        </div>
+
+        <div class="example-section">
+            <h3><strong>โปรแกรมตัวอย่าง:</strong></h3>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int score;
+    char grade;
+    
+    printf("โปรแกรมคิดเกรดจากคะแนน\n");
+    printf("กรุณาใส่คะแนน (0-100): ");
+    scanf("%d", &score);
+    
+    printf("\n-- Input Data --\n");
+    printf("Score = %d\n", score);
+    printf("-- Output Data --\n");
+    
+    if (score >= 80 && score <= 100) {
+        grade = 'A';
+        printf("Grade = %c\n", grade);
+        printf("Description = ดีเยี่ยม (Excellent)\n");
+    } else if (score >= 70 && score <= 79) {
+        grade = 'B';
+        printf("Grade = %c\n", grade);
+        printf("Description = ดี (Good)\n");
+    } else if (score >= 60 && score <= 69) {
+        grade = 'C';
+        printf("Grade = %c\n", grade);
+        printf("Description = พอใช้ (Fair)\n");
+    } else if (score >= 50 && score <= 59) {
+        grade = 'D';
+        printf("Grade = %c\n", grade);
+        printf("Description = อ่อน (Poor)\n");
+    } else {
+        grade = 'E';
+        printf("Grade = %c\n", grade);
+        printf("Description = ไม่ผ่าน (Fail)\n");
+    }
+    
+    return 0;
+}</div>
+        </div>
+
+        <div class="flowchart-tips">
+            <h4>สัญลักษณ์สำหรับการเขียน Flow Chart:</h4>
+            <ul>
+                <li><strong>รูปรี (Oval):</strong> Start และ End</li>
+                <li><strong>รูปสี่เหลี่ยมผืนผ้า (Rectangle):</strong> การประมวลผล/การกำหนดค่า</li>
+                <li><strong>รูปสี่เหลี่ยมขนมเปียกปูน (Parallelogram):</strong> Input/Output</li>
+                <li><strong>รูปเพชร (Diamond):</strong> การตัดสินใจ/เงื่อนไข</li>
+                <li><strong>ลูกศร (Arrow):</strong> ทิศทางการไหลของโปรแกรม</li>
+            </ul>
+
+            <h4>ขั้นตอนการเขียน Flow Chart สำหรับโจทย์นี้:</h4>
+            <ol>
+                <li>เริ่มต้นด้วย <strong>Start</strong></li>
+                <li>แสดงข้อความและรับ Input: <strong>"กรุณาใส่คะแนน (0-100)"</strong></li>
+                <li>การตัดสินใจครั้งที่ 1: <strong>score >= 80 && score <= 100 ?</strong>
+                    <ul><li>Yes: แสดง "Grade = A, ดีเยี่ยม" → ไป End</li>
+                    <li>No: ไปการตัดสินใจครั้งที่ 2</li></ul>
+                </li>
+                <li>การตัดสินใจครั้งที่ 2: <strong>score >= 70 && score <= 79 ?</strong>
+                    <ul><li>Yes: แสดง "Grade = B, ดี" → ไป End</li>
+                    <li>No: ไปการตัดสินใจครั้งที่ 3</li></ul>
+                </li>
+                <li>การตัดสินใจครั้งที่ 3: <strong>score >= 60 && score <= 69 ?</strong>
+                    <ul><li>Yes: แสดง "Grade = C, พอใช้" → ไป End</li>
+                    <li>No: ไปการตัดสินใจครั้งที่ 4</li></ul>
+                </li>
+                <li>การตัดสินใจครั้งที่ 4: <strong>score >= 50 && score <= 59 ?</strong>
+                    <ul><li>Yes: แสดง "Grade = D, อ่อน" → ไป End</li>
+                    <li>No: แสดง "Grade = E, ไม่ผ่าน" → ไป End</li></ul>
+                </li>
+                <li>จบด้วย <strong>End</strong></li>
+            </ol>
+        </div>
+
+        <div class="submission-section">
+            <h3><strong>สิ่งที่ต้องส่ง:</strong></h3>
+            <ol>
+                <li><strong>ไฟล์ Flow Chart (.pdf):</strong> สร้างด้วยโปรแกรม diagrams.net บันทึกเป็น รหัส_ชื่อ_grade_flowchart.pdf</li>
+                <li><strong>ไฟล์โค้ดโปรแกรม (.c):</strong> เขียนโปรแกรมภาษา C บันทึกเป็น รหัส_ชื่อ_grade_program.c</li>
+                <li><strong>Screenshot ผลลัพธ์:</strong> จับภาพหน้าจอการรันโปรแกรมพร้อมผลลัพธ์ บันทึกเป็น รหัส_ชื่อ_grade_output.png</li>
+                <li>อัพโหลดไฟล์ทั้ง 3 ไฟล์ผ่าน Google Classroom ในหัวข้อที่มอบหมายงาน</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <div class="note-box">
+            <h3>คำแนะนำในการทำแบบฝึกหัด:</h3>
+            <ol>
+                <li><strong>วิเคราะห์ปัญหา:</strong> ทำความเข้าใจเกณฑ์การให้เกรดและช่วงคะแนน</li>
+                <li><strong>เขียน Flow Chart:</strong> ใช้ Decision Box หลายอันสำหรับแต่ละเงื่อนไข</li>
+                <li><strong>เขียนโปรแกรม:</strong> ใช้ if-else if-else แบบซ้อน และ && สำหรับตรวจสอบช่วง</li>
+                <li><strong>ทดสอบโปรแกรม:</strong> ลองใส่คะแนนในทุกช่วงเพื่อตรวจสอบความถูกต้อง</li>
+                <li><strong>ตรวจสอบขอบเขต:</strong> ทดสอบกับคะแนนขอบเขต (50, 59, 60, 69, 70, 79, 80, 100)</li>
+            </ol>
+        </div>
+
+        <div class="important-note">
+            <h4>หมายเหตุสำคัญ:</h4>
+            <ul>
+                <li>ใช้ <code>%d</code> สำหรับรับและแสดงจำนวนเต็ม (int)</li>
+                <li>ใช้ <code>%c</code> สำหรับแสดงตัวอักษร (char)</li>
+                <li>ใช้ <code>&&</code> (AND) สำหรับตรวจสอบช่วงคะแนน</li>
+                <li>เงื่อนไข <code>score >= 80 && score <= 100</code> หมายถึงคะแนนต้องอยู่ระหว่าง 80-100</li>
+                <li>ลำดับการตรวจสอบเงื่อนไขสำคัญ - เริ่มจากเกรดสูงสุดลงมา</li>
+                <li>ใน Flow Chart แต่ละ Decision Box ต้องมีทางออก Yes/No</li>
+            </ul>
+        </div>
+
+        <div class="example-section">
+            <h3><strong>ตัวอย่างการทดสอบโปรแกรม:</strong></h3>
+            <div class="code-block">Test Case 1: Input = 95 → Output = Grade A, ดีเยี่ยม
+Test Case 2: Input = 75 → Output = Grade B, ดี
+Test Case 3: Input = 65 → Output = Grade C, พอใช้  
+Test Case 4: Input = 55 → Output = Grade D, อ่อน
+Test Case 5: Input = 45 → Output = Grade E, ไม่ผ่าน
+Test Case 6: Input = 80 → Output = Grade A, ดีเยี่ยม (ขอบเขต)
+Test Case 7: Input = 79 → Output = Grade B, ดี (ขอบเขต)
+Test Case 8: Input = 50 → Output = Grade D, อ่อน (ขอบเขต)
+Test Case 9: Input = 49 → Output = Grade E, ไม่ผ่าน (ขอบเขต)</div>
+        </div>
+
+        <div class="grade-table">
+            <h4><strong>สรุปตารางการทดสอบ:</strong></h4>
+            <table>
+                <tr>
+                    <th>คะแนนทดสอบ</th>
+                    <th>เกรดที่ควรได้</th>
+                    <th>คำอธิบาย</th>
+                    <th>หมายเหตุ</th>
+                </tr>
+                <tr>
+                    <td>100, 90, 85, 80</td>
+                    <td>A</td>
+                    <td>ดีเยี่ยม</td>
+                    <td>ขอบเขตบนและล่าง</td>
+                </tr>
+                <tr>
+                    <td>79, 75, 70</td>
+                    <td>B</td>
+                    <td>ดี</td>
+                    <td>ขอบเขตบนและล่าง</td>
+                </tr>
+                <tr>
+                    <td>69, 65, 60</td>
+                    <td>C</td>
+                    <td>พอใช้</td>
+                    <td>ขอบเขตบนและล่าง</td>
+                </tr>
+                <tr>
+                    <td>59, 55, 50</td>
+                    <td>D</td>
+                    <td>อ่อน</td>
+                    <td>ขอบเขตบนและล่าง</td>
+                </tr>
+                <tr>
+                    <td>49, 30, 0</td>
+                    <td>E</td>
+                    <td>ไม่ผ่าน</td>
+                    <td>ต่ำกว่า 50</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

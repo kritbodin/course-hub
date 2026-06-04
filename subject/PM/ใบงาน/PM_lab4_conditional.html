@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบงานฝึกปฏิบัติ บทที่ 4 การเลือกทำตามเงื่อนไข</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #e74c3c;
+            border-left: 5px solid #e74c3c;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #27ae60;
+            margin-top: 25px;
+        }
+        h4 {
+            color: #8e44ad;
+            margin-top: 20px;
+        }
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+        }
+        .header-info p {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #34495e;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0;
+            border: 2px solid #34495e;
+            white-space: pre-wrap;
+        }
+        .output-block {
+            background-color: #1e1e1e;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            border: 2px solid #333;
+        }
+        .analysis-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .analysis-section h4 {
+            color: #2980b9;
+            margin-top: 0;
+        }
+        .objective-section {
+            background-color: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #27ae60;
+        }
+        .task-section {
+            background-color: #fff3e0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9800;
+        }
+        .submission-section {
+            background-color: #f3e5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #9c27b0;
+        }
+        .example-section {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .syntax-section {
+            background-color: #fff8e1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ffc107;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        ol li {
+            margin: 5px 0;
+        }
+        .note-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .note-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .important-note {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .important-note h4 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        .flowchart-tips {
+            background-color: #ffeaa7;
+            border: 2px solid #fdcb6e;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .flowchart-tips h4 {
+            color: #6c5ce7;
+            margin-top: 0;
+        }
+        .condition-section {
+            background-color: #fdf2e9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #e67e22;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            margin: 40px 0;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        @media print {
+            body { font-size: 12px; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ใบงานฝึกปฏิบัติ บทที่ 4 การเลือกทำตามเงื่อนไข</h1>
+        
+        <div class="header-info">
+            <p><strong>วิชา การเขียนโปรแกรมคอมพิวเตอร์</strong></p>
+            <p><strong>สาขาวิทยาการคอมพิวเตอร์</strong></p>
+            <p><strong>อาจารย์ผู้สอน ดร.กริชบดินทร์ ผิวหอม</strong></p>
+        </div>
+
+        <div class="objective-section">
+            <h2><strong>วัตถุประสงค์ของใบงานฝึกปฏิบัติ:</strong></h2>
+            <ol>
+                <li>เพื่อฝึกการใช้คำสั่ง if-else ในการเลือกทำตามเงื่อนไข</li>
+                <li>เพื่อให้สามารถเขียนโปรแกรมตรวจสอบเงื่อนไขได้</li>
+                <li>เพื่อฝึกการสร้าง Flow Chart สำหรับการตัดสินใจ</li>
+                <li>เพื่อให้เข้าใจการใช้ Modulo Operator (%) ในการตรวจสอบเลขคู่คี่</li>
+            </ol>
+        </div>
+
+        <div class="syntax-section">
+            <h3><strong>โครงสร้างคำสั่ง if-else ในภาษา C:</strong></h3>
+            <div class="code-block">// รูปแบบ if-else พื้นฐาน
+if (เงื่อนไข) {
+    // คำสั่งที่จะทำงานเมื่อเงื่อนไขเป็นจริง
+} else {
+    // คำสั่งที่จะทำงานเมื่อเงื่อนไขเป็นเท็จ
+}
+
+// ตัวอย่างการใช้ Modulo Operator
+if (number % 2 == 0) {
+    printf("เลขคู่");
+} else {
+    printf("เลขคี่");
+}</div>
+
+            <h4><strong>Modulo Operator (%):</strong></h4>
+            <ul>
+                <li><code>number % 2</code> = หาเศษจากการหาร number ด้วย 2</li>
+                <li>ถ้าเศษเป็น 0 แสดงว่าเป็นเลขคู่</li>
+                <li>ถ้าเศษเป็น 1 แสดงว่าเป็นเลขคี่</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h2>แบบฝึกปฏิบัติ: การตรวจสอบเลขคู่และเลขคี่</h2>
+
+        <div class="task-section">
+            <h3><strong>สิ่งที่ต้องทำ:</strong></h3>
+            <p>ให้เขียนผังโปรแกรม (Flow chart) และโปรแกรมภาษา C ตามลำดับต่อไปนี้</p>
+            <ol>
+                <li>รับค่าจำนวนเต็มใดๆ ระหว่าง 50-100 จากผู้ใช้</li>
+                <li>ตรวจสอบว่าจำนวนนั้นเป็นเลขคู่หรือเลขคี่</li>
+                <li>ถ้าเป็นเลขคู่ ให้แสดง "เลขคู่" ออกทางหน้าจอ</li>
+                <li>ถ้าเป็นเลขคี่ ให้แสดง "เลขคี่" ออกทางหน้าจอ</li>
+            </ol>
+        </div>
+
+        <div class="analysis-section">
+            <h3>การวิเคราะห์งาน:</h3>
+
+            <h4><strong>1) วัตถุประสงค์ของการเขียนโปรแกรม</strong></h4>
+            <ul>
+                <li>เพื่อตรวจสอบว่าจำนวนเต็มที่ป้อนเข้ามาเป็นเลขคู่หรือเลขคี่</li>
+                <li>เพื่อฝึกการใช้คำสั่ง if-else และ Modulo Operator</li>
+            </ul>
+
+            <h4><strong>2) รูปแบบผลลัพธ์ที่ต้องการ</strong></h4>
+            <ul>
+                <li>แสดงผลการตรวจสอบออกทางจอภาพ</li>
+            </ul>
+            <div class="output-block">โปรแกรมตรวจสอบเลขคู่และเลขคี่
+กรุณาใส่จำนวนเต็มระหว่าง 50-100: 75
+
+-- Input Data --
+Number = 75
+-- Output Data --
+ผลลัพธ์: เลขคี่</div>
+
+            <div class="output-block">โปรแกรมตรวจสอบเลขคู่และเลขคี่
+กรุณาใส่จำนวนเต็มระหว่าง 50-100: 84
+
+-- Input Data --
+Number = 84
+-- Output Data --
+ผลลัพธ์: เลขคู่</div>
+
+            <h4><strong>3) ข้อมูลนำเข้า</strong></h4>
+            <ul>
+                <li>รับค่าจำนวนเต็มระหว่าง 50-100 จากผู้ใช้</li>
+                <li>ใช้การหารด้วย 2 และตรวจสอบเศษที่เหลือ</li>
+                <li>ถ้าเศษเป็น 0 = เลขคู่, ถ้าเศษเป็น 1 = เลขคี่</li>
+            </ul>
+
+            <h4><strong>4) ตัวแปรที่ตั้งขึ้นเพื่อใช้ในโปรแกรม</strong></h4>
+            <ul>
+                <li>number = ตัวแปรเก็บจำนวนเต็มที่รับจากผู้ใช้ (int)</li>
+            </ul>
+
+            <h4><strong>5) ขั้นตอนวิธีการทำงานของโปรแกรม</strong></h4>
+            <ol>
+                <li>เริ่มต้นทำงาน</li>
+                <li>แสดงข้อความแนะนำให้ผู้ใช้ป้อนจำนวนเต็มระหว่าง 50-100</li>
+                <li>รับค่าจำนวนเต็มจากผู้ใช้</li>
+                <li>ตรวจสอบเงื่อนไข: ถ้า number % 2 == 0
+                    <ul>
+                        <li>เป็นจริง: แสดง "เลขคู่"</li>
+                        <li>เป็นเท็จ: แสดง "เลขคี่"</li>
+                    </ul>
+                </li>
+                <li>แสดงข้อมูล Input และ Output</li>
+                <li>จบการทำงาน</li>
+            </ol>
+        </div>
+
+        <div class="condition-section">
+            <h3><strong>การทำงานของ Modulo Operator (%):</strong></h3>
+            <div class="code-block">เลข 50 % 2 = 0 (เศษ 0) → เลขคู่
+เลข 51 % 2 = 1 (เศษ 1) → เลขคี่
+เลข 52 % 2 = 0 (เศษ 0) → เลขคู่
+เลข 53 % 2 = 1 (เศษ 1) → เลขคี่
+...
+เลข 84 % 2 = 0 (เศษ 0) → เลขคู่
+เลข 85 % 2 = 1 (เศษ 1) → เลขคี่</div>
+        </div>
+
+        <div class="example-section">
+            <h3><strong>โปรแกรมตัวอย่าง:</strong></h3>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int number;
+    
+    printf("โปรแกรมตรวจสอบเลขคู่และเลขคี่\n");
+    printf("กรุณาใส่จำนวนเต็มระหว่าง 50-100: ");
+    scanf("%d", &number);
+    
+    printf("\n-- Input Data --\n");
+    printf("Number = %d\n", number);
+    printf("-- Output Data --\n");
+    
+    if (number % 2 == 0) {
+        printf("ผลลัพธ์: เลขคู่\n");
+    } else {
+        printf("ผลลัพธ์: เลขคี่\n");
+    }
+    
+    return 0;
+}</div>
+        </div>
+
+        <div class="flowchart-tips">
+            <h4>สัญลักษณ์สำหรับการเขียน Flow Chart:</h4>
+            <ul>
+                <li><strong>รูปรี (Oval):</strong> Start และ End</li>
+                <li><strong>รูปสี่เหลี่ยมผืนผ้า (Rectangle):</strong> การประมวลผล/การคำนวณ</li>
+                <li><strong>รูปสี่เหลี่ยมขนมเปียกปูน (Parallelogram):</strong> Input/Output</li>
+                <li><strong>รูปเพชร (Diamond):</strong> การตัดสินใจ/เงื่อนไข (number % 2 == 0)</li>
+                <li><strong>ลูกศร (Arrow):</strong> ทิศทางการไหลของโปรแกรม</li>
+            </ul>
+
+            <h4>ขั้นตอนการเขียน Flow Chart สำหรับโจทย์นี้:</h4>
+            <ol>
+                <li>เริ่มต้นด้วย <strong>Start</strong></li>
+                <li>แสดงข้อความและรับ Input: <strong>"กรุณาใส่จำนวนเต็มระหว่าง 50-100"</strong></li>
+                <li>การตัดสินใจ: <strong>number % 2 == 0 ?</strong>
+                    <ul>
+                        <li>ทาง Yes (True): แสดง "เลขคู่"</li>
+                        <li>ทาง No (False): แสดง "เลขคี่"</li>
+                    </ul>
+                </li>
+                <li>แสดง Input Data และ Output Data</li>
+                <li>จบด้วย <strong>End</strong></li>
+            </ol>
+        </div>
+
+        <div class="submission-section">
+            <h3><strong>สิ่งที่ต้องส่ง:</strong></h3>
+            <ol>
+                <li><strong>ไฟล์ Flow Chart (.pdf):</strong> สร้างด้วยโปรแกรม diagrams.net บันทึกเป็น รหัส_ชื่อ_flowchart.pdf</li>
+                <li><strong>ไฟล์โค้ดโปรแกรม (.c):</strong> เขียนโปรแกรมภาษา C บันทึกเป็น รหัส_ชื่อ_program.c</li>
+                <li><strong>Screenshot ผลลัพธ์:</strong> จับภาพหน้าจอการรันโปรแกรมพร้อมผลลัพธ์ บันทึกเป็น รหัส_ชื่อ_output.png</li>
+                <li>อัพโหลดไฟล์ทั้ง 3 ไฟล์ผ่าน Google Classroom ในหัวข้อที่มอบหมายงาน</li>
+            </ol>
+        </div>
+
+        <hr>
+
+        <div class="note-box">
+            <h3>คำแนะนำในการทำแบบฝึกหัด:</h3>
+            <ol>
+                <li><strong>วิเคราะห์ปัญหา:</strong> ทำความเข้าใจการทำงานของ Modulo Operator (%)</li>
+                <li><strong>เขียน Flow Chart:</strong> เริ่มจาก Start → Input → Decision → Output → End</li>
+                <li><strong>เขียนโปรแกรม:</strong> ใช้ int สำหรับจำนวนเต็ม และ %d สำหรับ printf/scanf</li>
+                <li><strong>ทดสอบโปรแกรม:</strong> ลองใส่ค่าต่างๆ เพื่อตรวจสอบความถูกต้อง</li>
+                <li><strong>ตรวจสอบขอบเขต:</strong> ให้แน่ใจว่าผู้ใช้ป้อนตัวเลขระหว่าง 50-100</li>
+            </ol>
+        </div>
+
+        <div class="important-note">
+            <h4>หมายเหตุสำคัญ:</h4>
+            <ul>
+                <li>ใช้ <code>%d</code> สำหรับรับและแสดงจำนวนเต็ม (int)</li>
+                <li>ใช้ <code>&amp;</code> หน้าตัวแปรใน <code>scanf("%d", &number);</code></li>
+                <li>เงื่อนไข <code>number % 2 == 0</code> ใช้เครื่องหมาย <code>==</code> (เปรียบเทียบ) ไม่ใช่ <code>=</code> (กำหนดค่า)</li>
+                <li>ใส่ <code>\n</code> เพื่อขึ้นบรรทัดใหม่</li>
+                <li>Decision Box ใน Flow Chart ต้องมีทางออก 2 ทาง (Yes/No หรือ True/False)</li>
+            </ul>
+        </div>
+
+        <div class="example-section">
+            <h3><strong>ตัวอย่างการทดสอบโปรแกรม:</strong></h3>
+            <div class="code-block">Test Case 1: Input = 50 → Output = เลขคู่
+Test Case 2: Input = 51 → Output = เลขคี่  
+Test Case 3: Input = 75 → Output = เลขคี่
+Test Case 4: Input = 84 → Output = เลขคู่
+Test Case 5: Input = 99 → Output = เลขคี่
+Test Case 6: Input = 100 → Output = เลขคู่</div>
+        </div>
+    </div>
+</body>
+</html>
