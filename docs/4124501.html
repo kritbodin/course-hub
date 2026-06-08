@@ -464,7 +464,17 @@
       <p class="footer-copy">&copy; <span id="yr"></span> สงวนลิขสิทธิ์ตามพระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537</p>
     </div>
   </footer>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    (function() {
+      var code = prompt('กรุณาใส่รหัสห้องเรียนเพื่อเข้าดูข้อมูล');
+      if (code !== '3303') {
+        alert('รหัสไม่ถูกต้อง');
+        location.replace('index.html');
+      }
+    })();
+  </script>
 
 </body>
 </html>
