@@ -8,6 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/style.css">
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "943bd094c77746988df3268cecfab155"}'></script>
+  <script>
+    (function() {
+      var code = prompt('กรุณาใส่รหัสห้องเรียนเพื่อเข้าดูข้อมูล');
+      if (code !== '3303') {
+        alert('รหัสไม่ถูกต้อง');
+        location.replace('index.html');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -464,17 +473,7 @@
       <p class="footer-copy">&copy; <span id="yr"></span> สงวนลิขสิทธิ์ตามพระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537</p>
     </div>
   </footer>
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-    (function() {
-      var code = prompt('กรุณาใส่รหัสห้องเรียนเพื่อเข้าดูข้อมูล');
-      if (code !== '3303') {
-        alert('รหัสไม่ถูกต้อง');
-        location.replace('index.html');
-      }
-    })();
-  </script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 
 </body>
 </html>
