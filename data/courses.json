@@ -3,7 +3,6 @@
     {
       "code": "4124501",
       "name": "ปัญญาประดิษฐ์ (Artificial Intelligence)",
-      "semester": "1/2569",
       "schedule": "พฤหัสบดี 09:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 4404)",
       "teams_link": "",
       "textbooks": [
@@ -53,7 +52,6 @@
     {
       "code": "4121206",
       "name": "การเขียนโปรแกรมคอมพิวเตอร์ (Computer Programming)",
-      "semester": "1/2569",
       "schedule": "พุธ 09:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 4406)",
       "teams_link": "",
       "textbooks": [
@@ -91,7 +89,6 @@
     {
       "code": "4123118",
       "name": "อินเทอร์เน็ตแห่งสรรพสิ่ง (Internet of Things)",
-      "semester": "1/2569",
       "schedule": "อังคาร 09:00–10:00 (บรรยาย ห้อง 3303) | 10:00–12:00 (ปฏิบัติ ห้อง 3301)",
       "teams_link": "",
       "textbooks": [],
@@ -118,6 +115,41 @@
         { "week": 14, "chapter": "", "topic": "โครงงานกลุ่ม สัปดาห์ที่ 2 — ทดสอบ + Debug + Interim Demo 5 นาที",                                   "has_workshop": false, "note": "ส่ง Checkpoint 2 + Interim Demo" },
         { "week": 15, "chapter": "", "topic": "โครงงานกลุ่ม สัปดาห์ที่ 3 — นำเสนอ 10 นาที + ถามตอบ 5 นาที",                                       "has_workshop": false, "note": "ส่ง Final Demo + Report 1 หน้า A4" },
         { "week": 16, "chapter": "", "topic": "สอบปลายภาคเรียน (ทฤษฎี 30 นาที + ปฏิบัติ Wokwi 90 นาที)",                                          "has_workshop": false, "note": "สอบปลายภาค 30%" }
+      ]
+    },
+    {
+      "code": "4122904",
+      "name": "โครงงานคอมพิวเตอร์ 2 (Computer Project 2)",
+      "schedule": "ปฏิบัติ 6 ชม./สัปดาห์ (แจ้งวัน/เวลา/ห้องในกลุ่ม)",
+      "teams_link": "",
+      "textbooks": [
+        "เอกสารประกอบการสอนวิชา 4123118 อินเทอร์เน็ตแห่งสรรพสิ่ง (IoT) สาขาวิทยาการคอมพิวเตอร์ มรภ.ศรีสะเกษ.",
+        "Agus Kurniawan, \"ESP32 IoT Projects\", PacktPub, 2021.",
+        "Google Firebase Documentation. https://firebase.google.com/docs",
+        "MySQL Documentation. https://dev.mysql.com/doc/",
+        "MDN Web Docs — HTML, CSS, JavaScript. https://developer.mozilla.org",
+        "สำนักงานคณะกรรมการวิจัยแห่งชาติ, \"คู่มือการเขียนรายงานโครงงานวิทยาศาสตร์และเทคโนโลยี\"."
+      ],
+      "grading": [
+        { "label": "คะแนนเก็บ (Proposal + Checkpoint 1–2)", "score": 40 },
+        { "label": "กลางภาค", "score": 20 },
+        { "label": "คะแนนมาเรียน", "score": 10 },
+        { "label": "ปลายภาค", "score": 30 }
+      ],
+      "weeks": [
+        { "week": 1, "chapter": "", "topic": "แนะนำรายวิชา + แบ่งกลุ่ม 3–4 คน + ทบทวน IoT + เลือกชุมชนเป้าหมาย", "has_workshop": true, "note": "ใบงานที่ 1: ตั้งทีมและเลือกชุมชนเป้าหมาย" },
+        { "week": 2, "chapter": "", "topic": "สำรวจความต้องการชุมชน (Community Needs Analysis) + Proposal ตอนที่ 1", "has_workshop": true, "note": "ใบงานที่ 2: ลงพื้นที่สัมภาษณ์ ≥ 3 คน" },
+        { "week": 3, "chapter": "", "topic": "Proposal ตอนที่ 2 — Block Diagram ESP32 → DB → Web/App, DB Schema, Tech Stack, Gantt Chart", "has_workshop": true, "note": "ใบงานที่ 3: ออกแบบระบบเบื้องต้น" },
+        { "week": 4, "chapter": "", "topic": "นำเสนอ Proposal ต่ออาจารย์ (กลุ่มละ 10 นาที) + อนุมัติหัวข้อ", "has_workshop": false, "note": "ส่ง Proposal · 20 คะแนน" },
+        { "week": 5, "chapter": "", "topic": "ออกแบบระบบฉบับสมบูรณ์ — Circuit Diagram, DB Schema, Wireframe Web/App", "has_workshop": false, "note": "" },
+        { "week": 6, "chapter": "", "topic": "Prototype บน Wokwi + Insert ข้อมูลเข้า Database + Web Dashboard เบื้องต้น (Chart.js)", "has_workshop": false, "note": "" },
+        { "week": 7, "chapter": "", "topic": "Checkpoint 1 — Demo Wokwi + Web/App แสดงข้อมูลจาก DB + Circuit Diagram", "has_workshop": false, "note": "Checkpoint 1 · 10 คะแนน" },
+        { "week": 8, "chapter": "", "topic": "สอบกลางภาค — Demo ระบบโครงงาน (กลุ่มละ 15+5 นาที)", "has_workshop": false, "note": "สอบกลางภาค · 20 คะแนน" },
+        { "week": "9–11", "chapter": "", "topic": "พัฒนา Hardware จริง — ESP32 + Sensor → Database (CRUD) → Web/App Real-time แบบ End-to-End", "has_workshop": false, "note": "ส่ง Progress Log รายสัปดาห์" },
+        { "week": 12, "chapter": "", "topic": "Checkpoint 2 — Demo End-to-End บน Hardware จริง + เตรียมแบบประเมินความพึงพอใจ", "has_workshop": false, "note": "Checkpoint 2 · 10 คะแนน" },
+        { "week": "13–14", "chapter": "", "topic": "ให้ผู้ใช้ในชุมชน ≥ 5 คนทดลองใช้ + ปรับปรุงตาม Feedback + จัดทำเล่มโครงงานและคู่มือ", "has_workshop": false, "note": "Push Code ขึ้น GitHub" },
+        { "week": "15–16", "chapter": "", "topic": "สอบปลายภาค — นำเสนองานสมบูรณ์ + Demo (กลุ่มละ 20+5 นาที)", "has_workshop": false, "note": "สอบปลายภาค · 30 คะแนน" },
+        { "week": 17, "chapter": "", "topic": "สรุปรายวิชาและถอดบทเรียน (Reflection) + แจ้งผลการประเมิน", "has_workshop": false, "note": "ส่งเอกสารที่ค้างทั้งหมด" }
       ]
     }
   ]
