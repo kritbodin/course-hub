@@ -151,6 +151,35 @@
         { "week": "15–16", "chapter": "", "topic": "สอบปลายภาค — นำเสนองานสมบูรณ์ + Demo (กลุ่มละ 20+5 นาที)", "has_workshop": false, "note": "สอบปลายภาค · 30 คะแนน" },
         { "week": 17, "chapter": "", "topic": "สรุปรายวิชาและถอดบทเรียน (Reflection) + แจ้งผลการประเมิน", "has_workshop": false, "note": "ส่งเอกสารที่ค้างทั้งหมด" }
       ]
+    },
+    {
+      "code": "4123665",
+      "name": "เทคโนโลยีท้องถิ่น (Technology in Locality)",
+      "schedule": "บรรยาย 2 ชม. + ปฏิบัติ 2 ชม./สัปดาห์ (แจ้งวัน/เวลา/ห้องในกลุ่ม)",
+      "teams_link": "",
+      "textbooks": [
+        "จำนงค์ แรกพินิจ, \"ภูมิปัญญาท้องถิ่นเพื่อการพัฒนาชุมชน\", คณะศิลปศาสตร์ สถาบันการเรียนรู้เพื่อปวงชน, 2563.",
+        "Village E-Commerce, \"สอนชุมชนเปิดร้านค้าออนไลน์\", สำนักงานคณะกรรมการดิจิทัลเพื่อเศรษฐกิจและสังคมแห่งชาติ, 2560."
+      ],
+      "grading": [
+        { "label": "คะแนนเก็บ (ใบงาน + Presentation)", "score": 30 },
+        { "label": "กลางภาค", "score": 30 },
+        { "label": "จิตพิสัย", "score": 10 },
+        { "label": "ปลายภาค", "score": 30 }
+      ],
+      "weeks": [
+        { "week": 1, "chapter": "", "topic": "Introduction & Project Kick-off — แนะนำรายวิชา PBL + จับกลุ่ม 3–4 คน + ภาพรวมภูมิปัญญาท้องถิ่น", "has_workshop": false, "note": "จับกลุ่ม + ส่งหัวข้อโปรเจค" },
+        { "week": "2–3", "chapter": "บทที่ 1–2", "topic": "ภูมิปัญญาท้องถิ่น — ความสำคัญ องค์ประกอบ ประเภท บ่อเกิดและพัฒนาการ", "has_workshop": true, "note": "ใบงานที่ 1 + สัมภาษณ์ผู้รู้ ≥ 2 ราย" },
+        { "week": "4–5", "chapter": "บทที่ 3", "topic": "เทคโนโลยีท้องถิ่นในมิติต่างๆ — วิธีการ เทคนิค และการนำไปใช้ในปัจจุบัน", "has_workshop": true, "note": "ใบงานที่ 2 + ภาพถ่าย/วีดีโอ ≥ 2 แหล่ง" },
+        { "week": 6, "chapter": "บทที่ 4", "topic": "การบูรณาการและการอนุรักษ์ — SWOT Analysis + เชื่อมโยงภูมิปัญญาสากล", "has_workshop": true, "note": "ใบงานที่ 3 + เตรียมสไลด์นำเสนอ" },
+        { "week": 7, "chapter": "", "topic": "Milestone 1 — Mid-Progress Presentation (10 นาที + Q&A 5 นาที)", "has_workshop": false, "note": "Milestone 1 (คะแนนเก็บ)" },
+        { "week": 8, "chapter": "", "topic": "สอบกลางภาค — ปรนัย เนื้อหาบทที่ 1–4", "has_workshop": false, "note": "สอบกลางภาค · 30 คะแนน" },
+        { "week": "9–10", "chapter": "", "topic": "E-Commerce ขั้นตอนที่ 1–2 — ผลิตภัณฑ์ บรรจุภัณฑ์ ต้นทุน + เปิดร้านค้าออนไลน์", "has_workshop": true, "note": "ใบงานที่ 4 + ลิงก์ร้านค้า" },
+        { "week": "11–12", "chapter": "", "topic": "E-Commerce ขั้นตอนที่ 3 — การส่งเสริมการขาย Content Marketing ถ่ายภาพ Copywriting", "has_workshop": true, "note": "ใบงานที่ 5 + โพสต์จริง ≥ 3 โพสต์" },
+        { "week": "13–14", "chapter": "", "topic": "E-Commerce ขั้นตอนที่ 4–5 — บริหารการขาย การจัดส่ง และกฎหมายการขายออนไลน์", "has_workshop": true, "note": "ใบงานที่ 6 + รายงานฉบับสมบูรณ์" },
+        { "week": 15, "chapter": "", "topic": "Final Presentation — นำเสนอโปรเจคสมบูรณ์ + Demo ร้านค้า (15 นาที + Q&A 5 นาที)", "has_workshop": false, "note": "Final Presentation + Report (คะแนนเก็บ)" },
+        { "week": 16, "chapter": "", "topic": "สอบปลายภาค — เนื้อหาบทที่ 1–4 + E-Commerce ทั้ง 5 ขั้นตอน", "has_workshop": false, "note": "สอบปลายภาค · 30 คะแนน" }
+      ]
     }
   ]
 }
