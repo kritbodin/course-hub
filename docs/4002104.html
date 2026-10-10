@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4002104 · การประยุกต์ใช้โปรแกรมสำนักงานในยุคดิจิทัล (Office Program Application in Digital World)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "943bd094c77746988df3268cecfab155"}'></script>
+  <script>
+    (function() {
+      var code = prompt('กรุณาใส่รหัสห้องเรียนเพื่อเข้าดูข้อมูล');
+      if (code !== '3303') {
+        alert('รหัสไม่ถูกต้อง');
+        location.replace('index.html');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <nav class="topbar">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      รายวิชาทั้งหมด
+    </a>
+  </nav>
+
+  <div class="course-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="course-sidebar">
+
+      <!-- Course info -->
+      <div class="sidebar-card">
+        <span class="badge">4002104</span>
+        <h1 class="course-title">การประยุกต์ใช้โปรแกรมสำนักงานในยุคดิจิทัล (Office Program Application in Digital World)</h1>
+
+        <div class="meta-list">
+          <div class="meta-item">
+            <span class="meta-icon">🗓</span>
+            <div>
+              <div class="meta-label">ตารางสอน</div>
+              <div class="meta-value">บรรยาย 2 ชม. + ปฏิบัติ 2 ชม./สัปดาห์ (แจ้งวัน/เวลา/ห้องในกลุ่ม)</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">👨‍🏫</span>
+            <div>
+              <div class="meta-label">ผู้สอน</div>
+              <div class="meta-value">ผศ.ดร.กริชบดินทร์ ผิวหอม</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">🕐</span>
+            <div>
+              <div class="meta-label">Office Hours</div>
+              <div class="meta-value">พุธ 13:30–15:00 (ออนไลน์)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MS Teams -->
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          MS Teams
+        </h2>
+        <p class="teams-note">รหัสเข้าห้องแจ้งในกลุ่ม</p>
+        <p class="teams-note">รวมทั้งสไลด์ Workshop และเอกสารต่างๆ</p>
+      </div>
+
+      <!-- Textbooks -->
+      
+
+      <!-- Grading -->
+      
+      
+      
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          การประเมินผล
+        </h2>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 100 100">
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#2563eb"
+              stroke-dasharray="100.52000000000001 150.78"
+              stroke-dashoffset="251.3"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#7c3aed"
+              stroke-dasharray="50.260000000000005 201.04000000000002"
+              stroke-dashoffset="150.78"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#0891b2"
+              stroke-dasharray="25.130000000000003 226.17000000000002"
+              stroke-dashoffset="100.51999999999998"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#059669"
+              stroke-dasharray="75.39 175.91000000000003"
+              stroke-dashoffset="75.38999999999999"
+            />
+            
+            
+            <text x="50" y="46" class="donut-label-top">100</text>
+            <text x="50" y="58" class="donut-label-bot">คะแนน</text>
+          </svg>
+          <div class="donut-legend">
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#2563eb"></span>
+              <span class="legend-label">คะแนนเก็บ (ใบงาน + นำเสนอ + ฝึกพิมพ์)</span>
+              <span class="legend-score">40</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#7c3aed"></span>
+              <span class="legend-label">กลางภาค</span>
+              <span class="legend-score">20</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#0891b2"></span>
+              <span class="legend-label">จิตพิสัย</span>
+              <span class="legend-score">10</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#059669"></span>
+              <span class="legend-label">ปลายภาค</span>
+              <span class="legend-score">30</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+
+    </aside>
+
+    <!-- ── Main ── -->
+    <main class="course-main">
+      <h2 class="section-heading">เนื้อหารายสัปดาห์</h2>
+      <div class="week-list">
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              1
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">แนะนำรายวิชา + Microsoft 365, OneDrive, Teams และ Planner + จัดกลุ่ม 3–4 คน เลือกหัวข้อโครงงาน</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 1 · Pre-test · ทดสอบความเร็วพิมพ์ครั้งที่ 1</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              2
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">การพิมพ์สัมผัส + การสร้าง แก้ไข บันทึกเอกสาร (Save / Save As / PDF) และคีย์ลัด</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 2: โครงร่างโครงงาน</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              3
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">Microsoft Word (1) — ตั้งค่าหน้ากระดาษ จัดรูปแบบตัวอักษร/ย่อหน้า และ Styles</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 3: บทที่ 1 บทนำ</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              4
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">Microsoft Word (2) — สืบค้นข้อมูล แทรกรูป/ตาราง Caption และการอ้างอิง</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 4: บทที่ 2 ข้อมูลที่เกี่ยวข้อง</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              5
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">Microsoft Word (3) — ปก เลขหน้า สารบัญอัตโนมัติ + แก้ไขร่วมกัน (Comment, Track Changes)</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 5: รวมเล่มบทที่ 1–2</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              6
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">Microsoft Forms — สร้างแบบฟอร์มออนไลน์ เผยแพร่ด้วยลิงก์/QR Code + เขียนวิธีดำเนินงาน</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 6: แบบสอบถามออนไลน์ + บทที่ 3</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              7
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">Microsoft PowerPoint — ธีม Designer การแทรกสื่อ และหลักการออกแบบสไลด์</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 7: สไลด์นำเสนอความก้าวหน้า</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              8
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">นำเสนอความก้าวหน้าโครงงาน ครั้งที่ 1 + Presenter View</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">นำเสนอครั้งที่ 1 · ส่งแฟ้มใบงาน 1–7 · งดฝึกพิมพ์</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row week-exam">
+          <div class="week-num">
+            
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">สอบกลางภาคเรียน</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">สอบกลางภาค · ทดสอบความเร็วพิมพ์ไทยครั้งที่ 2 · เก็บข้อมูลแบบสอบถามช่วงนี้</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              10
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">Microsoft Excel — นำข้อมูลจาก Forms ทำความสะอาดข้อมูล ฟังก์ชัน COUNTIF ร้อยละ และกราฟ</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 8: วิเคราะห์ข้อมูลผลสำรวจด้วย Excel · ทดสอบความเร็วพิมพ์อังกฤษก่อนเรียน</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              11
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">ฐานข้อมูลเบื้องต้น (Microsoft Access, Query Wizard, รายงาน) + จดหมายเวียน (Mail Merge)</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 9: ฐานข้อมูล + จดหมายแจ้งผลถึงสาขา</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              12
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">AI สำหรับนักศึกษา — Copilot, Prompt, การใช้ AI อย่างรับผิดชอบ + นำตาราง/กราฟจาก Excel มาใช้ใน Word</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 10: บทที่ 4 ผลการสำรวจ</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              13
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">แอปพลิเคชันคลาวด์ (Google apps for education) การแชร์และกำหนดสิทธิ์ + จัดรูปเล่มฉบับสมบูรณ์</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 11: บทที่ 5 + เล่มฉบับสมบูรณ์</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              14
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">การนำเสนอผลงานด้วย PowerPoint — ตาราง/กราฟ Transition/Animation และการซ้อมนำเสนอ</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">ใบงาน 12: สไลด์นำเสนอผลการสำรวจ</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              15
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">นำเสนอโครงงานฉบับสมบูรณ์ + ส่งเล่มรายงาน (.docx และ .pdf)</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">นำเสนอครั้งที่ 2 · Post-test · งดฝึกพิมพ์</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row week-exam">
+          <div class="week-num">
+            
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">สอบปลายภาค</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">สอบปลายภาค · ทดสอบความเร็วพิมพ์อังกฤษ</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p class="footer-name">ผศ.ดร.กริชบดินทร์ ผิวหอม</p>
+      <p class="footer-affil">สาขาวิชาวิทยาการคอมพิวเตอร์ · คณะศิลปศาสตร์และวิทยาศาสตร์ · มหาวิทยาลัยราชภัฏศรีสะเกษ</p>
+      <p class="footer-copy">&copy; <span id="yr"></span> สงวนลิขสิทธิ์ตามพระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

@@ -180,6 +180,37 @@
         { "week": 15, "chapter": "", "topic": "Final Presentation — นำเสนอโปรเจคสมบูรณ์ + Demo ร้านค้า (15 นาที + Q&A 5 นาที)", "has_workshop": false, "note": "Final Presentation + Report (คะแนนเก็บ)" },
         { "week": 16, "chapter": "", "topic": "สอบปลายภาค — เนื้อหาบทที่ 1–4 + E-Commerce ทั้ง 5 ขั้นตอน", "has_workshop": false, "note": "สอบปลายภาค · 30 คะแนน" }
       ]
+    },
+    {
+      "code": "4002104",
+      "name": "การประยุกต์ใช้โปรแกรมสำนักงานในยุคดิจิทัล (Office Program Application in Digital World)",
+      "schedule": "บรรยาย 2 ชม. + ปฏิบัติ 2 ชม./สัปดาห์ (แจ้งวัน/เวลา/ห้องในกลุ่ม)",
+      "teams_link": "",
+      "textbooks": [],
+      "grading": [
+        { "label": "คะแนนเก็บ (ใบงาน + นำเสนอ + ฝึกพิมพ์)", "score": 40 },
+        { "label": "กลางภาค", "score": 20 },
+        { "label": "จิตพิสัย", "score": 10 },
+        { "label": "ปลายภาค", "score": 30 }
+      ],
+      "weeks": [
+        { "week": 1, "chapter": "", "topic": "แนะนำรายวิชา + Microsoft 365, OneDrive, Teams และ Planner + จัดกลุ่ม 3–4 คน เลือกหัวข้อโครงงาน", "has_workshop": true, "note": "ใบงาน 1 · Pre-test · ทดสอบความเร็วพิมพ์ครั้งที่ 1" },
+        { "week": 2, "chapter": "", "topic": "การพิมพ์สัมผัส + การสร้าง แก้ไข บันทึกเอกสาร (Save / Save As / PDF) และคีย์ลัด", "has_workshop": true, "note": "ใบงาน 2: โครงร่างโครงงาน" },
+        { "week": 3, "chapter": "", "topic": "Microsoft Word (1) — ตั้งค่าหน้ากระดาษ จัดรูปแบบตัวอักษร/ย่อหน้า และ Styles", "has_workshop": true, "note": "ใบงาน 3: บทที่ 1 บทนำ" },
+        { "week": 4, "chapter": "", "topic": "Microsoft Word (2) — สืบค้นข้อมูล แทรกรูป/ตาราง Caption และการอ้างอิง", "has_workshop": true, "note": "ใบงาน 4: บทที่ 2 ข้อมูลที่เกี่ยวข้อง" },
+        { "week": 5, "chapter": "", "topic": "Microsoft Word (3) — ปก เลขหน้า สารบัญอัตโนมัติ + แก้ไขร่วมกัน (Comment, Track Changes)", "has_workshop": true, "note": "ใบงาน 5: รวมเล่มบทที่ 1–2" },
+        { "week": 6, "chapter": "", "topic": "Microsoft Forms — สร้างแบบฟอร์มออนไลน์ เผยแพร่ด้วยลิงก์/QR Code + เขียนวิธีดำเนินงาน", "has_workshop": true, "note": "ใบงาน 6: แบบสอบถามออนไลน์ + บทที่ 3" },
+        { "week": 7, "chapter": "", "topic": "Microsoft PowerPoint — ธีม Designer การแทรกสื่อ และหลักการออกแบบสไลด์", "has_workshop": true, "note": "ใบงาน 7: สไลด์นำเสนอความก้าวหน้า" },
+        { "week": 8, "chapter": "", "topic": "นำเสนอความก้าวหน้าโครงงาน ครั้งที่ 1 + Presenter View", "has_workshop": false, "note": "นำเสนอครั้งที่ 1 · ส่งแฟ้มใบงาน 1–7 · งดฝึกพิมพ์" },
+        { "week": 9, "chapter": "", "topic": "สอบกลางภาคเรียน", "has_workshop": false, "note": "สอบกลางภาค · ทดสอบความเร็วพิมพ์ไทยครั้งที่ 2 · เก็บข้อมูลแบบสอบถามช่วงนี้" },
+        { "week": 10, "chapter": "", "topic": "Microsoft Excel — นำข้อมูลจาก Forms ทำความสะอาดข้อมูล ฟังก์ชัน COUNTIF ร้อยละ และกราฟ", "has_workshop": true, "note": "ใบงาน 8: วิเคราะห์ข้อมูลผลสำรวจด้วย Excel · ทดสอบความเร็วพิมพ์อังกฤษก่อนเรียน" },
+        { "week": 11, "chapter": "", "topic": "ฐานข้อมูลเบื้องต้น (Microsoft Access, Query Wizard, รายงาน) + จดหมายเวียน (Mail Merge)", "has_workshop": true, "note": "ใบงาน 9: ฐานข้อมูล + จดหมายแจ้งผลถึงสาขา" },
+        { "week": 12, "chapter": "", "topic": "AI สำหรับนักศึกษา — Copilot, Prompt, การใช้ AI อย่างรับผิดชอบ + นำตาราง/กราฟจาก Excel มาใช้ใน Word", "has_workshop": true, "note": "ใบงาน 10: บทที่ 4 ผลการสำรวจ" },
+        { "week": 13, "chapter": "", "topic": "แอปพลิเคชันคลาวด์ (Google apps for education) การแชร์และกำหนดสิทธิ์ + จัดรูปเล่มฉบับสมบูรณ์", "has_workshop": true, "note": "ใบงาน 11: บทที่ 5 + เล่มฉบับสมบูรณ์" },
+        { "week": 14, "chapter": "", "topic": "การนำเสนอผลงานด้วย PowerPoint — ตาราง/กราฟ Transition/Animation และการซ้อมนำเสนอ", "has_workshop": true, "note": "ใบงาน 12: สไลด์นำเสนอผลการสำรวจ" },
+        { "week": 15, "chapter": "", "topic": "นำเสนอโครงงานฉบับสมบูรณ์ + ส่งเล่มรายงาน (.docx และ .pdf)", "has_workshop": false, "note": "นำเสนอครั้งที่ 2 · Post-test · งดฝึกพิมพ์" },
+        { "week": 16, "chapter": "", "topic": "สอบปลายภาค", "has_workshop": false, "note": "สอบปลายภาค · ทดสอบความเร็วพิมพ์อังกฤษ" }
+      ]
     }
   ]
 }
