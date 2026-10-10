@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4121701+ · ดิจิตอลเบื้องต้น (Introduction to Digital Concept)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "943bd094c77746988df3268cecfab155"}'></script>
+  <script>
+    (function() {
+      var code = prompt('กรุณาใส่รหัสห้องเรียนเพื่อเข้าดูข้อมูล');
+      if (code !== '3303') {
+        alert('รหัสไม่ถูกต้อง');
+        location.replace('index.html');
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <nav class="topbar">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      รายวิชาทั้งหมด
+    </a>
+  </nav>
+
+  <div class="course-layout">
+
+    <!-- ── Sidebar ── -->
+    <aside class="course-sidebar">
+
+      <!-- Course info -->
+      <div class="sidebar-card">
+        <span class="badge">4121701+</span>
+        <h1 class="course-title">ดิจิตอลเบื้องต้น (Introduction to Digital Concept)</h1>
+
+        <div class="meta-list">
+          <div class="meta-item">
+            <span class="meta-icon">🗓</span>
+            <div>
+              <div class="meta-label">ตารางสอน</div>
+              <div class="meta-value">บรรยาย 2 ชม. + ปฏิบัติ 2 ชม./สัปดาห์ (แจ้งวัน/เวลา/ห้องในกลุ่ม)</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">👨‍🏫</span>
+            <div>
+              <div class="meta-label">ผู้สอน</div>
+              <div class="meta-value">ผศ.ดร.กริชบดินทร์ ผิวหอม</div>
+            </div>
+          </div>
+          <div class="meta-item">
+            <span class="meta-icon">🕐</span>
+            <div>
+              <div class="meta-label">Office Hours</div>
+              <div class="meta-value">พุธ 13:30–15:00 (ออนไลน์)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MS Teams -->
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          MS Teams
+        </h2>
+        <p class="teams-note">รหัสเข้าห้องแจ้งในกลุ่ม</p>
+        <p class="teams-note">รวมทั้งสไลด์ Workshop และเอกสารต่างๆ</p>
+      </div>
+
+      <!-- Textbooks -->
+      
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          เอกสารและตำราประกอบ
+        </h2>
+        <ol class="textbook-list">
+          
+          <li>วัฒนา แก้วดุก, &#34;การออกแบบดิจิตอลวิศวกรรม&#34;, สมาคมส่งเสริมเทคโนโลยี (ไทย-ญี่ปุ่น), 2546.</li>
+          
+          <li>ทีมงานสมาร์ทเลิร์นนิ่ง, &#34;Digital Learning by Doing ฉบับรวมชุดอุปกรณ์และโฟโต้บอร์ด&#34;, สมาร์ทเลิร์นนิ่ง, 2549.</li>
+          
+          <li>มงคล ทองสงคราม, &#34;ทฤษฎีดิจิตอล&#34;, ห้างหุ้นส่วน วี.เจ พริ้นติ้ง, 2543.</li>
+          
+        </ol>
+      </div>
+      
+
+      <!-- Grading -->
+      
+      
+      
+      <div class="sidebar-card sidebar-card--section">
+        <h2 class="sidebar-section-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          การประเมินผล
+        </h2>
+        <div class="donut-wrap">
+          <svg class="donut-svg" viewBox="0 0 100 100">
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#2563eb"
+              stroke-dasharray="100.52000000000001 150.78"
+              stroke-dashoffset="251.3"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#7c3aed"
+              stroke-dasharray="50.260000000000005 201.04000000000002"
+              stroke-dashoffset="150.78"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#0891b2"
+              stroke-dasharray="25.130000000000003 226.17000000000002"
+              stroke-dashoffset="100.51999999999998"
+            />
+            
+            
+            
+            <circle class="donut-seg"
+              cx="50" cy="50" r="40"
+              stroke="#059669"
+              stroke-dasharray="75.39 175.91000000000003"
+              stroke-dashoffset="75.38999999999999"
+            />
+            
+            
+            <text x="50" y="46" class="donut-label-top">100</text>
+            <text x="50" y="58" class="donut-label-bot">คะแนน</text>
+          </svg>
+          <div class="donut-legend">
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#2563eb"></span>
+              <span class="legend-label">คะแนนเก็บ</span>
+              <span class="legend-score">40</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#7c3aed"></span>
+              <span class="legend-label">กลางภาค</span>
+              <span class="legend-score">20</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#0891b2"></span>
+              <span class="legend-label">จิตพิสัย</span>
+              <span class="legend-score">10</span>
+            </div>
+            
+            <div class="legend-row">
+              <span class="legend-dot" style="background:#059669"></span>
+              <span class="legend-label">ปลายภาค</span>
+              <span class="legend-score">30</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+
+    </aside>
+
+    <!-- ── Main ── -->
+    <main class="course-main">
+      <h2 class="section-heading">เนื้อหารายสัปดาห์</h2>
+      <div class="week-list">
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              1
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 1</span> ดิจิตอลเบื้องต้น — แนะนำรายวิชา สัญญาณแอนะล็อกกับดิจิตอล ดิจิตอลรอบตัวเรา</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">สมัคร MS Teams · เปิดใช้ logic.ly</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              2
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 1</span> ลอจิกเกต 7 ชนิด — สัญลักษณ์ นิพจน์บูลีน ตารางความจริง</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop: เกต 7 ชนิด, F = A·B + C · แบบทดสอบท้ายบทที่ 1</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              3
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 2</span> ระบบจำนวน — เลขฐาน 10, 2, 8, 16 และการแปลงกับฐาน 10</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">แบบฝึกหัดชุด ก–ข</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              4
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 2</span> การแปลงฐาน 2, 8, 16 ด้วยการจัดกลุ่มบิต + การบวก ลบ คูณ หารเลขฐานสอง</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop: สวิตช์ 4 บิต → Digit display · แบบทดสอบท้ายบทที่ 2</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              5
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 3</span> การลดรูปฟังก์ชัน — พีชคณิตบูลีน และทฤษฎีเดอมอร์แกน</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">แบบฝึกหัดชุด ก</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              6
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 3</span> รูปแบบมาตรฐาน SOP / POS + ผังคาร์โนห์ (Karnaugh Map) 2, 3, 4 ตัวแปร</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">แบบฝึกหัดชุด ข–ค</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              7
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 3</span> กฎการวงกลุ่มบนผังคาร์โนห์ + เงื่อนไขที่ไม่สนใจ (Don&#39;t care)</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop: เทียบวงจรก่อน–หลังลดรูป · แบบทดสอบท้ายบทที่ 3</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row week-exam">
+          <div class="week-num">
+            
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">สอบกลางภาคเรียน (บทที่ 1–3)</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">สอบกลางภาค · 20 คะแนน</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              9
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 4</span> วงจรคอมบิเนชัน — ออกแบบวงจรจากโจทย์ + 1&#39;s และ 2&#39;s complement</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">แบบฝึกหัดชุด ก–ข</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              10
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 4</span> วงจรคำนวณ — บวกลบแบบ 2&#39;s complement, Overflow, Half/Full Adder, IC 74283</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop: วงจรบวก 4 บิต · แบบทดสอบท้ายบทที่ 4</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              11
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 5</span> ฟลิบฟลอบ — Latch กับ Flip-Flop, RS Flip-Flop แบบ NOR, NAND และมีสัญญาณนาฬิกา</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">แบบฝึกหัดชุด ก (แผนภาพเวลา)</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              12
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 5</span> D, T และ JK Flip-Flop + เปรียบเทียบ Flip-Flop 4 ชนิด</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop: RS Latch, D/JK Flip-Flop, วงจรหารความถี่ · แบบทดสอบท้ายบทที่ 5</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              13
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 6</span> วงจรนับ — อะซิงโครนัส/ซิงโครนัส และวงจรนับขึ้นไบนารีอะซิงโครนัส</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop 1: วงจรนับขึ้น 4 บิต</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              14
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 6</span> วงจรนับลง และวงจรนับขึ้น/นับลง แบบอะซิงโครนัส</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop 2–3: นับลง 4 บิต, นับขึ้น/ลง</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row ">
+          <div class="week-num">
+            
+              15
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic"><span class="week-chapter">บทที่ 6</span> วงจรนับสิบ และวงจรนับมอดูลัสอื่น (mod-N) + ทบทวนบทที่ 4–6</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">Workshop 4: วงจรนับ 0–9 · แบบทดสอบท้ายบทที่ 6</span>
+            </div>
+            
+          </div>
+          
+          <span class="ws-icon" title="สัปดาห์นี้มี Workshop">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+          </span>
+          
+        </div>
+        
+        <div class="week-row week-exam">
+          <div class="week-num">
+            
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            
+          </div>
+          <div class="week-body">
+            <p class="week-topic">สอบปลายภาค (บทที่ 4–6)</p>
+            
+            <div class="week-meta">
+              <span class="pill pill-note">สอบปลายภาค · 30 คะแนน</span>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <p class="footer-name">ผศ.ดร.กริชบดินทร์ ผิวหอม</p>
+      <p class="footer-affil">สาขาวิชาวิทยาการคอมพิวเตอร์ · คณะศิลปศาสตร์และวิทยาศาสตร์ · มหาวิทยาลัยราชภัฏศรีสะเกษ</p>
+      <p class="footer-copy">&copy; <span id="yr"></span> สงวนลิขสิทธิ์ตามพระราชบัญญัติลิขสิทธิ์ พ.ศ. 2537</p>
+    </div>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

@@ -20,7 +20,7 @@
   <main class="index-main">
     <div class="course-grid">
       {% for course in courses %}
-      <a class="course-card" href="{{ course.code }}.html">
+      <a class="course-card" href="{{ course.code | replace('+', '') }}.html">
         <div class="card-top">
           <span class="card-code">{{ course.code }}</span>
         </div>

@@ -35,7 +35,7 @@ def main():
     course_tmpl = env.get_template("course.html")
     for course in courses:
         page = course_tmpl.render(course=course)
-        (OUTPUT / f"{course['code']}.html").write_text(page, encoding="utf-8")
+        (OUTPUT / f"{course['code'].replace('+', '')}.html").write_text(page, encoding="utf-8")
 
     # 7) บอก GitHub Pages ไม่ต้องประมวลผลด้วย Jekyll
     (OUTPUT / ".nojekyll").write_text("", encoding="utf-8")
