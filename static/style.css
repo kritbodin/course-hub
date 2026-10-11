@@ -296,40 +296,38 @@ a:hover { text-decoration: underline; }
 
 .donut-wrap {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: .85rem;
+  gap: .9rem;
 }
 .donut-svg {
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
   flex-shrink: 0;
-  transform: rotate(-90deg);
 }
 .donut-seg {
   fill: none;
   stroke-width: 18;
   opacity: .88;
+  transform: rotate(-90deg);
+  transform-origin: 50px 50px;
 }
 .donut-label-top {
   font-size: 14px;
   font-weight: 700;
   fill: var(--ink);
   text-anchor: middle;
-  transform: rotate(90deg) translate(0, -100px);
-  transform-origin: 50% 50%;
 }
 .donut-label-bot {
   font-size: 8px;
   fill: var(--muted);
   text-anchor: middle;
-  transform: rotate(90deg) translate(0, -100px);
-  transform-origin: 50% 50%;
 }
 .donut-legend {
   display: flex;
   flex-direction: column;
   gap: .45rem;
-  flex: 1;
+  align-self: stretch;
 }
 .legend-row {
   display: flex;
@@ -342,6 +340,8 @@ a:hover { text-decoration: underline; }
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: .38em;
 }
 .legend-label {
   flex: 1;
@@ -352,6 +352,7 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   color: var(--muted);
   white-space: nowrap;
+  align-self: flex-start;
 }
 .legend-score::after { content: " คะแนน"; font-weight: 400; font-size: .7rem; }
 

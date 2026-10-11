@@ -137,17 +137,17 @@
         { "label": "ปลายภาค", "score": 30 }
       ],
       "weeks": [
-        { "week": 1, "chapter": "", "topic": "แนะนำรายวิชา + แบ่งกลุ่ม 3–4 คน + ทบทวน IoT + เลือกชุมชนเป้าหมาย", "has_workshop": true, "note": "ใบงานที่ 1: ตั้งทีมและเลือกชุมชนเป้าหมาย" },
+        { "week": 1, "chapter": "", "topic": "แนะนำรายวิชา + แบ่งกลุ่ม 3–5 คน ตั้งชื่อทีม + ทบทวน IoT + เลือกชุมชนเป้าหมาย", "has_workshop": true, "note": "ใบงานที่ 1: ตั้งทีมและเลือกชุมชนเป้าหมาย" },
         { "week": 2, "chapter": "", "topic": "สำรวจความต้องการชุมชน (Community Needs Analysis) + Proposal ตอนที่ 1", "has_workshop": true, "note": "ใบงานที่ 2: ลงพื้นที่สัมภาษณ์ ≥ 3 คน" },
-        { "week": 3, "chapter": "", "topic": "Proposal ตอนที่ 2 — Block Diagram ESP32 → DB → Web/App, DB Schema, Tech Stack, Gantt Chart", "has_workshop": true, "note": "ใบงานที่ 3: ออกแบบระบบเบื้องต้น" },
-        { "week": 4, "chapter": "", "topic": "นำเสนอ Proposal ต่ออาจารย์ (กลุ่มละ 10 นาที) + อนุมัติหัวข้อ", "has_workshop": false, "note": "ส่ง Proposal · 20 คะแนน" },
-        { "week": 5, "chapter": "", "topic": "ออกแบบระบบฉบับสมบูรณ์ — Circuit Diagram, DB Schema, Wireframe Web/App", "has_workshop": false, "note": "" },
-        { "week": 6, "chapter": "", "topic": "Prototype บน Wokwi + Insert ข้อมูลเข้า Database + Web Dashboard เบื้องต้น (Chart.js)", "has_workshop": false, "note": "" },
-        { "week": 7, "chapter": "", "topic": "Checkpoint 1 — Demo Wokwi + Web/App แสดงข้อมูลจาก DB + Circuit Diagram", "has_workshop": false, "note": "Checkpoint 1 · 10 คะแนน" },
+        { "week": 3, "chapter": "", "topic": "ออกแบบระบบเบื้องต้น — Block Diagram ESP32 → DB → Web/App, DB Schema, Tech Stack, Gantt Chart + เตรียมสไลด์ Proposal", "has_workshop": true, "note": "ใบงานที่ 3: ออกแบบระบบเบื้องต้น + สไลด์ Proposal" },
+        { "week": 4, "chapter": "", "topic": "นำเสนอ Proposal ต่ออาจารย์ (กลุ่มละ 10 นาที) + อนุมัติหัวข้อ", "has_workshop": false, "note": "Proposal (สรุปใบงานที่ 1–3) · 20 คะแนน" },
+        { "week": 5, "chapter": "", "topic": "ออกแบบระบบฉบับสมบูรณ์ (ปรับตาม Feedback) — Circuit Diagram, DB Schema + API, Wireframe Web/App", "has_workshop": true, "note": "ใบงานที่ 5: ออกแบบระบบฉบับสมบูรณ์" },
+        { "week": 6, "chapter": "", "topic": "Prototype บน Wokwi + Insert ข้อมูลเข้า Database + Web Dashboard (Chart.js) แบบ End-to-End", "has_workshop": true, "note": "ใบงานที่ 6: Prototype Wokwi → DB → Web" },
+        { "week": 7, "chapter": "", "topic": "Checkpoint 1 — Demo Wokwi + Web/App แสดงข้อมูลจาก DB + Circuit Diagram และ DB Schema", "has_workshop": false, "note": "Checkpoint 1 (ส่งใบงานที่ 5–6) · 10 คะแนน" },
         { "week": 8, "chapter": "", "topic": "สอบกลางภาค — Demo ระบบโครงงาน (กลุ่มละ 15+5 นาที)", "has_workshop": false, "note": "สอบกลางภาค · 20 คะแนน" },
-        { "week": "9–11", "chapter": "", "topic": "พัฒนา Hardware จริง — ESP32 + Sensor → Database (CRUD) → Web/App Real-time แบบ End-to-End", "has_workshop": false, "note": "ส่ง Progress Log รายสัปดาห์" },
-        { "week": 12, "chapter": "", "topic": "Checkpoint 2 — Demo End-to-End บน Hardware จริง + เตรียมแบบประเมินความพึงพอใจ", "has_workshop": false, "note": "Checkpoint 2 · 10 คะแนน" },
-        { "week": "13–14", "chapter": "", "topic": "ให้ผู้ใช้ในชุมชน ≥ 5 คนทดลองใช้ + ปรับปรุงตาม Feedback + จัดทำเล่มโครงงานและคู่มือ", "has_workshop": false, "note": "Push Code ขึ้น GitHub" },
+        { "week": "9–11", "chapter": "", "topic": "พัฒนาระบบบน Hardware จริง (Sprint 3 สัปดาห์) — ESP32 + Sensor → Database (CRUD) → Web/App Real-time", "has_workshop": true, "note": "ใบงานที่ 9: พัฒนาระบบบน Hardware จริง + Progress Log" },
+        { "week": 12, "chapter": "", "topic": "Checkpoint 2 — Demo End-to-End บน Hardware จริง + เตรียมแบบประเมินความพึงพอใจ", "has_workshop": false, "note": "Checkpoint 2 (ส่งใบงานที่ 9) · 10 คะแนน" },
+        { "week": "13–14", "chapter": "", "topic": "ให้ผู้ใช้ในชุมชน ≥ 5 คนทดลองใช้ + ปรับปรุงตาม Feedback + จัดทำเล่ม คู่มือ และ GitHub README", "has_workshop": true, "note": "ใบงานที่ 13: ทดสอบกับชุมชน + เตรียมปลายภาค" },
         { "week": "15–16", "chapter": "", "topic": "สอบปลายภาค — นำเสนองานสมบูรณ์ + Demo (กลุ่มละ 20+5 นาที)", "has_workshop": false, "note": "สอบปลายภาค · 30 คะแนน" },
         { "week": 17, "chapter": "", "topic": "สรุปรายวิชาและถอดบทเรียน (Reflection) + แจ้งผลการประเมิน", "has_workshop": false, "note": "ส่งเอกสารที่ค้างทั้งหมด" }
       ]

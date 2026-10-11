@@ -104,8 +104,8 @@
             <circle class="donut-seg"
               cx="50" cy="50" r="40"
               stroke="{{ colors[loop.index0 % 4] }}"
-              stroke-dasharray="{{ dash }} {{ circ - dash }}"
-              stroke-dashoffset="{{ circ - ns.offset }}"
+              stroke-dasharray="{{ dash | round(2) }} {{ (circ - dash) | round(2) }}"
+              stroke-dashoffset="{{ (circ - ns.offset) | round(2) }}"
             />
             {% set ns.offset = ns.offset + dash %}
             {% endfor %}
